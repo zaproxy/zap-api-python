@@ -90,7 +90,7 @@ class ZAPv2(object):
         >>> z=ZAPv2()
 
         Example with custom proxies
-        >>> my_proxies = {'http': 'http://10.0.1.1:9090', 'https': 'http://10.0.1.1:9009'}
+        >>> my_proxies = {'http': 'http://10.0.1.1:9090', 'https': 'http://10.0.1.1:9090'}
         >>> z=ZAPv2(proxies=my_proxies)
 
         :param proxies: Dict with the scheme as key and PROXY url as value
