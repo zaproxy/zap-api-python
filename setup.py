@@ -20,28 +20,28 @@ __docformat__ = 'restructuredtext'
 with open(join(dirname(__file__), 'requirements.txt')) as f:
     required = f.read().splitlines()
 
+# Import extra requirements
+with open(join(dirname(__file__), 'requirements-extra.txt')) as f:
+    extra_required = f.read().splitlines()
+
 setup(
-    name="python-owasp-zap-v2.4",
-    version="0.0.8",
-    description="OWASP ZAP 2.4 API client",
+    name="python-owasp-zap",
+    version="1.0.0",
+    description="OWASP ZAP API client. Supported versions: 2.4",
     install_requires=required,
-    long_description="OWASP Zed Attack Proxy 2.4 API python client",
+    extras_require={
+        'performance': extra_required,
+    },
+    long_description="OWASP Zed Attack Proxy API python client",
     author="ZAP development team",
     author_email='',
     url="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project",
-    download_url="https://github.com/zaproxy/zaproxy/releases/tag/2.4.3",
+    download_url="https://github.com/zaproxy/zap-api-python/archive/master.zip",
     platforms=['any'],
-
     license="ASL2.0",
-
-    package_dir={
-        '': 'src',
-    },
-    packages=find_packages('src'),
-
+    packages=find_packages(),
     classifiers=[
         'License :: OSI Approved :: Apache Software License',
-        'Development Status :: 4 - Beta',
         'Topic :: Security',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Intended Audience :: Developers',

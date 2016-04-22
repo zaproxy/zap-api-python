@@ -1,4 +1,4 @@
-include LICENSE requirements.txt
+include LICENSE requirements.txt requirements-extra.txt
 
 recursive-exclude * __pycache__
 recursive-exclude * *.pyc

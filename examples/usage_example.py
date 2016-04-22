@@ -5,18 +5,18 @@ from __future__ import print_function
 import time
 
 from pprint import pprint
-from zapv2 import ZAPv2
+from zap import ZAPv24
 
 target = 'http://127.0.0.1'
 
 # By default ZAP API client will connect to port 8080
-zap = ZAPv2()
+zap = ZAPv24()
 
 # Or, you can configure your own IP/Port
-# zap_9090 = ZAPv2(proxies={'http': '127.0.0.1:9090', 'https': '127.0.0.1:9090'})
+# zap_9090 = ZAPv24(proxies={'http': '127.0.0.1:9090', 'https': '127.0.0.1:9090'})
 
 # Use the line below if ZAP is not listening on port 8080, for example, if listening on port 8090
-# zap = ZAPv2(proxies={'http': 'http://127.0.0.1:8090', 'https': 'http://127.0.0.1:8090'})
+# zap = ZAPv24(proxies={'http': 'http://127.0.0.1:8090', 'https': 'http://127.0.0.1:8090'})
 
 # do stuff
 print('Accessing target %s' % target)
