@@ -17,11 +17,11 @@ setup(
     name="python-owasp-zap-v2.4",
     version="0.0.8",
     description="OWASP ZAP 2.5 API client",
-    long_description="OWASP Zed Attack Proxy 2.5 API python client",
+    long_description="OWASP Zed Attack Proxy 2.5 API python client (the 2.4 package name has been kept to make it easier to upgrade)",
     author="ZAP development team",
     author_email='',
     url="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project",
-    download_url="https://github.com/zaproxy/zaproxy/releases/tag/2.5.0",
+    download_url="https://github.com/zaproxy/zap-api-python/releases/tag/0.0.8",
     platforms=['any'],
 
     license="ASL2.0",
