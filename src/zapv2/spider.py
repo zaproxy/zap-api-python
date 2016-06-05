@@ -19,6 +19,9 @@
 This file was automatically generated.
 """
 
+import six
+
+
 class spider(object):
 
     def __init__(self, zap):
@@ -28,151 +31,151 @@ class spider(object):
         params = {}
         if scanid is not None:
             params['scanId'] = scanid
-        return next(self.zap._request(self.zap.base + 'spider/view/status/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/status/', params)))
 
     def results(self, scanid=None):
         params = {}
         if scanid is not None:
             params['scanId'] = scanid
-        return next(self.zap._request(self.zap.base + 'spider/view/results/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/results/', params)))
 
     def full_results(self, scanid):
-        return next(self.zap._request(self.zap.base + 'spider/view/fullResults/', {'scanId' : scanid}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/fullResults/', {'scanId': scanid})))
 
     @property
     def scans(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/scans/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/scans/')))
 
     @property
     def excluded_from_scan(self):
         """
         Gets the regexes of URLs excluded from the spider scans.
         """
-        return next(self.zap._request(self.zap.base + 'spider/view/excludedFromScan/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/excludedFromScan/')))
 
     @property
     def all_urls(self):
         """
         Returns a list of unique URLs from the history table based on HTTP messages added by the Spider.
         """
-        return next(self.zap._request(self.zap.base + 'spider/view/allUrls/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/allUrls/')))
 
     @property
     def domains_always_in_scope(self):
         """
         Gets all the domains that are always in scope. For each domain the following are shown: the index, the value (domain), if enabled, and if specified as a regex.
         """
-        return next(self.zap._request(self.zap.base + 'spider/view/domainsAlwaysInScope/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/domainsAlwaysInScope/')))
 
     @property
     def option_domains_always_in_scope(self):
         """
         Use view domainsAlwaysInScope instead.
         """
-        return next(self.zap._request(self.zap.base + 'spider/view/optionDomainsAlwaysInScope/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionDomainsAlwaysInScope/')))
 
     @property
     def option_domains_always_in_scope_enabled(self):
         """
         Use view domainsAlwaysInScope instead.
         """
-        return next(self.zap._request(self.zap.base + 'spider/view/optionDomainsAlwaysInScopeEnabled/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionDomainsAlwaysInScopeEnabled/')))
 
     @property
     def option_handle_parameters(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionHandleParameters/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionHandleParameters/')))
 
     @property
     def option_max_children(self):
         """
         Gets the maximum number of child nodes (per node) that can be crawled, 0 means no limit.
         """
-        return next(self.zap._request(self.zap.base + 'spider/view/optionMaxChildren/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionMaxChildren/')))
 
     @property
     def option_max_depth(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionMaxDepth/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionMaxDepth/')))
 
     @property
     def option_max_duration(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionMaxDuration/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionMaxDuration/')))
 
     @property
     def option_max_scans_in_ui(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionMaxScansInUI/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionMaxScansInUI/')))
 
     @property
     def option_request_wait_time(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionRequestWaitTime/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionRequestWaitTime/')))
 
     @property
     def option_scope(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionScope/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionScope/')))
 
     @property
     def option_scope_text(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionScopeText/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionScopeText/')))
 
     @property
     def option_skip_url_string(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionSkipURLString/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionSkipURLString/')))
 
     @property
     def option_thread_count(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionThreadCount/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionThreadCount/')))
 
     @property
     def option_user_agent(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionUserAgent/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionUserAgent/')))
 
     @property
     def option_handle_o_data_parameters_visited(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionHandleODataParametersVisited/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionHandleODataParametersVisited/')))
 
     @property
     def option_parse_comments(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionParseComments/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionParseComments/')))
 
     @property
     def option_parse_git(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionParseGit/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionParseGit/')))
 
     @property
     def option_parse_robots_txt(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionParseRobotsTxt/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionParseRobotsTxt/')))
 
     @property
     def option_parse_svn_entries(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionParseSVNEntries/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionParseSVNEntries/')))
 
     @property
     def option_parse_sitemap_xml(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionParseSitemapXml/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionParseSitemapXml/')))
 
     @property
     def option_post_form(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionPostForm/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionPostForm/')))
 
     @property
     def option_process_form(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionProcessForm/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionProcessForm/')))
 
     @property
     def option_send_referer_header(self):
         """
         Gets whether or not the 'Referer' header should be sent while spidering.
         """
-        return next(self.zap._request(self.zap.base + 'spider/view/optionSendRefererHeader/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionSendRefererHeader/')))
 
     @property
     def option_show_advanced_dialog(self):
-        return next(self.zap._request(self.zap.base + 'spider/view/optionShowAdvancedDialog/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionShowAdvancedDialog/')))
 
     def scan(self, url=None, maxchildren=None, recurse=None, contextname=None, subtreeonly=None, apikey=''):
         """
         Runs the spider against the given URL (or context). Optionally, the 'maxChildren' parameter can be set to limit the number of children scanned, the 'recurse' parameter can be used to prevent the spider from seeding recursively, the parameter 'contextName' can be used to constrain the scan to a Context and the parameter 'subtreeOnly' allows to restrict the spider under a site's subtree (using the specified 'url').
         """
-        params = {'apikey' : apikey}
+        params = {'apikey': apikey}
         if url is not None:
             params['url'] = url
         if maxchildren is not None:
@@ -183,13 +186,13 @@ class spider(object):
             params['contextName'] = contextname
         if subtreeonly is not None:
             params['subtreeOnly'] = subtreeonly
-        return next(self.zap._request(self.zap.base + 'spider/action/scan/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/scan/', params)))
 
     def scan_as_user(self, contextid, userid, url=None, maxchildren=None, recurse=None, subtreeonly=None, apikey=''):
         """
         Runs the spider from the perspective of a User, obtained using the given Context ID and User ID. See 'scan' action for more details.
         """
-        params = {'contextId' : contextid, 'userId' : userid, 'apikey' : apikey}
+        params = {'contextId': contextid, 'userId': userid, 'apikey': apikey}
         if url is not None:
             params['url'] = url
         if maxchildren is not None:
@@ -198,156 +201,154 @@ class spider(object):
             params['recurse'] = recurse
         if subtreeonly is not None:
             params['subtreeOnly'] = subtreeonly
-        return next(self.zap._request(self.zap.base + 'spider/action/scanAsUser/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/scanAsUser/', params)))
 
     def pause(self, scanid, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/pause/', {'scanId' : scanid, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/pause/', {'scanId': scanid, 'apikey': apikey})))
 
     def resume(self, scanid, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/resume/', {'scanId' : scanid, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/resume/', {'scanId': scanid, 'apikey': apikey})))
 
     def stop(self, scanid=None, apikey=''):
-        params = {'apikey' : apikey}
+        params = {'apikey': apikey}
         if scanid is not None:
             params['scanId'] = scanid
-        return next(self.zap._request(self.zap.base + 'spider/action/stop/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/stop/', params)))
 
     def remove_scan(self, scanid, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/removeScan/', {'scanId' : scanid, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/removeScan/', {'scanId': scanid, 'apikey': apikey})))
 
     def pause_all_scans(self, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/pauseAllScans/', {'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/pauseAllScans/', {'apikey': apikey})))
 
     def resume_all_scans(self, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/resumeAllScans/', {'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/resumeAllScans/', {'apikey': apikey})))
 
     def stop_all_scans(self, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/stopAllScans/', {'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/stopAllScans/', {'apikey': apikey})))
 
     def remove_all_scans(self, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/removeAllScans/', {'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/removeAllScans/', {'apikey': apikey})))
 
     def clear_excluded_from_scan(self, apikey=''):
         """
         Clears the regexes of URLs excluded from the spider scans.
         """
-        return next(self.zap._request(self.zap.base + 'spider/action/clearExcludedFromScan/', {'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/clearExcludedFromScan/', {'apikey': apikey})))
 
     def exclude_from_scan(self, regex, apikey=''):
         """
         Adds a regex of URLs that should be excluded from the spider scans.
         """
-        return next(self.zap._request(self.zap.base + 'spider/action/excludeFromScan/', {'regex' : regex, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/excludeFromScan/', {'regex': regex, 'apikey': apikey})))
 
     def add_domain_always_in_scope(self, value, isregex=None, isenabled=None, apikey=''):
         """
         Adds a new domain that's always in scope, using the specified value. Optionally sets if the new entry is enabled (default, true) and whether or not the new value is specified as a regex (default, false).
         """
-        params = {'value' : value, 'apikey' : apikey}
+        params = {'value': value, 'apikey': apikey}
         if isregex is not None:
             params['isRegex'] = isregex
         if isenabled is not None:
             params['isEnabled'] = isenabled
-        return next(self.zap._request(self.zap.base + 'spider/action/addDomainAlwaysInScope/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/addDomainAlwaysInScope/', params)))
 
     def modify_domain_always_in_scope(self, idx, value=None, isregex=None, isenabled=None, apikey=''):
         """
         Modifies a domain that's always in scope. Allows to modify the value, if enabled or if a regex. The domain is selected with its index, which can be obtained with the view domainsAlwaysInScope.
         """
-        params = {'idx' : idx, 'apikey' : apikey}
+        params = {'idx': idx, 'apikey': apikey}
         if value is not None:
             params['value'] = value
         if isregex is not None:
             params['isRegex'] = isregex
         if isenabled is not None:
             params['isEnabled'] = isenabled
-        return next(self.zap._request(self.zap.base + 'spider/action/modifyDomainAlwaysInScope/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/modifyDomainAlwaysInScope/', params)))
 
     def remove_domain_always_in_scope(self, idx, apikey=''):
         """
         Removes a domain that's always in scope, with the given index. The index can be obtained with the view domainsAlwaysInScope.
         """
-        return next(self.zap._request(self.zap.base + 'spider/action/removeDomainAlwaysInScope/', {'idx' : idx, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/removeDomainAlwaysInScope/', {'idx': idx, 'apikey': apikey})))
 
     def enable_all_domains_always_in_scope(self, apikey=''):
         """
         Enables all domains that are always in scope.
         """
-        return next(self.zap._request(self.zap.base + 'spider/action/enableAllDomainsAlwaysInScope/', {'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/enableAllDomainsAlwaysInScope/', {'apikey': apikey})))
 
     def disable_all_domains_always_in_scope(self, apikey=''):
         """
         Disables all domains that are always in scope.
         """
-        return next(self.zap._request(self.zap.base + 'spider/action/disableAllDomainsAlwaysInScope/', {'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/disableAllDomainsAlwaysInScope/', {'apikey': apikey})))
 
     def set_option_handle_parameters(self, string, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionHandleParameters/', {'String' : string, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionHandleParameters/', {'String': string, 'apikey': apikey})))
 
     def set_option_scope_string(self, string, apikey=''):
         """
         Use actions [add|modify|remove]DomainAlwaysInScope instead.
         """
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionScopeString/', {'String' : string, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionScopeString/', {'String': string, 'apikey': apikey})))
 
     def set_option_skip_url_string(self, string, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionSkipURLString/', {'String' : string, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionSkipURLString/', {'String': string, 'apikey': apikey})))
 
     def set_option_user_agent(self, string, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionUserAgent/', {'String' : string, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionUserAgent/', {'String': string, 'apikey': apikey})))
 
     def set_option_handle_o_data_parameters_visited(self, boolean, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionHandleODataParametersVisited/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionHandleODataParametersVisited/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_max_children(self, integer, apikey=''):
         """
         Sets the maximum number of child nodes (per node) that can be crawled, 0 means no limit.
         """
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionMaxChildren/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionMaxChildren/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_depth(self, integer, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionMaxDepth/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionMaxDepth/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_duration(self, integer, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionMaxDuration/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionMaxDuration/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_scans_in_ui(self, integer, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionMaxScansInUI/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionMaxScansInUI/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_parse_comments(self, boolean, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionParseComments/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionParseComments/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_parse_git(self, boolean, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionParseGit/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionParseGit/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_parse_robots_txt(self, boolean, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionParseRobotsTxt/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionParseRobotsTxt/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_parse_svn_entries(self, boolean, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionParseSVNEntries/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionParseSVNEntries/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_parse_sitemap_xml(self, boolean, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionParseSitemapXml/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionParseSitemapXml/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_post_form(self, boolean, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionPostForm/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionPostForm/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_process_form(self, boolean, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionProcessForm/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionProcessForm/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_request_wait_time(self, integer, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionRequestWaitTime/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionRequestWaitTime/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_send_referer_header(self, boolean, apikey=''):
         """
         Sets whether or not the 'Referer' header should be sent while spidering.
         """
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionSendRefererHeader/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionSendRefererHeader/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_show_advanced_dialog(self, boolean, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionShowAdvancedDialog/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionShowAdvancedDialog/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_thread_count(self, integer, apikey=''):
-        return next(self.zap._request(self.zap.base + 'spider/action/setOptionThreadCount/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
-
-
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionThreadCount/', {'Integer': integer, 'apikey': apikey})))

@@ -19,6 +19,9 @@
 This file was automatically generated.
 """
 
+import six
+
+
 class script(object):
 
     def __init__(self, zap):
@@ -29,46 +32,44 @@ class script(object):
         """
         Lists the script engines available
         """
-        return next(self.zap._request(self.zap.base + 'script/view/listEngines/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/listEngines/')))
 
     @property
     def list_scripts(self):
         """
         Lists the scripts available, with its engine, name, description, type and error state.
         """
-        return next(self.zap._request(self.zap.base + 'script/view/listScripts/').itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/listScripts/')))
 
     def enable(self, scriptname, apikey=''):
         """
         Enables the script with the given name
         """
-        return next(self.zap._request(self.zap.base + 'script/action/enable/', {'scriptName' : scriptname, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/enable/', {'scriptName': scriptname, 'apikey': apikey})))
 
     def disable(self, scriptname, apikey=''):
         """
         Disables the script with the given name
         """
-        return next(self.zap._request(self.zap.base + 'script/action/disable/', {'scriptName' : scriptname, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/disable/', {'scriptName': scriptname, 'apikey': apikey})))
 
     def load(self, scriptname, scripttype, scriptengine, filename, scriptdescription=None, apikey=''):
         """
         Loads a script into ZAP from the given local file, with the given name, type and engine, optionally with a description
         """
-        params = {'scriptName' : scriptname, 'scriptType' : scripttype, 'scriptEngine' : scriptengine, 'fileName' : filename, 'apikey' : apikey}
+        params = {'scriptName': scriptname, 'scriptType': scripttype, 'scriptEngine': scriptengine, 'fileName': filename, 'apikey': apikey}
         if scriptdescription is not None:
             params['scriptDescription'] = scriptdescription
-        return next(self.zap._request(self.zap.base + 'script/action/load/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/load/', params)))
 
     def remove(self, scriptname, apikey=''):
         """
         Removes the script with the given name
         """
-        return next(self.zap._request(self.zap.base + 'script/action/remove/', {'scriptName' : scriptname, 'apikey' : apikey}).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/remove/', {'scriptName': scriptname, 'apikey': apikey})))
 
     def run_stand_alone_script(self, scriptname, apikey=''):
         """
         Runs the stand alone script with the give name
         """
-        return next(self.zap._request(self.zap.base + 'script/action/runStandAloneScript/', {'scriptName' : scriptname, 'apikey' : apikey}).itervalues())
-
-
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/runStandAloneScript/', {'scriptName': scriptname, 'apikey': apikey})))

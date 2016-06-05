@@ -22,20 +22,19 @@ This file was automatically generated.
 import six
 
 
-class reveal(object):
+class openapi(object):
 
     def __init__(self, zap):
         self.zap = zap
 
-    @property
-    def reveal(self):
+    def import_file(self, file, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'reveal/view/reveal/')))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'openapi/action/importFile/', {'file': file, 'apikey': apikey})))
 
-    def set_reveal(self, reveal, apikey=''):
+    def import_url(self, url, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'reveal/action/setReveal/', {'reveal': reveal, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'openapi/action/importUrl/', {'url': url, 'apikey': apikey})))
