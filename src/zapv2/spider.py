@@ -48,6 +48,13 @@ class spider(object):
         return next(self.zap._request(self.zap.base + 'spider/view/excludedFromScan/').itervalues())
 
     @property
+    def all_urls(self):
+        """
+        Returns a list of unique URLs from the history table based on HTTP messages added by the Spider.
+        """
+        return next(self.zap._request(self.zap.base + 'spider/view/allUrls/').itervalues())
+
+    @property
     def option_domains_always_in_scope(self):
         return next(self.zap._request(self.zap.base + 'spider/view/optionDomainsAlwaysInScope/').itervalues())
 
