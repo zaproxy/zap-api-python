@@ -24,9 +24,16 @@ class httpSessions(object):
     def __init__(self, zap):
         self.zap = zap
 
+    @property
+    def sites(self):
+        """
+        Gets all of the sites that have sessions.
+        """
+        return next(self.zap._request(self.zap.base + 'httpSessions/view/sites/').itervalues())
+
     def sessions(self, site, session=None):
         """
-        Gets the sessions of the given site. Optionally returning just the session with the given name.
+        Gets the sessions for the given site. Optionally returning just the session with the given name.
         """
         params = {'site' : site}
         if session is not None:

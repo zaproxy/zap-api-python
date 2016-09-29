@@ -31,16 +31,11 @@ class ajaxSpider(object):
         """
         return next(self.zap._request(self.zap.base + 'ajaxSpider/view/status/').itervalues())
 
-    def results(self, start=None, count=None):
+    def results(self, start='', count=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {}
-        if start is not None:
-            params['start'] = start
-        if count is not None:
-            params['count'] = count
-        return next(self.zap._request(self.zap.base + 'ajaxSpider/view/results/', params).itervalues())
+        return next(self.zap._request(self.zap.base + 'ajaxSpider/view/results/', {'start' : start, 'count' : count}).itervalues())
 
     @property
     def number_of_results(self):
@@ -55,6 +50,34 @@ class ajaxSpider(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return next(self.zap._request(self.zap.base + 'ajaxSpider/view/optionBrowserId/').itervalues())
+
+    @property
+    def option_config_version_key(self):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return next(self.zap._request(self.zap.base + 'ajaxSpider/view/optionConfigVersionKey/').itervalues())
+
+    @property
+    def option_current_version(self):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return next(self.zap._request(self.zap.base + 'ajaxSpider/view/optionCurrentVersion/').itervalues())
+
+    @property
+    def option_elems(self):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return next(self.zap._request(self.zap.base + 'ajaxSpider/view/optionElems/').itervalues())
+
+    @property
+    def option_elems_names(self):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return next(self.zap._request(self.zap.base + 'ajaxSpider/view/optionElemsNames/').itervalues())
 
     @property
     def option_event_wait(self):
@@ -119,14 +142,17 @@ class ajaxSpider(object):
         """
         return next(self.zap._request(self.zap.base + 'ajaxSpider/view/optionRandomInputs/').itervalues())
 
-    def scan(self, url, inscope=None, apikey=''):
+    def scan(self, url='', inscope='', contextname='', subtreeonly='', apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'url' : url, 'apikey' : apikey}
-        if inscope is not None:
-            params['inScope'] = inscope
-        return next(self.zap._request(self.zap.base + 'ajaxSpider/action/scan/', params).itervalues())
+        return next(self.zap._request(self.zap.base + 'ajaxSpider/action/scan/', {'url' : url, 'inScope' : inscope, 'contextName' : contextname, 'subtreeOnly' : subtreeonly, 'apikey' : apikey}).itervalues())
+
+    def scan_as_user(self, contextname, username, url='', subtreeonly='', apikey=''):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return next(self.zap._request(self.zap.base + 'ajaxSpider/action/scanAsUser/', {'contextName' : contextname, 'userName' : username, 'url' : url, 'subtreeOnly' : subtreeonly, 'apikey' : apikey}).itervalues())
 
     def stop(self, apikey=''):
         """

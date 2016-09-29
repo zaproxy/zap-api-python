@@ -131,6 +131,13 @@ class core(object):
         return next(self.zap._request(self.zap.base + 'core/view/optionDefaultUserAgent/').itervalues())
 
     @property
+    def option_dns_ttl_successful_queries(self):
+        """
+        Gets the TTL (in seconds) of successful DNS queries.
+        """
+        return next(self.zap._request(self.zap.base + 'core/view/optionDnsTtlSuccessfulQueries/').itervalues())
+
+    @property
     def option_http_state(self):
         return next(self.zap._request(self.zap.base + 'core/view/optionHttpState/').itervalues())
 
@@ -254,7 +261,7 @@ class core(object):
 
     def send_request(self, request, followredirects=None, apikey=''):
         """
-        Sends the HTTP request, optionally following redirections. Returns the request sent and response received and followed redirections, if any.
+        Sends the HTTP request, optionally following redirections. Returns the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are now allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
         """
         params = {'request' : request, 'apikey' : apikey}
         if followredirects is not None:
@@ -295,6 +302,12 @@ class core(object):
 
     def set_option_proxy_chain_user_name(self, string, apikey=''):
         return next(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainUserName/', {'String' : string, 'apikey' : apikey}).itervalues())
+
+    def set_option_dns_ttl_successful_queries(self, integer, apikey=''):
+        """
+        Sets the TTL (in seconds) of successful DNS queries (applies after ZAP restart).
+        """
+        return next(self.zap._request(self.zap.base + 'core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
 
     def set_option_http_state_enabled(self, boolean, apikey=''):
         return next(self.zap._request(self.zap.base + 'core/action/setOptionHttpStateEnabled/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
@@ -338,6 +351,12 @@ class core(object):
         """
         return (self.zap._request_other(self.zap.base_other + 'core/other/htmlreport/', {'apikey' : apikey}))
 
+    def mdreport(self, apikey=''):
+        """
+        Generates a report in Markdown format
+        """
+        return (self.zap._request_other(self.zap.base_other + 'core/other/mdreport/', {'apikey' : apikey}))
+
     def message_har(self, id, apikey=''):
         """
         Gets the message with the given ID in HAR format
@@ -359,7 +378,7 @@ class core(object):
 
     def send_har_request(self, request, followredirects=None, apikey=''):
         """
-        Sends the first HAR request entry, optionally following redirections. Returns, in HAR format, the request sent and response received and followed redirections, if any.
+        Sends the first HAR request entry, optionally following redirections. Returns, in HAR format, the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are now allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
         """
         params = {'request' : request, 'apikey' : apikey}
         if followredirects is not None:
