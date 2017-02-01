@@ -53,7 +53,6 @@ import sys
 import time
 import traceback
 import urllib2
-from datetime import datetime
 from random import randint
 from zapv2 import ZAPv2
 
@@ -277,7 +276,7 @@ def main(argv):
     # Not running in docker, so start one  
     try:
       logging.debug ('Pulling ZAP Weekly Docker image')
-      ls_output = subprocess.check_output(['docker', 'pull', 'owasp/zap2docker-weekly'])
+      subprocess.check_output(['docker', 'pull', 'owasp/zap2docker-weekly'])
     except OSError:
       logging.warning ('Failed to run docker - is it on your path?')
       sys.exit(3)
@@ -350,7 +349,6 @@ def main(argv):
       logging.debug ('Ajax Spider complete')
 
     # Wait for passive scanning to complete
-    rtc = zap.pscan.records_to_scan
     logging.debug ('Records to scan...')
     while (int(zap.pscan.records_to_scan) > 0):
       logging.debug ('Records to passive scan : ' + zap.pscan.records_to_scan)

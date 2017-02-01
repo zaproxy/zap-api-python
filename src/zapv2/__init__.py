@@ -47,20 +47,14 @@ from spider import spider
 from stats import stats
 from users import users
 
-class ZapError(Exception):
-    """
-    Base ZAP exception.
-    """
-    pass
-
 
 class ZAPv2(object):
     """
     Client API implementation for integrating with ZAP v2.
     """
-
     # base JSON api url
     base = 'http://zap/JSON/'
+
     # base OTHER api url
     base_other = 'http://zap/OTHER/'
 
@@ -71,12 +65,12 @@ class ZAPv2(object):
 
         :Parameters:
            - `proxies`: dictionary of ZAP proxies to use.
-           
+
         Note that all of the other classes in this directory are generated
         new ones will need to be manually added to this file
         """
         self.__proxies = proxies
-        
+
         self.acsrf = acsrf(self)
         self.ajaxSpider = ajaxSpider(self)
         self.ascan = ascan(self)
@@ -101,17 +95,6 @@ class ZAPv2(object):
         self.stats = stats(self)
         self.users = users(self)
 
-    def _expect_ok(self, json_data):
-        """
-        Checks that we have an OK response, else raises an exception.
-
-        :Parameters:
-           - `json_data`: the json data to look at.
-        """
-        if type(json_data) == type(list()) and json_data[0] == u'OK':
-            return json_data
-        raise ZapError(*json_data.values())
-
     def urlopen(self, *args, **kwargs):
         """
         Opens a url forcing the proxies to be used.
@@ -123,18 +106,7 @@ class ZAPv2(object):
         kwargs['proxies'] = self.__proxies
         return urllib.urlopen(*args, **kwargs).read()
 
-    def status_code(self, *args, **kwargs):
-      """
-      Open a url forcing the proxies to be used.
-
-      :Parameters:
-         - `args`: all non-keyword arguments.
-         - `kwargs`: all other keyword arguments.
-      """
-      kwargs['proxies'] = self.__proxies
-      return urllib.urlopen(*args, **kwargs).getcode()
-
-    def _request(self, url, get={}):
+    def _request(self, url, get=None):
         """
         Shortcut for a GET request.
 
@@ -142,7 +114,7 @@ class ZAPv2(object):
            - `url`: the url to GET at.
            - `get`: the disctionary to turn into GET variables.
         """
-        return json.loads(self.urlopen(url + '?' + urllib.urlencode(get)))
+        return json.loads(self.urlopen(url + '?' + urllib.urlencode(get or {})))
 
     def _request_other(self, url, get={}):
         """
@@ -152,4 +124,4 @@ class ZAPv2(object):
            - `url`: the url to GET at.
            - `get`: the disctionary to turn into GET variables.
         """
-        return self.urlopen(url + '?' + urllib.urlencode(get))
+        return self.urlopen(url + '?' + urllib.urlencode(get or {}))
