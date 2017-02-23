@@ -54,6 +54,7 @@ import time
 import traceback
 import urllib2
 from random import randint
+from datetime import datetime
 from zapv2 import ZAPv2
 
 timeout = 120
@@ -334,6 +335,7 @@ def main(argv):
     logging.debug ('Spider ' + target)
     spider_scan_id = zap.spider.scan(target)
     time.sleep(5)
+    start = datetime.now()
 
     while (int(zap.spider.status(spider_scan_id)) < 100):
       logging.debug ('Spider progress %: ' + zap.spider.status(spider_scan_id))
