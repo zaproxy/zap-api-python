@@ -54,6 +54,7 @@ import time
 import traceback
 import urllib2
 from random import randint
+from datetime import datetime
 from zapv2 import ZAPv2
 
 timeout = 120
@@ -82,6 +83,7 @@ def usage():
     print ('    -x report_xml     file to write the full ZAP XML report')
     print ('    -a                include the alpha passive scan rules as well')
     print ('    -d                show debug messages')
+    print ('    -p                specify listen port')
     print ('    -i                default rules not in the config file to INFO')
     print ('    -j                use the Ajax spider in addition to the traditional one')
     print ('    -l level          minimum level to show: PASS, IGNORE, INFO, WARN or FAIL, use with -s to hide example URLs')
@@ -159,7 +161,7 @@ def main(argv):
   ignore_count = 0
 
   try:
-    opts, args = getopt.getopt(argv,"t:c:u:g:m:r:w:x:l:daijsz:")
+    opts, args = getopt.getopt(argv,"t:c:u:g:m:r:w:p:x:l:daijsz:")
   except getopt.GetoptError, exc:
     logging.warning ('Invalid option ' + exc.opt + ' : ' + exc.msg)
     usage()
@@ -179,6 +181,8 @@ def main(argv):
       logging.getLogger().setLevel(logging.DEBUG)
     elif opt == '-m':
       mins = int(arg)
+    elif opt == '-p':
+      port = int(arg)
     elif opt == '-r':
       report_html = arg
     elif opt == '-w':
@@ -225,12 +229,13 @@ def main(argv):
     
 
   # Choose a random 'ephemeral' port and check its available
-  while True:
-    port = randint(32768, 61000)
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    if not (sock.connect_ex(('127.0.0.1', port)) == 0):
-      # Its free:)
-      break
+  if port == 0:
+    while True:
+      port = randint(32768, 61000)
+      sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      if not (sock.connect_ex(('127.0.0.1', port)) == 0):
+        # Its free:)
+        break
 
   logging.debug ('Using port: ' + str(port))
 
@@ -330,6 +335,7 @@ def main(argv):
     logging.debug ('Spider ' + target)
     spider_scan_id = zap.spider.scan(target)
     time.sleep(5)
+    start = datetime.now()
 
     while (int(zap.spider.status(spider_scan_id)) < 100):
       logging.debug ('Spider progress %: ' + zap.spider.status(spider_scan_id))
@@ -349,6 +355,9 @@ def main(argv):
       logging.debug ('Ajax Spider complete')
 
     # Wait for passive scanning to complete
+    while (datetime.now() - start).seconds < ((mins * 60) + 10):
+      time.sleep(10)
+      logging.debug ('Waiting for passive scan to finish: ' + str((mins * 60) - (datetime.now() - start).seconds) + ' seconds left')
     logging.debug ('Records to scan...')
     while (int(zap.pscan.records_to_scan) > 0):
       logging.debug ('Records to passive scan : ' + zap.pscan.records_to_scan)
