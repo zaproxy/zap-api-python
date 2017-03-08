@@ -50,13 +50,11 @@ class script(object):
         """
         return next(self.zap._request(self.zap.base + 'script/action/disable/', {'scriptName' : scriptname, 'apikey' : apikey}).itervalues())
 
-    def load(self, scriptname, scripttype, scriptengine, filename, scriptdescription=None, apikey=''):
+    def load(self, scriptname, scripttype, scriptengine, filename, scriptdescription='', apikey=''):
         """
         Loads a script into ZAP from the given local file, with the given name, type and engine, optionally with a description
         """
-        params = {'scriptName' : scriptname, 'scriptType' : scripttype, 'scriptEngine' : scriptengine, 'fileName' : filename, 'apikey' : apikey}
-        if scriptdescription is not None:
-            params['scriptDescription'] = scriptdescription
+        params = {'scriptName' : scriptname, 'scriptType' : scripttype, 'scriptEngine' : scriptengine, 'fileName' : filename, 'scriptDescription': scriptdescription, 'apikey' : apikey}
         return next(self.zap._request(self.zap.base + 'script/action/load/', params).itervalues())
 
     def remove(self, scriptname, apikey=''):
@@ -70,5 +68,3 @@ class script(object):
         Runs the stand alone script with the give name
         """
         return next(self.zap._request(self.zap.base + 'script/action/runStandAloneScript/', {'scriptName' : scriptname, 'apikey' : apikey}).itervalues())
-
-
