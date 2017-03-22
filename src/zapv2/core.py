@@ -127,6 +127,41 @@ class core(object):
         return next(self.zap._request(self.zap.base + 'core/view/homeDirectory/').itervalues())
 
     @property
+    def session_location(self):
+        """
+        Gets the location of the current session file
+        """
+        return next(self.zap._request(self.zap.base + 'core/view/sessionLocation/').itervalues())
+
+    @property
+    def proxy_chain_excluded_domains(self):
+        """
+        Gets all the domains that are excluded from the outgoing proxy. For each domain the following are shown: the index, the value (domain), if enabled, and if specified as a regex.
+        """
+        return next(self.zap._request(self.zap.base + 'core/view/proxyChainExcludedDomains/').itervalues())
+
+    @property
+    def option_proxy_chain_skip_name(self):
+        """
+        Use view proxyChainExcludedDomains instead.
+        """
+        return next(self.zap._request(self.zap.base + 'core/view/optionProxyChainSkipName/').itervalues())
+
+    @property
+    def option_proxy_excluded_domains(self):
+        """
+        Use view proxyChainExcludedDomains instead.
+        """
+        return next(self.zap._request(self.zap.base + 'core/view/optionProxyExcludedDomains/').itervalues())
+
+    @property
+    def option_proxy_excluded_domains_enabled(self):
+        """
+        Use view proxyChainExcludedDomains instead.
+        """
+        return next(self.zap._request(self.zap.base + 'core/view/optionProxyExcludedDomainsEnabled/').itervalues())
+
+    @property
     def option_default_user_agent(self):
         return next(self.zap._request(self.zap.base + 'core/view/optionDefaultUserAgent/').itervalues())
 
@@ -158,20 +193,8 @@ class core(object):
         return next(self.zap._request(self.zap.base + 'core/view/optionProxyChainRealm/').itervalues())
 
     @property
-    def option_proxy_chain_skip_name(self):
-        return next(self.zap._request(self.zap.base + 'core/view/optionProxyChainSkipName/').itervalues())
-
-    @property
     def option_proxy_chain_user_name(self):
         return next(self.zap._request(self.zap.base + 'core/view/optionProxyChainUserName/').itervalues())
-
-    @property
-    def option_proxy_excluded_domains(self):
-        return next(self.zap._request(self.zap.base + 'core/view/optionProxyExcludedDomains/').itervalues())
-
-    @property
-    def option_proxy_excluded_domains_enabled(self):
-        return next(self.zap._request(self.zap.base + 'core/view/optionProxyExcludedDomainsEnabled/').itervalues())
 
     @property
     def option_timeout_in_secs(self):
@@ -242,9 +265,15 @@ class core(object):
         return next(self.zap._request(self.zap.base + 'core/action/snapshotSession/', {'apikey' : apikey}).itervalues())
 
     def clear_excluded_from_proxy(self, apikey=''):
+        """
+        Clears the regexes of URLs excluded from the proxy.
+        """
         return next(self.zap._request(self.zap.base + 'core/action/clearExcludedFromProxy/', {'apikey' : apikey}).itervalues())
 
     def exclude_from_proxy(self, regex, apikey=''):
+        """
+        Adds a regex of URLs that should be excluded from the proxy.
+        """
         return next(self.zap._request(self.zap.base + 'core/action/excludeFromProxy/', {'regex' : regex, 'apikey' : apikey}).itervalues())
 
     def set_home_directory(self, dir, apikey=''):
@@ -257,11 +286,14 @@ class core(object):
         return next(self.zap._request(self.zap.base + 'core/action/setMode/', {'mode' : mode, 'apikey' : apikey}).itervalues())
 
     def generate_root_ca(self, apikey=''):
+        """
+        Generates a new Root CA certificate for the Local Proxy.
+        """
         return next(self.zap._request(self.zap.base + 'core/action/generateRootCA/', {'apikey' : apikey}).itervalues())
 
     def send_request(self, request, followredirects=None, apikey=''):
         """
-        Sends the HTTP request, optionally following redirections. Returns the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are now allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
+        Sends the HTTP request, optionally following redirections. Returns the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are not allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
         """
         params = {'request' : request, 'apikey' : apikey}
         if followredirects is not None:
@@ -269,6 +301,9 @@ class core(object):
         return next(self.zap._request(self.zap.base + 'core/action/sendRequest/', params).itervalues())
 
     def delete_all_alerts(self, apikey=''):
+        """
+        Deletes all alerts of the current session.
+        """
         return next(self.zap._request(self.zap.base + 'core/action/deleteAllAlerts/', {'apikey' : apikey}).itervalues())
 
     def run_garbage_collection(self, apikey=''):
@@ -285,6 +320,48 @@ class core(object):
             params['postData'] = postdata
         return next(self.zap._request(self.zap.base + 'core/action/deleteSiteNode/', params).itervalues())
 
+    def add_proxy_chain_excluded_domain(self, value, isregex=None, isenabled=None, apikey=''):
+        """
+        Adds a domain to be excluded from the outgoing proxy, using the specified value. Optionally sets if the new entry is enabled (default, true) and whether or not the new value is specified as a regex (default, false).
+        """
+        params = {'value' : value, 'apikey' : apikey}
+        if isregex is not None:
+            params['isRegex'] = isregex
+        if isenabled is not None:
+            params['isEnabled'] = isenabled
+        return next(self.zap._request(self.zap.base + 'core/action/addProxyChainExcludedDomain/', params).itervalues())
+
+    def modify_proxy_chain_excluded_domain(self, idx, value=None, isregex=None, isenabled=None, apikey=''):
+        """
+        Modifies a domain excluded from the outgoing proxy. Allows to modify the value, if enabled or if a regex. The domain is selected with its index, which can be obtained with the view proxyChainExcludedDomains.
+        """
+        params = {'idx' : idx, 'apikey' : apikey}
+        if value is not None:
+            params['value'] = value
+        if isregex is not None:
+            params['isRegex'] = isregex
+        if isenabled is not None:
+            params['isEnabled'] = isenabled
+        return next(self.zap._request(self.zap.base + 'core/action/modifyProxyChainExcludedDomain/', params).itervalues())
+
+    def remove_proxy_chain_excluded_domain(self, idx, apikey=''):
+        """
+        Removes a domain excluded from the outgoing proxy, with the given index. The index can be obtained with the view proxyChainExcludedDomains.
+        """
+        return next(self.zap._request(self.zap.base + 'core/action/removeProxyChainExcludedDomain/', {'idx' : idx, 'apikey' : apikey}).itervalues())
+
+    def enable_all_proxy_chain_excluded_domains(self, apikey=''):
+        """
+        Enables all domains excluded from the outgoing proxy.
+        """
+        return next(self.zap._request(self.zap.base + 'core/action/enableAllProxyChainExcludedDomains/', {'apikey' : apikey}).itervalues())
+
+    def disable_all_proxy_chain_excluded_domains(self, apikey=''):
+        """
+        Disables all domains excluded from the outgoing proxy.
+        """
+        return next(self.zap._request(self.zap.base + 'core/action/disableAllProxyChainExcludedDomains/', {'apikey' : apikey}).itervalues())
+
     def set_option_default_user_agent(self, string, apikey=''):
         return next(self.zap._request(self.zap.base + 'core/action/setOptionDefaultUserAgent/', {'String' : string, 'apikey' : apikey}).itervalues())
 
@@ -298,6 +375,9 @@ class core(object):
         return next(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainRealm/', {'String' : string, 'apikey' : apikey}).itervalues())
 
     def set_option_proxy_chain_skip_name(self, string, apikey=''):
+        """
+        Use actions [add|modify|remove]ProxyChainExcludedDomain instead.
+        """
         return next(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainSkipName/', {'String' : string, 'apikey' : apikey}).itervalues())
 
     def set_option_proxy_chain_user_name(self, string, apikey=''):
@@ -334,6 +414,9 @@ class core(object):
         return (self.zap._request_other(self.zap.base_other + 'core/other/proxy.pac/', {'apikey' : apikey}))
 
     def rootcert(self, apikey=''):
+        """
+        Gets the Root CA certificate of the Local Proxy.
+        """
         return (self.zap._request_other(self.zap.base_other + 'core/other/rootcert/', {'apikey' : apikey}))
 
     def setproxy(self, proxy, apikey=''):
@@ -378,7 +461,7 @@ class core(object):
 
     def send_har_request(self, request, followredirects=None, apikey=''):
         """
-        Sends the first HAR request entry, optionally following redirections. Returns, in HAR format, the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are now allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
+        Sends the first HAR request entry, optionally following redirections. Returns, in HAR format, the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are not allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
         """
         params = {'request' : request, 'apikey' : apikey}
         if followredirects is not None:

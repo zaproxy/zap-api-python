@@ -24,23 +24,23 @@ class importLogFiles(object):
     def __init__(self, zap):
         self.zap = zap
 
-    def import_zap_log_from_file(self, filepath):
+    def import_zap_log_from_file(self, filepath, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return next(self.zap._request(self.zap.base + 'importLogFiles/view/ImportZAPLogFromFile/', {'FilePath' : filepath}).itervalues())
+        return next(self.zap._request(self.zap.base + 'importLogFiles/action/ImportZAPLogFromFile/', {'FilePath' : filepath, 'apikey' : apikey}).itervalues())
 
-    def import_mod_security_log_from_file(self, filepath):
+    def import_mod_security_log_from_file(self, filepath, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return next(self.zap._request(self.zap.base + 'importLogFiles/view/ImportModSecurityLogFromFile/', {'FilePath' : filepath}).itervalues())
+        return next(self.zap._request(self.zap.base + 'importLogFiles/action/ImportModSecurityLogFromFile/', {'FilePath' : filepath, 'apikey' : apikey}).itervalues())
 
-    def import_zap_http_request_response_pair(self, httprequest, httpresponse):
+    def import_zap_http_request_response_pair(self, httprequest, httpresponse, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return next(self.zap._request(self.zap.base + 'importLogFiles/view/ImportZAPHttpRequestResponsePair/', {'HTTPRequest' : httprequest, 'HTTPResponse' : httpresponse}).itervalues())
+        return next(self.zap._request(self.zap.base + 'importLogFiles/action/ImportZAPHttpRequestResponsePair/', {'HTTPRequest' : httprequest, 'HTTPResponse' : httpresponse, 'apikey' : apikey}).itervalues())
 
     def post_mod_security_audit_event(self, auditeventstring=None, apikey=''):
         """

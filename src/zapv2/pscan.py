@@ -25,6 +25,13 @@ class pscan(object):
         self.zap = zap
 
     @property
+    def scan_only_in_scope(self):
+        """
+        Tells whether or not the passive scan should be performed only on messages that are in scope.
+        """
+        return next(self.zap._request(self.zap.base + 'pscan/view/scanOnlyInScope/').itervalues())
+
+    @property
     def records_to_scan(self):
         """
         The number of records the passive scanner still has to scan
@@ -40,9 +47,15 @@ class pscan(object):
 
     def set_enabled(self, enabled, apikey=''):
         """
-        Sets whether or not the passive scanning is enabled
+        Sets whether or not the passive scanning is enabled (Note: the enabled state is not persisted).
         """
         return next(self.zap._request(self.zap.base + 'pscan/action/setEnabled/', {'enabled' : enabled, 'apikey' : apikey}).itervalues())
+
+    def set_scan_only_in_scope(self, onlyinscope, apikey=''):
+        """
+        Sets whether or not the passive scan should be performed only on messages that are in scope.
+        """
+        return next(self.zap._request(self.zap.base + 'pscan/action/setScanOnlyInScope/', {'onlyInScope' : onlyinscope, 'apikey' : apikey}).itervalues())
 
     def enable_all_scanners(self, apikey=''):
         """

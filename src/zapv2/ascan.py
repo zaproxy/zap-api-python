@@ -52,6 +52,9 @@ class ascan(object):
 
     @property
     def excluded_from_scan(self):
+        """
+        Gets the regexes of URLs excluded from the active scans.
+        """
         return next(self.zap._request(self.zap.base + 'ascan/view/excludedFromScan/').itervalues())
 
     def scanners(self, scanpolicyname=None, policyid=None):
@@ -75,6 +78,27 @@ class ascan(object):
         return next(self.zap._request(self.zap.base + 'ascan/view/attackModeQueue/').itervalues())
 
     @property
+    def excluded_params(self):
+        """
+        Gets all the parameters that are excluded. For each parameter the following are shown: the name, the URL, and the parameter type.
+        """
+        return next(self.zap._request(self.zap.base + 'ascan/view/excludedParams/').itervalues())
+
+    @property
+    def option_excluded_param_list(self):
+        """
+        Use view excludedParams instead.
+        """
+        return next(self.zap._request(self.zap.base + 'ascan/view/optionExcludedParamList/').itervalues())
+
+    @property
+    def excluded_param_types(self):
+        """
+        Gets all the types of excluded parameters. For each type the following are shown: the ID and the name.
+        """
+        return next(self.zap._request(self.zap.base + 'ascan/view/excludedParamTypes/').itervalues())
+
+    @property
     def option_attack_policy(self):
         return next(self.zap._request(self.zap.base + 'ascan/view/optionAttackPolicy/').itervalues())
 
@@ -85,10 +109,6 @@ class ascan(object):
     @property
     def option_delay_in_ms(self):
         return next(self.zap._request(self.zap.base + 'ascan/view/optionDelayInMs/').itervalues())
-
-    @property
-    def option_excluded_param_list(self):
-        return next(self.zap._request(self.zap.base + 'ascan/view/optionExcludedParamList/').itervalues())
 
     @property
     def option_handle_anti_csrf_tokens(self):
@@ -105,6 +125,14 @@ class ascan(object):
     @property
     def option_max_results_to_list(self):
         return next(self.zap._request(self.zap.base + 'ascan/view/optionMaxResultsToList/').itervalues())
+
+    @property
+    def option_max_rule_duration_in_mins(self):
+        return next(self.zap._request(self.zap.base + 'ascan/view/optionMaxRuleDurationInMins/').itervalues())
+
+    @property
+    def option_max_scan_duration_in_mins(self):
+        return next(self.zap._request(self.zap.base + 'ascan/view/optionMaxScanDurationInMins/').itervalues())
 
     @property
     def option_max_scans_in_ui(self):
@@ -128,6 +156,9 @@ class ascan(object):
 
     @property
     def option_inject_plugin_id_in_header(self):
+        """
+        Tells whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scanner that's sending the requests.
+        """
         return next(self.zap._request(self.zap.base + 'ascan/view/optionInjectPluginIdInHeader/').itervalues())
 
     @property
@@ -153,8 +184,13 @@ class ascan(object):
     def option_show_advanced_dialog(self):
         return next(self.zap._request(self.zap.base + 'ascan/view/optionShowAdvancedDialog/').itervalues())
 
-    def scan(self, url, recurse=None, inscopeonly=None, scanpolicyname=None, method=None, postdata=None, apikey=''):
-        params = {'url' : url, 'apikey' : apikey}
+    def scan(self, url=None, recurse=None, inscopeonly=None, scanpolicyname=None, method=None, postdata=None, contextid=None, apikey=''):
+        """
+        Runs the active scanner against the given URL and/or Context. Optionally, the 'recurse' parameter can be used to scan URLs under the given URL, the parameter 'inScopeOnly' can be used to constrain the scan to URLs that are in scope (ignored if a Context is specified), the parameter 'scanPolicyName' allows to specify the scan policy (if none is given it uses the default scan policy), the parameters 'method' and 'postData' allow to select a given request in conjunction with the given URL.
+        """
+        params = {'apikey' : apikey}
+        if url is not None:
+            params['url'] = url
         if recurse is not None:
             params['recurse'] = recurse
         if inscopeonly is not None:
@@ -165,13 +201,21 @@ class ascan(object):
             params['method'] = method
         if postdata is not None:
             params['postData'] = postdata
+        if contextid is not None:
+            params['contextId'] = contextid
         return next(self.zap._request(self.zap.base + 'ascan/action/scan/', params).itervalues())
 
-    def scan_as_user(self, url, contextid, userid, recurse=None, scanpolicyname=None, method=None, postdata=None, apikey=''):
+    def scan_as_user(self, url=None, contextid=None, userid=None, recurse=None, scanpolicyname=None, method=None, postdata=None, apikey=''):
         """
         Active Scans from the perspective of a User, obtained using the given Context ID and User ID. See 'scan' action for more details.
         """
-        params = {'url' : url, 'contextId' : contextid, 'userId' : userid, 'apikey' : apikey}
+        params = {'apikey' : apikey}
+        if url is not None:
+            params['url'] = url
+        if contextid is not None:
+            params['contextId'] = contextid
+        if userid is not None:
+            params['userId'] = userid
         if recurse is not None:
             params['recurse'] = recurse
         if scanpolicyname is not None:
@@ -207,9 +251,15 @@ class ascan(object):
         return next(self.zap._request(self.zap.base + 'ascan/action/removeAllScans/', {'apikey' : apikey}).itervalues())
 
     def clear_excluded_from_scan(self, apikey=''):
+        """
+        Clears the regexes of URLs excluded from the active scans.
+        """
         return next(self.zap._request(self.zap.base + 'ascan/action/clearExcludedFromScan/', {'apikey' : apikey}).itervalues())
 
     def exclude_from_scan(self, regex, apikey=''):
+        """
+        Adds a regex of URLs that should be excluded from the active scans.
+        """
         return next(self.zap._request(self.zap.base + 'ascan/action/excludeFromScan/', {'regex' : regex, 'apikey' : apikey}).itervalues())
 
     def enable_all_scanners(self, scanpolicyname=None, apikey=''):
@@ -266,11 +316,54 @@ class ascan(object):
             params['scanPolicyName'] = scanpolicyname
         return next(self.zap._request(self.zap.base + 'ascan/action/setScannerAlertThreshold/', params).itervalues())
 
-    def add_scan_policy(self, scanpolicyname, apikey=''):
-        return next(self.zap._request(self.zap.base + 'ascan/action/addScanPolicy/', {'scanPolicyName' : scanpolicyname, 'apikey' : apikey}).itervalues())
+    def add_scan_policy(self, scanpolicyname, alertthreshold=None, attackstrength=None, apikey=''):
+        params = {'scanPolicyName' : scanpolicyname, 'apikey' : apikey}
+        if alertthreshold is not None:
+            params['alertThreshold'] = alertthreshold
+        if attackstrength is not None:
+            params['attackStrength'] = attackstrength
+        return next(self.zap._request(self.zap.base + 'ascan/action/addScanPolicy/', params).itervalues())
 
     def remove_scan_policy(self, scanpolicyname, apikey=''):
         return next(self.zap._request(self.zap.base + 'ascan/action/removeScanPolicy/', {'scanPolicyName' : scanpolicyname, 'apikey' : apikey}).itervalues())
+
+    def update_scan_policy(self, scanpolicyname, alertthreshold=None, attackstrength=None, apikey=''):
+        params = {'scanPolicyName' : scanpolicyname, 'apikey' : apikey}
+        if alertthreshold is not None:
+            params['alertThreshold'] = alertthreshold
+        if attackstrength is not None:
+            params['attackStrength'] = attackstrength
+        return next(self.zap._request(self.zap.base + 'ascan/action/updateScanPolicy/', params).itervalues())
+
+    def add_excluded_param(self, name, type=None, url=None, apikey=''):
+        """
+        Adds a new parameter excluded from the scan, using the specified name. Optionally sets if the new entry applies to a specific URL (default, all URLs) and sets the ID of the type of the parameter (default, ID of any type). The type IDs can be obtained with the view excludedParamTypes. 
+        """
+        params = {'name' : name, 'apikey' : apikey}
+        if type is not None:
+            params['type'] = type
+        if url is not None:
+            params['url'] = url
+        return next(self.zap._request(self.zap.base + 'ascan/action/addExcludedParam/', params).itervalues())
+
+    def modify_excluded_param(self, idx, name=None, type=None, url=None, apikey=''):
+        """
+        Modifies a parameter excluded from the scan. Allows to modify the name, the URL and the type of parameter. The parameter is selected with its index, which can be obtained with the view excludedParams.
+        """
+        params = {'idx' : idx, 'apikey' : apikey}
+        if name is not None:
+            params['name'] = name
+        if type is not None:
+            params['type'] = type
+        if url is not None:
+            params['url'] = url
+        return next(self.zap._request(self.zap.base + 'ascan/action/modifyExcludedParam/', params).itervalues())
+
+    def remove_excluded_param(self, idx, apikey=''):
+        """
+        Removes a parameter excluded from the scan, with the given index. The index can be obtained with the view excludedParams.
+        """
+        return next(self.zap._request(self.zap.base + 'ascan/action/removeExcludedParam/', {'idx' : idx, 'apikey' : apikey}).itervalues())
 
     def set_option_attack_policy(self, string, apikey=''):
         return next(self.zap._request(self.zap.base + 'ascan/action/setOptionAttackPolicy/', {'String' : string, 'apikey' : apikey}).itervalues())
@@ -291,6 +384,9 @@ class ascan(object):
         return next(self.zap._request(self.zap.base + 'ascan/action/setOptionHostPerScan/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
 
     def set_option_inject_plugin_id_in_header(self, boolean, apikey=''):
+        """
+        Sets whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scanner that's sending the requests.
+        """
         return next(self.zap._request(self.zap.base + 'ascan/action/setOptionInjectPluginIdInHeader/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
 
     def set_option_max_chart_time_in_mins(self, integer, apikey=''):
@@ -298,6 +394,12 @@ class ascan(object):
 
     def set_option_max_results_to_list(self, integer, apikey=''):
         return next(self.zap._request(self.zap.base + 'ascan/action/setOptionMaxResultsToList/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
+
+    def set_option_max_rule_duration_in_mins(self, integer, apikey=''):
+        return next(self.zap._request(self.zap.base + 'ascan/action/setOptionMaxRuleDurationInMins/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
+
+    def set_option_max_scan_duration_in_mins(self, integer, apikey=''):
+        return next(self.zap._request(self.zap.base + 'ascan/action/setOptionMaxScanDurationInMins/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
 
     def set_option_max_scans_in_ui(self, integer, apikey=''):
         return next(self.zap._request(self.zap.base + 'ascan/action/setOptionMaxScansInUI/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
