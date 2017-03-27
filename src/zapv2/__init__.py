@@ -21,8 +21,9 @@ Client implementation for using the ZAP pentesting proxy remotely.
 
 __docformat__ = 'restructuredtext'
 
-import json
-import urllib
+import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
 from acsrf import acsrf
 from ascan import ascan
 from ajaxSpider import ajaxSpider
@@ -58,8 +59,7 @@ class ZAPv2(object):
     # base OTHER api url
     base_other = 'http://zap/OTHER/'
 
-    def __init__(self, proxies={'http': 'http://127.0.0.1:8080',
-        'https': 'http://127.0.0.1:8080'}):
+    def __init__(self, proxies=None, apikey=None):
         """
         Creates an instance of the ZAP api client.
 
@@ -69,7 +69,11 @@ class ZAPv2(object):
         Note that all of the other classes in this directory are generated
         new ones will need to be manually added to this file
         """
-        self.__proxies = proxies
+        self.__proxies = proxies or {
+            'http': 'http://127.0.0.1:8080',
+            'https': 'http://127.0.0.1:8080'
+        }
+        self.__apikey = apikey
 
         self.acsrf = acsrf(self)
         self.ajaxSpider = ajaxSpider(self)
@@ -95,6 +99,15 @@ class ZAPv2(object):
         self.stats = stats(self)
         self.users = users(self)
 
+        # not very nice, but prevents warnings when accessing the ZAP API via https
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+        # Currently create a new session for each request to prevent request failing
+        # e.g. when polling the spider status
+        #self.session = requests.Session()
+        #if apikey is not None:
+        #  self.session.headers['X-ZAP-API-Key'] = apikey
+
     def urlopen(self, *args, **kwargs):
         """
         Opens a url forcing the proxies to be used.
@@ -103,8 +116,33 @@ class ZAPv2(object):
            - `args`:  all non-keyword arguments.
            - `kwargs`: all other keyword arguments.
         """
-        kwargs['proxies'] = self.__proxies
-        return urllib.urlopen(*args, **kwargs).read()
+        # Must never leak the API key via proxied requests
+        return requests.get(*args, proxies=self.__proxies, verify=False, **kwargs).text
+
+    def _request_api(self, url, query=None):
+        """
+        Shortcut for an API request. Will always add the apikey (if defined)
+
+        :Parameters:
+           - `url`: the url to GET at.
+        """
+        if not url.startswith('http://zap/'):
+          # Only allow requests to the API so that we never leak the apikey
+          raise ValueError('A non ZAP API url was specified ' + url)
+          return;
+
+        # In theory we should be able to reuse the session,
+        # but there have been problems with that
+        self.session = requests.Session()
+        if self.__apikey is not None:
+          self.session.headers['X-ZAP-API-Key'] = self.__apikey
+
+        query = query or {}
+        if self.__apikey is not None:
+          # Add the apikey to get params for backwards compatibility
+          if not query.get('apikey'):
+            query['apikey'] = self.__apikey
+        return self.session.get(url, params=query, proxies=self.__proxies, verify=False)
 
     def _request(self, url, get=None):
         """
@@ -112,16 +150,16 @@ class ZAPv2(object):
 
         :Parameters:
            - `url`: the url to GET at.
-           - `get`: the disctionary to turn into GET variables.
+           - `get`: the dictionary to turn into GET variables.
         """
-        return json.loads(self.urlopen(url + '?' + urllib.urlencode(get or {})))
+        return self._request_api(url, get).json()
 
-    def _request_other(self, url, get={}):
+    def _request_other(self, url, get=None):
         """
         Shortcut for an API OTHER GET request.
 
         :Parameters:
            - `url`: the url to GET at.
-           - `get`: the disctionary to turn into GET variables.
+           - `get`: the dictionary to turn into GET variables.
         """
-        return self.urlopen(url + '?' + urllib.urlencode(get or {}))
+        return self._request_api(url, get).text
