@@ -39,6 +39,13 @@ class selenium(object):
         return next(self.zap._request(self.zap.base + 'selenium/view/optionFirefoxBinaryPath/').itervalues())
 
     @property
+    def option_firefox_driver_path(self):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return next(self.zap._request(self.zap.base + 'selenium/view/optionFirefoxDriverPath/').itervalues())
+
+    @property
     def option_ie_driver_path(self):
         """
         This component is optional and therefore the API will only work if it is installed
@@ -63,6 +70,12 @@ class selenium(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return next(self.zap._request(self.zap.base + 'selenium/action/setOptionFirefoxBinaryPath/', {'String' : string, 'apikey' : apikey}).itervalues())
+
+    def set_option_firefox_driver_path(self, string, apikey=''):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return next(self.zap._request(self.zap.base + 'selenium/action/setOptionFirefoxDriverPath/', {'String' : string, 'apikey' : apikey}).itervalues())
 
     def set_option_ie_driver_path(self, string, apikey=''):
         """

@@ -39,6 +39,34 @@ class autoupdate(object):
         return next(self.zap._request(self.zap.base + 'autoupdate/view/isLatestVersion/').itervalues())
 
     @property
+    def installed_addons(self):
+        """
+        Return a list of all of the installed add-ons
+        """
+        return next(self.zap._request(self.zap.base + 'autoupdate/view/installedAddons/').itervalues())
+
+    @property
+    def new_addons(self):
+        """
+        Return a list of any add-ons that have been added to the Marketplace since the last check for updates
+        """
+        return next(self.zap._request(self.zap.base + 'autoupdate/view/newAddons/').itervalues())
+
+    @property
+    def updated_addons(self):
+        """
+        Return a list of any add-ons that have been changed in the Marketplace since the last check for updates
+        """
+        return next(self.zap._request(self.zap.base + 'autoupdate/view/updatedAddons/').itervalues())
+
+    @property
+    def marketplace_addons(self):
+        """
+        Return a list of all of the add-ons on the ZAP Marketplace (this information is read once and then cached)
+        """
+        return next(self.zap._request(self.zap.base + 'autoupdate/view/marketplaceAddons/').itervalues())
+
+    @property
     def option_addon_directories(self):
         return next(self.zap._request(self.zap.base + 'autoupdate/view/optionAddonDirectories/').itervalues())
 
@@ -95,6 +123,18 @@ class autoupdate(object):
         Downloads the latest release, if any 
         """
         return next(self.zap._request(self.zap.base + 'autoupdate/action/downloadLatestRelease/', {'apikey' : apikey}).itervalues())
+
+    def install_addon(self, id, apikey=''):
+        """
+        Installs or updates the specified add-on, returning when complete (ie not asynchronously)
+        """
+        return next(self.zap._request(self.zap.base + 'autoupdate/action/installAddon/', {'id' : id, 'apikey' : apikey}).itervalues())
+
+    def uninstall_addon(self, id, apikey=''):
+        """
+        Uninstalls the specified add-on 
+        """
+        return next(self.zap._request(self.zap.base + 'autoupdate/action/uninstallAddon/', {'id' : id, 'apikey' : apikey}).itervalues())
 
     def set_option_check_addon_updates(self, boolean, apikey=''):
         return next(self.zap._request(self.zap.base + 'autoupdate/action/setOptionCheckAddonUpdates/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())

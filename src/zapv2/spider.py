@@ -45,6 +45,9 @@ class spider(object):
 
     @property
     def excluded_from_scan(self):
+        """
+        Gets the regexes of URLs excluded from the spider scans.
+        """
         return next(self.zap._request(self.zap.base + 'spider/view/excludedFromScan/').itervalues())
 
     @property
@@ -55,16 +58,36 @@ class spider(object):
         return next(self.zap._request(self.zap.base + 'spider/view/allUrls/').itervalues())
 
     @property
+    def domains_always_in_scope(self):
+        """
+        Gets all the domains that are always in scope. For each domain the following are shown: the index, the value (domain), if enabled, and if specified as a regex.
+        """
+        return next(self.zap._request(self.zap.base + 'spider/view/domainsAlwaysInScope/').itervalues())
+
+    @property
     def option_domains_always_in_scope(self):
+        """
+        Use view domainsAlwaysInScope instead.
+        """
         return next(self.zap._request(self.zap.base + 'spider/view/optionDomainsAlwaysInScope/').itervalues())
 
     @property
     def option_domains_always_in_scope_enabled(self):
+        """
+        Use view domainsAlwaysInScope instead.
+        """
         return next(self.zap._request(self.zap.base + 'spider/view/optionDomainsAlwaysInScopeEnabled/').itervalues())
 
     @property
     def option_handle_parameters(self):
         return next(self.zap._request(self.zap.base + 'spider/view/optionHandleParameters/').itervalues())
+
+    @property
+    def option_max_children(self):
+        """
+        Gets the maximum number of child nodes (per node) that can be crawled, 0 means no limit.
+        """
+        return next(self.zap._request(self.zap.base + 'spider/view/optionMaxChildren/').itervalues())
 
     @property
     def option_max_depth(self):
@@ -137,7 +160,7 @@ class spider(object):
     @property
     def option_send_referer_header(self):
         """
-        Sets whether or not the 'Referer' header should be sent while spidering
+        Gets whether or not the 'Referer' header should be sent while spidering.
         """
         return next(self.zap._request(self.zap.base + 'spider/view/optionSendRefererHeader/').itervalues())
 
@@ -205,15 +228,66 @@ class spider(object):
         return next(self.zap._request(self.zap.base + 'spider/action/removeAllScans/', {'apikey' : apikey}).itervalues())
 
     def clear_excluded_from_scan(self, apikey=''):
+        """
+        Clears the regexes of URLs excluded from the spider scans.
+        """
         return next(self.zap._request(self.zap.base + 'spider/action/clearExcludedFromScan/', {'apikey' : apikey}).itervalues())
 
     def exclude_from_scan(self, regex, apikey=''):
+        """
+        Adds a regex of URLs that should be excluded from the spider scans.
+        """
         return next(self.zap._request(self.zap.base + 'spider/action/excludeFromScan/', {'regex' : regex, 'apikey' : apikey}).itervalues())
+
+    def add_domain_always_in_scope(self, value, isregex=None, isenabled=None, apikey=''):
+        """
+        Adds a new domain that's always in scope, using the specified value. Optionally sets if the new entry is enabled (default, true) and whether or not the new value is specified as a regex (default, false).
+        """
+        params = {'value' : value, 'apikey' : apikey}
+        if isregex is not None:
+            params['isRegex'] = isregex
+        if isenabled is not None:
+            params['isEnabled'] = isenabled
+        return next(self.zap._request(self.zap.base + 'spider/action/addDomainAlwaysInScope/', params).itervalues())
+
+    def modify_domain_always_in_scope(self, idx, value=None, isregex=None, isenabled=None, apikey=''):
+        """
+        Modifies a domain that's always in scope. Allows to modify the value, if enabled or if a regex. The domain is selected with its index, which can be obtained with the view domainsAlwaysInScope.
+        """
+        params = {'idx' : idx, 'apikey' : apikey}
+        if value is not None:
+            params['value'] = value
+        if isregex is not None:
+            params['isRegex'] = isregex
+        if isenabled is not None:
+            params['isEnabled'] = isenabled
+        return next(self.zap._request(self.zap.base + 'spider/action/modifyDomainAlwaysInScope/', params).itervalues())
+
+    def remove_domain_always_in_scope(self, idx, apikey=''):
+        """
+        Removes a domain that's always in scope, with the given index. The index can be obtained with the view domainsAlwaysInScope.
+        """
+        return next(self.zap._request(self.zap.base + 'spider/action/removeDomainAlwaysInScope/', {'idx' : idx, 'apikey' : apikey}).itervalues())
+
+    def enable_all_domains_always_in_scope(self, apikey=''):
+        """
+        Enables all domains that are always in scope.
+        """
+        return next(self.zap._request(self.zap.base + 'spider/action/enableAllDomainsAlwaysInScope/', {'apikey' : apikey}).itervalues())
+
+    def disable_all_domains_always_in_scope(self, apikey=''):
+        """
+        Disables all domains that are always in scope.
+        """
+        return next(self.zap._request(self.zap.base + 'spider/action/disableAllDomainsAlwaysInScope/', {'apikey' : apikey}).itervalues())
 
     def set_option_handle_parameters(self, string, apikey=''):
         return next(self.zap._request(self.zap.base + 'spider/action/setOptionHandleParameters/', {'String' : string, 'apikey' : apikey}).itervalues())
 
     def set_option_scope_string(self, string, apikey=''):
+        """
+        Use actions [add|modify|remove]DomainAlwaysInScope instead.
+        """
         return next(self.zap._request(self.zap.base + 'spider/action/setOptionScopeString/', {'String' : string, 'apikey' : apikey}).itervalues())
 
     def set_option_skip_url_string(self, string, apikey=''):
@@ -224,6 +298,12 @@ class spider(object):
 
     def set_option_handle_o_data_parameters_visited(self, boolean, apikey=''):
         return next(self.zap._request(self.zap.base + 'spider/action/setOptionHandleODataParametersVisited/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
+
+    def set_option_max_children(self, integer, apikey=''):
+        """
+        Sets the maximum number of child nodes (per node) that can be crawled, 0 means no limit.
+        """
+        return next(self.zap._request(self.zap.base + 'spider/action/setOptionMaxChildren/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
 
     def set_option_max_depth(self, integer, apikey=''):
         return next(self.zap._request(self.zap.base + 'spider/action/setOptionMaxDepth/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
@@ -259,6 +339,9 @@ class spider(object):
         return next(self.zap._request(self.zap.base + 'spider/action/setOptionRequestWaitTime/', {'Integer' : integer, 'apikey' : apikey}).itervalues())
 
     def set_option_send_referer_header(self, boolean, apikey=''):
+        """
+        Sets whether or not the 'Referer' header should be sent while spidering.
+        """
         return next(self.zap._request(self.zap.base + 'spider/action/setOptionSendRefererHeader/', {'Boolean' : boolean, 'apikey' : apikey}).itervalues())
 
     def set_option_show_advanced_dialog(self, boolean, apikey=''):
