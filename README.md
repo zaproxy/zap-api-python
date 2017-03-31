@@ -17,7 +17,7 @@ The latest released version can be downloaded from the [https://pypi.python.org/
 
 For help using OWASP ZAP API refer to:
   * [Examples](https://github.com/zaproxy/zap-api-python/tree/master/src/examples) - collection of examples using the library;
-  * [Wiki](https://github.com/zaproxy/zaproxy/wiki/ApiPython)
+  * [Wiki](https://github.com/zaproxy/zaproxy/wiki/ApiDetails)
   * [OWASP ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
   * IRC: irc.mozilla.org #websectools (eg [using Mibbit](http://chat.mibbit.com/?server=irc.mozilla.org%3A%2B6697&channel=%23websectools)) - chat with core ZAP developers (European office hours usually best)
   
