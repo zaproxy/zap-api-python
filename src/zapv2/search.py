@@ -19,93 +19,96 @@
 This file was automatically generated.
 """
 
+import six
+
+
 class search(object):
 
     def __init__(self, zap):
         self.zap = zap
 
     def urls_by_url_regex(self, regex, baseurl=None, start=None, count=None):
-        params = {'regex' : regex}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
             params['start'] = start
         if count is not None:
             params['count'] = count
-        return next(self.zap._request(self.zap.base + 'search/view/urlsByUrlRegex/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByUrlRegex/', params)))
 
     def urls_by_request_regex(self, regex, baseurl=None, start=None, count=None):
-        params = {'regex' : regex}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
             params['start'] = start
         if count is not None:
             params['count'] = count
-        return next(self.zap._request(self.zap.base + 'search/view/urlsByRequestRegex/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByRequestRegex/', params)))
 
     def urls_by_response_regex(self, regex, baseurl=None, start=None, count=None):
-        params = {'regex' : regex}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
             params['start'] = start
         if count is not None:
             params['count'] = count
-        return next(self.zap._request(self.zap.base + 'search/view/urlsByResponseRegex/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByResponseRegex/', params)))
 
     def urls_by_header_regex(self, regex, baseurl=None, start=None, count=None):
-        params = {'regex' : regex}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
             params['start'] = start
         if count is not None:
             params['count'] = count
-        return next(self.zap._request(self.zap.base + 'search/view/urlsByHeaderRegex/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByHeaderRegex/', params)))
 
     def messages_by_url_regex(self, regex, baseurl=None, start=None, count=None):
-        params = {'regex' : regex}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
             params['start'] = start
         if count is not None:
             params['count'] = count
-        return next(self.zap._request(self.zap.base + 'search/view/messagesByUrlRegex/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByUrlRegex/', params)))
 
     def messages_by_request_regex(self, regex, baseurl=None, start=None, count=None):
-        params = {'regex' : regex}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
             params['start'] = start
         if count is not None:
             params['count'] = count
-        return next(self.zap._request(self.zap.base + 'search/view/messagesByRequestRegex/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByRequestRegex/', params)))
 
     def messages_by_response_regex(self, regex, baseurl=None, start=None, count=None):
-        params = {'regex' : regex}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
             params['start'] = start
         if count is not None:
             params['count'] = count
-        return next(self.zap._request(self.zap.base + 'search/view/messagesByResponseRegex/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByResponseRegex/', params)))
 
     def messages_by_header_regex(self, regex, baseurl=None, start=None, count=None):
-        params = {'regex' : regex}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
             params['start'] = start
         if count is not None:
             params['count'] = count
-        return next(self.zap._request(self.zap.base + 'search/view/messagesByHeaderRegex/', params).itervalues())
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByHeaderRegex/', params)))
 
     def har_by_url_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
-        params = {'regex' : regex, 'apikey' : apikey}
+        params = {'regex': regex, 'apikey': apikey}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
@@ -115,7 +118,7 @@ class search(object):
         return (self.zap._request_other(self.zap.base_other + 'search/other/harByUrlRegex/', params))
 
     def har_by_request_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
-        params = {'regex' : regex, 'apikey' : apikey}
+        params = {'regex': regex, 'apikey': apikey}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
@@ -125,7 +128,7 @@ class search(object):
         return (self.zap._request_other(self.zap.base_other + 'search/other/harByRequestRegex/', params))
 
     def har_by_response_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
-        params = {'regex' : regex, 'apikey' : apikey}
+        params = {'regex': regex, 'apikey': apikey}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
@@ -135,7 +138,7 @@ class search(object):
         return (self.zap._request_other(self.zap.base_other + 'search/other/harByResponseRegex/', params))
 
     def har_by_header_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
-        params = {'regex' : regex, 'apikey' : apikey}
+        params = {'regex': regex, 'apikey': apikey}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
@@ -143,5 +146,3 @@ class search(object):
         if count is not None:
             params['count'] = count
         return (self.zap._request_other(self.zap.base_other + 'search/other/harByHeaderRegex/', params))
-
-

@@ -20,44 +20,41 @@ Client implementation for using the ZAP pentesting proxy remotely.
 """
 
 __docformat__ = 'restructuredtext'
-__version__ = '0.0.9'
+__version__ = '0.0.10'
 
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
-from acsrf import acsrf
-from ascan import ascan
-from ajaxSpider import ajaxSpider
-from authentication import authentication
-from authorization import authorization
-from autoupdate import autoupdate
-from brk import brk
-from context import context
-from core import core
-from forcedUser import forcedUser
-from httpSessions import httpSessions
-from importLogFiles import importLogFiles
-from params import params
-from pnh import pnh
-from pscan import pscan
-from reveal import reveal
-from script import script
-from search import search
-from selenium import selenium
-from sessionManagement import sessionManagement
-from spider import spider
-from stats import stats
-from users import users
+from .acsrf import acsrf
+from .ascan import ascan
+from .ajaxSpider import ajaxSpider
+from .authentication import authentication
+from .authorization import authorization
+from .autoupdate import autoupdate
+from .brk import brk
+from .context import context
+from .core import core
+from .forcedUser import forcedUser
+from .httpSessions import httpSessions
+from .importLogFiles import importLogFiles
+from .params import params
+from .pnh import pnh
+from .pscan import pscan
+from .reveal import reveal
+from .script import script
+from .search import search
+from .selenium import selenium
+from .sessionManagement import sessionManagement
+from .spider import spider
+from .stats import stats
+from .users import users
 
 
 class ZAPv2(object):
     """
     Client API implementation for integrating with ZAP v2.
     """
-    # base JSON api url
     base = 'http://zap/JSON/'
-
-    # base OTHER api url
     base_other = 'http://zap/OTHER/'
 
     def __init__(self, proxies=None, apikey=None):
@@ -109,7 +106,7 @@ class ZAPv2(object):
         #if apikey is not None:
         #  self.session.headers['X-ZAP-API-Key'] = apikey
 
-    def urlopen(self, *args, **kwargs):
+    def urlopen(self, url, *args, **kwargs):
         """
         Opens a url forcing the proxies to be used.
 
@@ -118,7 +115,7 @@ class ZAPv2(object):
            - `kwargs`: all other keyword arguments.
         """
         # Must never leak the API key via proxied requests
-        return requests.get(*args, proxies=self.__proxies, verify=False, **kwargs).text
+        return requests.get(url, proxies=self.__proxies, verify=False, *args, **kwargs).text
 
     def _request_api(self, url, query=None):
         """
@@ -153,7 +150,8 @@ class ZAPv2(object):
            - `url`: the url to GET at.
            - `get`: the dictionary to turn into GET variables.
         """
-        return self._request_api(url, get).json()
+        data = self._request_api(url, get)
+        return data.json()
 
     def _request_other(self, url, get=None):
         """
@@ -163,4 +161,5 @@ class ZAPv2(object):
            - `url`: the url to GET at.
            - `get`: the dictionary to turn into GET variables.
         """
-        return self._request_api(url, get).text
+        data = self._request_api(url, get)
+        return data.text

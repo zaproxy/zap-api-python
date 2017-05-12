@@ -19,6 +19,9 @@
 This file was automatically generated.
 """
 
+import six
+
+
 class params(object):
 
     def __init__(self, zap):
@@ -31,6 +34,4 @@ class params(object):
         params = {}
         if site is not None:
             params['site'] = site
-        return next(self.zap._request(self.zap.base + 'params/view/params/', params).itervalues())
-
-
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'params/view/params/', params)))
