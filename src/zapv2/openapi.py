@@ -29,12 +29,17 @@ class openapi(object):
 
     def import_file(self, file, apikey=''):
         """
+        Import an Open API definition from a local file.
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'openapi/action/importFile/', {'file': file, 'apikey': apikey})))
 
-    def import_url(self, url, apikey=''):
+    def import_url(self, url, hostoverride=None, apikey=''):
         """
+        Import an Open API definition from a URL, hostOverride allows the host to be replaced
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'openapi/action/importUrl/', {'url': url, 'apikey': apikey})))
+        params = {'url': url, 'apikey': apikey}
+        if hostoverride is not None:
+            params['hostOverride'] = hostoverride
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'openapi/action/importUrl/', params)))
