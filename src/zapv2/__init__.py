@@ -41,6 +41,7 @@ from .importurls import importurls
 from .params import params
 from .pnh import pnh
 from .pscan import pscan
+from .replacer import replacer
 from .reveal import reveal
 from .script import script
 from .search import search
@@ -90,6 +91,7 @@ class ZAPv2(object):
         self.params = params(self)
         self.pnh = pnh(self)
         self.pscan = pscan(self)
+        self.replacer = replacer(self)
         self.reveal = reveal(self)
         self.script = script(self)
         self.search = search(self)
