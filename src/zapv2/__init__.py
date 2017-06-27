@@ -20,7 +20,7 @@ Client implementation for using the ZAP pentesting proxy remotely.
 """
 
 __docformat__ = 'restructuredtext'
-__version__ = '0.0.11'
+__version__ = '0.0.12'
 
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
@@ -38,6 +38,7 @@ from .forcedUser import forcedUser
 from .httpSessions import httpSessions
 from .importLogFiles import importLogFiles
 from .importurls import importurls
+from .openapi import openapi
 from .params import params
 from .pnh import pnh
 from .pscan import pscan
@@ -88,6 +89,7 @@ class ZAPv2(object):
         self.httpsessions = httpSessions(self)
         self.importLogFiles = importLogFiles(self)
         self.importurls = importurls(self)
+        self.openapi = openapi(self)
         self.params = params(self)
         self.pnh = pnh(self)
         self.pscan = pscan(self)
