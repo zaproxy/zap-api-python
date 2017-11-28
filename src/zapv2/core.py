@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2016 the ZAP development team
+# Copyright 2017 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,9 +33,9 @@ class core(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/alert/', {'id': id})))
 
-    def alerts(self, baseurl=None, start=None, count=None):
+    def alerts(self, baseurl=None, start=None, count=None, riskid=None):
         """
-        Gets the alerts raised by ZAP, optionally filtering by URL and paginating with 'start' position and 'count' of alerts
+        Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
         """
         params = {}
         if baseurl is not None:
@@ -44,15 +44,28 @@ class core(object):
             params['start'] = start
         if count is not None:
             params['count'] = count
+        if riskid is not None:
+            params['riskId'] = riskid
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/alerts/', params)))
 
-    def number_of_alerts(self, baseurl=None):
+    def alerts_summary(self, baseurl=None):
         """
-        Gets the number of alerts, optionally filtering by URL
+        Gets number of alerts grouped by each risk level, optionally filtering by URL
         """
         params = {}
         if baseurl is not None:
             params['baseurl'] = baseurl
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/alertsSummary/', params)))
+
+    def number_of_alerts(self, baseurl=None, riskid=None):
+        """
+        Gets the number of alerts, optionally filtering by URL or riskId
+        """
+        params = {}
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        if riskid is not None:
+            params['riskId'] = riskid
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/numberOfAlerts/', params)))
 
     @property
@@ -69,16 +82,18 @@ class core(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/sites/')))
 
-    @property
-    def urls(self):
+    def urls(self, baseurl=None):
         """
-        Gets the URLs accessed through/by ZAP
+        Gets the URLs accessed through/by ZAP, optionally filtering by (base) URL.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/urls/')))
+        params = {}
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/urls/', params)))
 
     def message(self, id):
         """
-        Gets the HTTP message with the given ID. Returns the ID, request/response headers and bodies, cookies and note.
+        Gets the HTTP message with the given ID. Returns the ID, request/response headers and bodies, cookies, note, type, RTT, and timestamp.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/message/', {'id': id})))
 
@@ -94,6 +109,12 @@ class core(object):
         if count is not None:
             params['count'] = count
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/messages/', params)))
+
+    def messages_by_id(self, ids):
+        """
+        Gets the HTTP messages with the given IDs.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/messagesById/', {'ids': ids})))
 
     def number_of_messages(self, baseurl=None):
         """
@@ -121,7 +142,7 @@ class core(object):
     @property
     def excluded_from_proxy(self):
         """
-        Gets the regular expressions, applied to URLs, to exclude from the Proxy
+        Gets the regular expressions, applied to URLs, to exclude from the local proxies.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/excludedFromProxy/')))
 
@@ -165,7 +186,38 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyExcludedDomainsEnabled/')))
 
     @property
+    def zap_home_path(self):
+        """
+        Gets the path to ZAP's home directory.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/zapHomePath/')))
+
+    @property
+    def option_maximum_alert_instances(self):
+        """
+        Gets the maximum number of alert instances to include in a report.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionMaximumAlertInstances/')))
+
+    @property
+    def option_merge_related_alerts(self):
+        """
+        Gets whether or not related alerts will be merged in any reports generated.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionMergeRelatedAlerts/')))
+
+    @property
+    def option_alert_overrides_file_path(self):
+        """
+        Gets the path to the file with alert overrides.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionAlertOverridesFilePath/')))
+
+    @property
     def option_default_user_agent(self):
+        """
+        Gets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionDefaultUserAgent/')))
 
     @property
@@ -269,13 +321,13 @@ class core(object):
 
     def clear_excluded_from_proxy(self, apikey=''):
         """
-        Clears the regexes of URLs excluded from the proxy.
+        Clears the regexes of URLs excluded from the local proxies.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/clearExcludedFromProxy/', {'apikey': apikey})))
 
     def exclude_from_proxy(self, regex, apikey=''):
         """
-        Adds a regex of URLs that should be excluded from the proxy.
+        Adds a regex of URLs that should be excluded from the local proxies.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/excludeFromProxy/', {'regex': regex, 'apikey': apikey})))
 
@@ -290,7 +342,7 @@ class core(object):
 
     def generate_root_ca(self, apikey=''):
         """
-        Generates a new Root CA certificate for the Local Proxy.
+        Generates a new Root CA certificate for the local proxies.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/generateRootCA/', {'apikey': apikey})))
 
@@ -308,6 +360,12 @@ class core(object):
         Deletes all alerts of the current session.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/deleteAllAlerts/', {'apikey': apikey})))
+
+    def delete_alert(self, id, apikey=''):
+        """
+        Deletes the alert with the given ID. 
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/deleteAlert/', {'id': id, 'apikey': apikey})))
 
     def run_garbage_collection(self, apikey=''):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/runGarbageCollection/', {'apikey': apikey})))
@@ -365,7 +423,31 @@ class core(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/disableAllProxyChainExcludedDomains/', {'apikey': apikey})))
 
+    def set_option_maximum_alert_instances(self, numberofinstances, apikey=''):
+        """
+        Sets the maximum number of alert instances to include in a report. A value of zero is treated as unlimited.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionMaximumAlertInstances/', {'numberOfInstances': numberofinstances, 'apikey': apikey})))
+
+    def set_option_merge_related_alerts(self, enabled, apikey=''):
+        """
+        Sets whether or not related alerts will be merged in any reports generated.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionMergeRelatedAlerts/', {'enabled': enabled, 'apikey': apikey})))
+
+    def set_option_alert_overrides_file_path(self, filepath=None, apikey=''):
+        """
+        Sets (or clears, if empty) the path to the file with alert overrides.
+        """
+        params = {'apikey': apikey}
+        if filepath is not None:
+            params['filePath'] = filepath
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionAlertOverridesFilePath/', params)))
+
     def set_option_default_user_agent(self, string, apikey=''):
+        """
+        Sets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionDefaultUserAgent/', {'String': string, 'apikey': apikey})))
 
     def set_option_proxy_chain_name(self, string, apikey=''):
@@ -408,6 +490,9 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionTimeoutInSecs/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_use_proxy_chain(self, boolean, apikey=''):
+        """
+        Sets whether or not the outgoing proxy should be used. The address/hostname of the outgoing proxy must be set to enable this option.
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseProxyChain/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_use_proxy_chain_auth(self, boolean, apikey=''):
@@ -418,7 +503,7 @@ class core(object):
 
     def rootcert(self, apikey=''):
         """
-        Gets the Root CA certificate of the Local Proxy.
+        Gets the Root CA certificate used by the local proxies.
         """
         return (self.zap._request_other(self.zap.base_other + 'core/other/rootcert/', {'apikey': apikey}))
 
@@ -436,6 +521,12 @@ class core(object):
         Generates a report in HTML format
         """
         return (self.zap._request_other(self.zap.base_other + 'core/other/htmlreport/', {'apikey': apikey}))
+
+    def jsonreport(self, apikey=''):
+        """
+        Generates a report in JSON format
+        """
+        return (self.zap._request_other(self.zap.base_other + 'core/other/jsonreport/', {'apikey': apikey}))
 
     def mdreport(self, apikey=''):
         """
@@ -461,6 +552,12 @@ class core(object):
         if count is not None:
             params['count'] = count
         return (self.zap._request_other(self.zap.base_other + 'core/other/messagesHar/', params))
+
+    def messages_har_by_id(self, ids, apikey=''):
+        """
+        Gets the HTTP messages with the given IDs, in HAR format.
+        """
+        return (self.zap._request_other(self.zap.base_other + 'core/other/messagesHarById/', {'ids': ids, 'apikey': apikey}))
 
     def send_har_request(self, request, followredirects=None, apikey=''):
         """

@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2016 the ZAP development team
+# Copyright 2017 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -60,6 +60,15 @@ class spider(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/allUrls/')))
 
+    def added_nodes(self, scanid=None):
+        """
+        Returns a list of the names of the nodes added to the Sites tree by the specified scan.
+        """
+        params = {}
+        if scanid is not None:
+            params['scanId'] = scanid
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/addedNodes/', params)))
+
     @property
     def domains_always_in_scope(self):
         """
@@ -101,6 +110,13 @@ class spider(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionMaxDuration/')))
 
     @property
+    def option_max_parse_size_bytes(self):
+        """
+        Gets the maximum size, in bytes, that a response might have to be parsed.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionMaxParseSizeBytes/')))
+
+    @property
     def option_max_scans_in_ui(self):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionMaxScansInUI/')))
 
@@ -127,6 +143,13 @@ class spider(object):
     @property
     def option_user_agent(self):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionUserAgent/')))
+
+    @property
+    def option_accept_cookies(self):
+        """
+        Gets whether or not a spider process should accept cookies while spidering.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionAcceptCookies/')))
 
     @property
     def option_handle_o_data_parameters_visited(self):
@@ -299,6 +322,12 @@ class spider(object):
     def set_option_user_agent(self, string, apikey=''):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionUserAgent/', {'String': string, 'apikey': apikey})))
 
+    def set_option_accept_cookies(self, boolean, apikey=''):
+        """
+        Sets whether or not a spider process should accept cookies while spidering.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionAcceptCookies/', {'Boolean': boolean, 'apikey': apikey})))
+
     def set_option_handle_o_data_parameters_visited(self, boolean, apikey=''):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionHandleODataParametersVisited/', {'Boolean': boolean, 'apikey': apikey})))
 
@@ -313,6 +342,12 @@ class spider(object):
 
     def set_option_max_duration(self, integer, apikey=''):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionMaxDuration/', {'Integer': integer, 'apikey': apikey})))
+
+    def set_option_max_parse_size_bytes(self, integer, apikey=''):
+        """
+        Sets the maximum size, in bytes, that a response might have to be parsed. This allows the spider to skip big responses/files.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionMaxParseSizeBytes/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_scans_in_ui(self, integer, apikey=''):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionMaxScansInUI/', {'Integer': integer, 'apikey': apikey})))

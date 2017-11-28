@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2016 the ZAP development team
+# Copyright 2017 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -40,9 +40,15 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/scanProgress/', params)))
 
     def messages_ids(self, scanid):
+        """
+        Gets the IDs of the messages sent during the scan with the given ID. A message can be obtained with 'message' core view.
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/messagesIds/', {'scanId': scanid})))
 
     def alerts_ids(self, scanid):
+        """
+        Gets the IDs of the alerts raised during the scan with the given ID. An alert can be obtained with 'alert' core view.
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/alertsIds/', {'scanId': scanid})))
 
     @property
@@ -338,6 +344,12 @@ class ascan(object):
             params['attackStrength'] = attackstrength
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/updateScanPolicy/', params)))
 
+    def import_scan_policy(self, path, apikey=''):
+        """
+        Imports a Scan Policy using the given file system path.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/importScanPolicy/', {'path': path, 'apikey': apikey})))
+
     def add_excluded_param(self, name, type=None, url=None, apikey=''):
         """
         Adds a new parameter excluded from the scan, using the specified name. Optionally sets if the new entry applies to a specific URL (default, all URLs) and sets the ID of the type of the parameter (default, ID of any type). The type IDs can be obtained with the view excludedParamTypes. 
@@ -367,6 +379,12 @@ class ascan(object):
         Removes a parameter excluded from the scan, with the given index. The index can be obtained with the view excludedParams.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/removeExcludedParam/', {'idx': idx, 'apikey': apikey})))
+
+    def skip_scanner(self, scanid, scannerid, apikey=''):
+        """
+        Skips the scanner using the given IDs of the scan and the scanner.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/skipScanner/', {'scanId': scanid, 'scannerId': scannerid, 'apikey': apikey})))
 
     def set_option_attack_policy(self, string, apikey=''):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionAttackPolicy/', {'String': string, 'apikey': apikey})))
