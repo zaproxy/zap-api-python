@@ -123,7 +123,7 @@ class ZAPv2(object):
         # Must never leak the API key via proxied requests
         return requests.get(url, proxies=self.__proxies, verify=False, *args, **kwargs).text
 
-    def _request_api(self, url, query=None):
+    def _request_api(self, url, query=None, validate_status_code=False):
         """
         Shortcut for an API request. Will always add the apikey (if defined)
 
@@ -146,7 +146,13 @@ class ZAPv2(object):
           # Add the apikey to get params for backwards compatibility
           if not query.get('apikey'):
             query['apikey'] = self.__apikey
-        return self.session.get(url, params=query, proxies=self.__proxies, verify=False)
+
+        response = self.session.get(url, params=query, proxies=self.__proxies, verify=False)
+
+        if (validate_status_code and response.status_code >= 300):
+            raise Exception("Invalid status code returned from zap, which indicate failure: " + str(response.status_code))
+        
+        return response
 
     def _request(self, url, get=None):
         """
