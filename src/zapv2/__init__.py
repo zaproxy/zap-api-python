@@ -60,7 +60,7 @@ class ZAPv2(object):
     base = 'http://zap/JSON/'
     base_other = 'http://zap/OTHER/'
 
-    def __init__(self, proxies=None, apikey=None):
+    def __init__(self, proxies=None, apikey=None, validate_status_code=False):
         """
         Creates an instance of the ZAP api client.
 
@@ -75,6 +75,7 @@ class ZAPv2(object):
             'https': 'http://127.0.0.1:8080'
         }
         self.__apikey = apikey
+        self.__validate_status_code=validate_status_code
 
         self.acsrf = acsrf(self)
         self.ajaxSpider = ajaxSpider(self)
@@ -123,7 +124,7 @@ class ZAPv2(object):
         # Must never leak the API key via proxied requests
         return requests.get(url, proxies=self.__proxies, verify=False, *args, **kwargs).text
 
-    def _request_api(self, url, query=None, validate_status_code=False):
+    def _request_api(self, url, query=None):
         """
         Shortcut for an API request. Will always add the apikey (if defined)
 
@@ -149,8 +150,10 @@ class ZAPv2(object):
 
         response = self.session.get(url, params=query, proxies=self.__proxies, verify=False)
 
-        if (validate_status_code and response.status_code >= 300):
-            raise Exception("Invalid status code returned from zap, which indicate failure: " + str(response.status_code))
+        if (self.__validate_status_code and response.status_code >= 300):
+            raise Exception("Invalid status code returned from zap, which indicate a failure: " 
+                                + str(response.status_code)
+                                + "response: " + response.text )
         
         return response
 

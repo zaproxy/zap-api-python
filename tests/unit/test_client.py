@@ -29,12 +29,12 @@ def test_urlopen(zap, client_mock):
     assert response.proxies == TEST_PROXIES
 
 
-def test_request_api_invalid_status_code(zap, client_mock):
-    """Request method should return a python object from parsed output"""
+def test_request_api_invalid_status_code(zap_strict, client_mock):
+    """Request method throw if invalid status code returned"""
     client_mock.register_uri('GET', 'http://zap/test', text='{"testkey": "testvalue"}', status_code=400)
 
     try:
-        zap._request_api('http://zap/test', {'querykey': 'queryvalue'}, True)
+        zap_strict._request_api('http://zap/test', {'querykey': 'queryvalue'})
     except Exception:
         pass
     else:
