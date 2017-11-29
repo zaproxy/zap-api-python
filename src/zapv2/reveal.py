@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2016 the ZAP development team
+# Copyright 2017 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,12 +30,14 @@ class reveal(object):
     @property
     def reveal(self):
         """
+        Tells if shows hidden fields and enables disabled fields
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'reveal/view/reveal/')))
 
     def set_reveal(self, reveal, apikey=''):
         """
+        Sets if shows hidden fields and enables disabled fields
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'reveal/action/setReveal/', {'reveal': reveal, 'apikey': apikey})))

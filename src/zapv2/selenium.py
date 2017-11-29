@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2016 the ZAP development team
+# Copyright 2017 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ class selenium(object):
     @property
     def option_chrome_driver_path(self):
         """
+        Returns the current path to ChromeDriver
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionChromeDriverPath/')))
@@ -37,6 +38,7 @@ class selenium(object):
     @property
     def option_firefox_binary_path(self):
         """
+        Returns the current path to Firefox binary
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionFirefoxBinaryPath/')))
@@ -44,6 +46,7 @@ class selenium(object):
     @property
     def option_firefox_driver_path(self):
         """
+        Returns the current path to Firefox driver (geckodriver)
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionFirefoxDriverPath/')))
@@ -51,6 +54,7 @@ class selenium(object):
     @property
     def option_ie_driver_path(self):
         """
+        Returns the current path to IEDriverServer
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionIeDriverPath/')))
@@ -58,36 +62,42 @@ class selenium(object):
     @property
     def option_phantom_js_binary_path(self):
         """
+        Returns the current path to PhantomJS binary
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionPhantomJsBinaryPath/')))
 
     def set_option_chrome_driver_path(self, string, apikey=''):
         """
+        Sets the current path to ChromeDriver
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionChromeDriverPath/', {'String': string, 'apikey': apikey})))
 
     def set_option_firefox_binary_path(self, string, apikey=''):
         """
+        Sets the current path to Firefox binary
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionFirefoxBinaryPath/', {'String': string, 'apikey': apikey})))
 
     def set_option_firefox_driver_path(self, string, apikey=''):
         """
+        Sets the current path to Firefox driver (geckodriver)
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionFirefoxDriverPath/', {'String': string, 'apikey': apikey})))
 
     def set_option_ie_driver_path(self, string, apikey=''):
         """
+        Sets the current path to IEDriverServer
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionIeDriverPath/', {'String': string, 'apikey': apikey})))
 
     def set_option_phantom_js_binary_path(self, string, apikey=''):
         """
+        Sets the current path to PhantomJS binary
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionPhantomJsBinaryPath/', {'String': string, 'apikey': apikey})))

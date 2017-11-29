@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2016 the ZAP development team
+# Copyright 2017 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -131,6 +131,7 @@ class ajaxSpider(object):
 
     def scan(self, url=None, inscope=None, contextname=None, subtreeonly=None, apikey=''):
         """
+        Runs the spider against the given URL and/or context, optionally, spidering everything in scope. The parameter 'contextName' can be used to constrain the scan to a Context, the option 'in scope' is ignored if a context was also specified. The parameter 'subtreeOnly' allows to restrict the spider under a site's subtree (using the specified 'url').
         This component is optional and therefore the API will only work if it is installed
         """
         params = {'apikey': apikey}
@@ -146,6 +147,7 @@ class ajaxSpider(object):
 
     def scan_as_user(self, contextname, username, url=None, subtreeonly=None, apikey=''):
         """
+        Runs the spider from the perspective of a User, obtained using the given context name and user name. The parameter 'url' allows to specify the starting point for the spider, otherwise it's used an existing URL from the context (if any). The parameter 'subtreeOnly' allows to restrict the spider under a site's subtree (using the specified 'url').
         This component is optional and therefore the API will only work if it is installed
         """
         params = {'contextName': contextname, 'userName': username, 'apikey': apikey}
