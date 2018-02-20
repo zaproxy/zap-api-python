@@ -154,7 +154,7 @@ class ZAPv2(object):
             raise Exception("Invalid status code returned from zap, which indicate a bad request: " 
                                 + str(response.status_code)
                                 + "response: " + response.text )
-        else if (self.__validate_status_code and response.status_code >= 500):
+        elif (self.__validate_status_code and response.status_code >= 500):
             raise Exception("Invalid status code returned from zap, which indicate a Zap error: " 
                                 + str(response.status_code)
                                 + "response: " + response.text )
