@@ -151,11 +151,11 @@ class ZAPv2(object):
         response = self.session.get(url, params=query, proxies=self.__proxies, verify=False)
 
         if (self.__validate_status_code and response.status_code >= 300 and response.status_code < 500):
-            raise Exception("Invalid status code returned from zap, which indicate a bad request: " 
+            raise Exception("Non-successfull status code returned from ZAP, which indicates a bad request: " 
                                 + str(response.status_code)
                                 + "response: " + response.text )
         elif (self.__validate_status_code and response.status_code >= 500):
-            raise Exception("Invalid status code returned from zap, which indicate a Zap error: " 
+            raise Exception("Non-successfull status code returned from ZAP, which indicates a ZAP internal error: " 
                                 + str(response.status_code)
                                 + "response: " + response.text )
         return response
