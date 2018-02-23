@@ -1,6 +1,7 @@
 """
 Tests related to the main Zap Client class
 """
+import pytest
 
 TEST_PROXIES = {
     'http': 'http://127.0.0.1:8080',
@@ -25,6 +26,23 @@ def test_urlopen(zap, client_mock):
 
     assert 'X-ZAP-API-Key' not in response._request.headers
     assert 'testapikey' not in response.query
+    assert response.proxies == TEST_PROXIES
+
+
+def test_request_api_invalid_status_code(zap_strict, client_mock):
+    """Request method throw if invalid status code returned"""
+    client_mock.register_uri('GET', 'http://zap/test', text='{"testkey": "testvalue"}', status_code=400)
+
+    try:
+        zap_strict._request_api('http://zap/test', {'querykey': 'queryvalue'})
+    except Exception:
+        pass
+    else:
+        pytest.fail("Not thrown on invalid status code")
+
+    response = client_mock.request_history[0]
+
+    assert_api_key(response)
     assert response.proxies == TEST_PROXIES
 
 

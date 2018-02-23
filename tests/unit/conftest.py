@@ -11,6 +11,11 @@ def zap():
     All tests will be able to share the instance of client with the same settings."""
     yield ZAPv2(apikey='testapikey')
 
+@pytest.yield_fixture
+def zap_strict():
+    """
+    All tests will be able to share the instance of client with the same settings."""
+    yield ZAPv2(apikey='testapikey', validate_status_code=True)
 
 @pytest.yield_fixture(autouse=True)
 def client_mock():

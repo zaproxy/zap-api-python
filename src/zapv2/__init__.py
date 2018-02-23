@@ -60,7 +60,7 @@ class ZAPv2(object):
     base = 'http://zap/JSON/'
     base_other = 'http://zap/OTHER/'
 
-    def __init__(self, proxies=None, apikey=None):
+    def __init__(self, proxies=None, apikey=None, validate_status_code=False):
         """
         Creates an instance of the ZAP api client.
 
@@ -75,6 +75,7 @@ class ZAPv2(object):
             'https': 'http://127.0.0.1:8080'
         }
         self.__apikey = apikey
+        self.__validate_status_code=validate_status_code
 
         self.acsrf = acsrf(self)
         self.ajaxSpider = ajaxSpider(self)
@@ -146,7 +147,18 @@ class ZAPv2(object):
           # Add the apikey to get params for backwards compatibility
           if not query.get('apikey'):
             query['apikey'] = self.__apikey
-        return self.session.get(url, params=query, proxies=self.__proxies, verify=False)
+
+        response = self.session.get(url, params=query, proxies=self.__proxies, verify=False)
+
+        if (self.__validate_status_code and response.status_code >= 300 and response.status_code < 500):
+            raise Exception("Non-successfull status code returned from ZAP, which indicates a bad request: " 
+                                + str(response.status_code)
+                                + "response: " + response.text )
+        elif (self.__validate_status_code and response.status_code >= 500):
+            raise Exception("Non-successfull status code returned from ZAP, which indicates a ZAP internal error: " 
+                                + str(response.status_code)
+                                + "response: " + response.text )
+        return response
 
     def _request(self, url, get=None):
         """
