@@ -51,6 +51,7 @@ from .sessionManagement import sessionManagement
 from .spider import spider
 from .stats import stats
 from .users import users
+from .websocket import websocket
 
 
 class ZAPv2(object):
@@ -103,6 +104,7 @@ class ZAPv2(object):
         self.spider = spider(self)
         self.stats = stats(self)
         self.users = users(self)
+        self.websocket = websocket(self)
 
         # not very nice, but prevents warnings when accessing the ZAP API via https
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
