@@ -136,7 +136,6 @@ class ZAPv2(object):
         if not url.startswith('http://zap/'):
           # Only allow requests to the API so that we never leak the apikey
           raise ValueError('A non ZAP API url was specified ' + url)
-          return;
 
         # In theory we should be able to reuse the session,
         # but there have been problems with that
