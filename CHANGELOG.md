@@ -47,7 +47,7 @@ its docs.
 ### Changed
 - Update core APIs for ZAP 2.6.0.
 - Allow to supply the API key when instantiating the class `ZAPv2`, to
-ensure its automatically sent in all API requests.
+ensure it's automatically sent in all API requests.
 
 ## [0.0.8] - 2016-06-03
 ### Changed
