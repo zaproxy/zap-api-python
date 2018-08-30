@@ -2,7 +2,7 @@
 
 '''
 This script aims to be the most generic and the most explicit possible.
-It works with OWASP ZAP 2.5 API python client.
+It works with OWASP ZAP API Python client.
 To use it, you have to load the Python API client module and start ZAP
 
 Before starting this script for the first time: Open ZAP, go to
@@ -66,8 +66,8 @@ proxyRealm = ''
 useProxyScript = False
 # MANDATORY only if useProxyScript is True. Ignored otherwise
 proxyScriptName = 'proxyScript.js'
-# Script engine values: "Oracle Nashorn" in Java 8 for Javascript, "Rhino"
-# in Java <= 7 for Javascript, "jython" for python, "JSR 223 JRuby Engine" for ruby
+# Script engine values: "Oracle Nashorn" for Javascript,
+# "jython" for python, "JSR 223 JRuby Engine" for ruby
 proxyScriptEngine = 'Oracle Nashorn'
 # Asolute local path
 proxyScriptFileName = '/zap/scripts/proxy/proxyScript.js'
@@ -107,18 +107,18 @@ authMethod = 'scriptBasedAuthentication'
 
 # MANDATORY only if authMethod is set to scriptBasedAuthentication.
 # Ignored otherwise
-authScriptName = 'NashornTwoStepAuthentication.js'
-# Script engine values: Oracle Nashorn in Java 8 for Javascript, Rhino
-# in Java <= 7 for Javascript, jython for python, JSR 223 JRuby Engine for ruby
+authScriptName = 'TwoStepAuthentication.js'
+# Script engine values: Oracle Nashorn for Javascript
+# jython for python, JSR 223 JRuby Engine for ruby
 authScriptEngine = 'Oracle Nashorn'
 # Absolute local path
-authScriptFileName = '/zap/scripts/authentication/NashornTwoStepAuthentication.js'
+authScriptFileName = '/zap/scripts/authentication/TwoStepAuthentication.js'
 authScriptDescription = 'This is a description'
 
 # MANDATORY only if useContextForScan is True. Ignored otherwise. Each
 # name/value pair of authParams are expected to be "x-www-form-urlencoded"
 # Here is an example for scriptBasedAuthentication method:
-authParams = ('scriptName=NashornTwoStepAuthentication.js&'
+authParams = ('scriptName=' + authScriptName + '&'
               'Submission Form URL=http://localhost:8081/WebGoat/j_spring_security_check&'
               'Username field=username&'
               'Password field=password&'
@@ -207,68 +207,62 @@ shutdownOnceFinished = False
 
 
 # Connect ZAP API client to the listening address of ZAP instance
-zap = ZAPv2(proxies=localProxy)
+zap = ZAPv2(proxies=localProxy, apikey=apiKey)
 
 # Start the ZAP session
 core = zap.core
 if isNewSession:
     pprint('Create ZAP session: ' + sessionName + ' -> ' +
-            core.new_session(name=sessionName, overwrite=True, apikey=apiKey))
+            core.new_session(name=sessionName, overwrite=True))
 else:
     pprint('Load ZAP session: ' + sessionName + ' -> ' +
-            core.load_session(name=sessionName, apikey=apiKey))
+            core.load_session(name=sessionName))
 
 # Configure ZAP global Exclude URL option
 print('Add Global Exclude URL regular expressions:')
 for regex in globalExcludeUrl:
-    pprint(regex + ' ->' + core.exclude_from_proxy(regex=regex, apikey=apiKey))
+    pprint(regex + ' ->' + core.exclude_from_proxy(regex=regex))
 
 # Configure ZAP outgoing proxy server connection option
 pprint('Enable outgoing proxy chain: ' + str(useProxyChain) + ' -> ' +
-        core.set_option_use_proxy_chain(boolean=useProxyChain, apikey=apiKey))
+        core.set_option_use_proxy_chain(boolean=useProxyChain))
 if useProxyChain:
     pprint('Set outgoing proxy name: ' + proxyAddress + ' -> ' +
-            core.set_option_proxy_chain_name(string=proxyAddress,
-                                             apikey=apiKey))
+            core.set_option_proxy_chain_name(string=proxyAddress))
     pprint('Set outgoing proxy port: ' + proxyPort + ' -> ' +
-            core.set_option_proxy_chain_port(integer=proxyPort, apikey=apiKey))
+            core.set_option_proxy_chain_port(integer=proxyPort))
     pprint('Skip names for outgoing proxy: ' + skipProxyAddresses + ' -> ' +
-            core.set_option_proxy_chain_skip_name(string=skipProxyAddresses,
-                                                  apikey=apiKey))
+            core.set_option_proxy_chain_skip_name(string=skipProxyAddresses))
 
     # Configure ZAP outgoing proxy server authentication
     pprint('Set outgoing proxy chain authentication: ' +
             str(useProxyChainAuth) + ' -> ' +
-            core.set_option_use_proxy_chain_auth(boolean=useProxyChainAuth,
-                                                 apikey=apiKey))
+            core.set_option_use_proxy_chain_auth(boolean=useProxyChainAuth))
     if useProxyChainAuth:
         pprint('Set outgoing proxy username -> ' +
-                core.set_option_proxy_chain_user_name(string=proxyUsername,
-                                                      apikey=apiKey))
+                core.set_option_proxy_chain_user_name(string=proxyUsername))
         pprint('Set outgoing proxy password -> ' +
-                core.set_option_proxy_chain_password(string=proxyPassword,
-                                                     apikey=apiKey))
+                core.set_option_proxy_chain_password(string=proxyPassword))
         pprint('Set outgoing proxy realm: ' + proxyRealm + ' -> ' +
-                core.set_option_proxy_chain_realm(string=proxyRealm,
-                                                  apikey=apiKey))
+                core.set_option_proxy_chain_realm(string=proxyRealm))
 
 if useProxyScript:
     script = zap.script
-    script.remove(scriptname=proxyScriptName, apikey=apiKey)
+    script.remove(scriptname=proxyScriptName)
     pprint('Load proxy script: ' + proxyScriptName + ' -> ' +
             script.load(scriptname=proxyScriptName, scripttype='proxy',
                 scriptengine=proxyScriptEngine,
                 filename=proxyScriptFileName,
-                scriptdescription=proxyScriptDescription, apikey=apiKey))
+                scriptdescription=proxyScriptDescription))
     pprint('Enable proxy script: ' + proxyScriptName + ' -> ' +
-            script.enable(scriptname=proxyScriptName, apikey=apiKey))
+            script.enable(scriptname=proxyScriptName))
 
 
 if useContextForScan:
     # Define the ZAP context
     context = zap.context
     if defineNewContext:
-        contextId = context.new_context(contextname=contextName, apikey=apiKey)
+        contextId = context.new_context(contextname=contextName)
     pprint('Use context ID: ' + contextId)
 
     # Include URL in the context
@@ -276,53 +270,49 @@ if useContextForScan:
     for url in contextIncludeURL:
         pprint(url + ' -> ' +
                 context.include_in_context(contextname=contextName,
-                                           regex=url, apikey=apiKey))
+                                           regex=url))
 
     # Exclude URL in the context
     print('Exclude URL from context:')
     for url in contextExcludeURL:
         pprint(url + ' -> ' +
                 context.exclude_from_context(contextname=contextName,
-                                             regex=url, apikey=apiKey))
+                                             regex=url))
 
     # Setup session management for the context.
     # There is no methodconfigparams to provide for both current methods
     pprint('Set session management method: ' + sessionManagement + ' -> ' +
             zap.sessionManagement.set_session_management_method(
                 contextid=contextId, methodname=sessionManagement,
-                methodconfigparams=None, apikey=apiKey))
+                methodconfigparams=None))
 
     ## In case we use the scriptBasedAuthentication method, load the script
     if authMethod == 'scriptBasedAuthentication':
         script = zap.script
-        script.remove(scriptname=authScriptName, apikey=apiKey)
+        script.remove(scriptname=authScriptName)
         pprint('Load script: ' + authScriptName + ' -> ' +
                 script.load(scriptname=authScriptName,
                             scripttype='authentication',
                             scriptengine=authScriptEngine,
                             filename=authScriptFileName,
-                            scriptdescription=authScriptDescription,
-                            apikey=apiKey))
+                            scriptdescription=authScriptDescription))
 
     # Define an authentication method with parameters for the context
     auth = zap.authentication
     pprint('Set authentication method: ' + authMethod + ' -> ' +
             auth.set_authentication_method(contextid=contextId,
                                            authmethodname=authMethod,
-                                           authmethodconfigparams=authParams,
-                                           apikey=apiKey))
+                                           authmethodconfigparams=authParams))
     # Define either a loggedin indicator or a loggedout indicator regexp
     # It allows ZAP to see if the user is always authenticated during scans
     if isLoggedInIndicator:
         pprint('Define Loggedin indicator: ' + indicatorRegex + ' -> ' +
                 auth.set_logged_in_indicator(contextid=contextId,
-                                        loggedinindicatorregex=indicatorRegex,
-                                        apikey=apiKey))
+                                        loggedinindicatorregex=indicatorRegex))
     else:
         pprint('Define Loggedout indicator: ' + indicatorRegex + ' -> ' +
                 auth.set_logged_out_indicator(contextid=contextId,
-                                        loggedoutindicatorregex=indicatorRegex,
-                                        apikey=apiKey))
+                                        loggedoutindicatorregex=indicatorRegex))
 
     # Define the users
     users = zap.users
@@ -330,75 +320,66 @@ if useContextForScan:
         for user in userList:
             userName = user.get('name')
             print('Create user ' + userName + ':')
-            userId = users.new_user(contextid=contextId, name=userName,
-                    apikey=apiKey)
+            userId = users.new_user(contextid=contextId, name=userName)
             userIdList.append(userId)
             pprint('User ID: ' + userId + '; username -> ' +
                     users.set_user_name(contextid=contextId, userid=userId,
-                                        name=userName, apikey=apiKey) +
+                                        name=userName) +
                     '; credentials -> ' +
                     users.set_authentication_credentials(contextid=contextId,
                         userid=userId,
-                        authcredentialsconfigparams=user.get('credentials'),
-                        apikey=apiKey) +
+                        authcredentialsconfigparams=user.get('credentials')) +
                     '; enabled -> ' +
                     users.set_user_enabled(contextid=contextId, userid=userId,
-                                           enabled=True, apikey=apiKey))
+                                           enabled=True))
 
 # Enable all passive scanners (it's possible to do a more specific policy by
 # setting needed scan ID: Use zap.pscan.scanners() to list all passive scanner
-# IDs, then use zap.scan.enable_scanners(ids, apikey) to enable what you want
+# IDs, then use zap.scan.enable_scanners(ids) to enable what you want
 pprint('Enable all passive scanners -> ' +
-        zap.pscan.enable_all_scanners(apikey=apiKey))
+        zap.pscan.enable_all_scanners())
 
 ascan = zap.ascan
 # Define if a new scan policy is used
 if useScanPolicy:
-    ascan.remove_scan_policy(scanpolicyname=scanPolicyName, apikey=apiKey)
+    ascan.remove_scan_policy(scanpolicyname=scanPolicyName)
     pprint('Add scan policy ' + scanPolicyName + ' -> ' +
-            ascan.add_scan_policy(scanpolicyname=scanPolicyName,
-                                  apikey=apiKey))
+            ascan.add_scan_policy(scanpolicyname=scanPolicyName))
     for policyId in range(0, 5):
         # Set alert Threshold for all scans
         ascan.set_policy_alert_threshold(id=policyId,
                                          alertthreshold=alertThreshold,
-                                         scanpolicyname=scanPolicyName,
-                                         apikey=apiKey)
+                                         scanpolicyname=scanPolicyName)
         # Set attack strength for all scans
         ascan.set_policy_attack_strength(id=policyId,
                                          attackstrength=attackStrength,
-                                         scanpolicyname=scanPolicyName,
-                                         apikey=apiKey)
+                                         scanpolicyname=scanPolicyName)
     if isWhiteListPolicy:
         # Disable all active scanners in order to enable only what you need
         pprint('Disable all scanners -> ' +
-                ascan.disable_all_scanners(scanpolicyname=scanPolicyName,
-                                           apikey=apiKey))
+                ascan.disable_all_scanners(scanpolicyname=scanPolicyName))
         # Enable some active scanners
         pprint('Enable given scan IDs -> ' +
                 ascan.enable_scanners(ids=ascanIds,
-                                      scanpolicyname=scanPolicyName,
-                                      apikey=apiKey))
+                                      scanpolicyname=scanPolicyName))
     else:
         # Enable all active scanners
         pprint('Enable all scanners -> ' +
-                ascan.enable_all_scanners(scanpolicyname=scanPolicyName,
-                                          apikey=apiKey))
+                ascan.enable_all_scanners(scanpolicyname=scanPolicyName))
         # Disable some active scanners
         pprint('Disable given scan IDs -> ' +
                 ascan.disable_scanners(ids=ascanIds,
-                                       scanpolicyname=scanPolicyName,
-                                       apikey=apiKey))
+                                       scanpolicyname=scanPolicyName))
 else:
     print('No custom policy used for scan')
     scanPolicyName = None
 
 # Open URL inside ZAP
 pprint('Access target URL ' + target)
-core.access_url(url=target, followredirects=True, apikey=apiKey)
+core.access_url(url=target, followredirects=True)
 for url in applicationURL:
     pprint('Access URL ' + url)
-    core.access_url(url=url, followredirects=True, apikey=apiKey)
+    core.access_url(url=url, followredirects=True)
 # Give the sites tree a chance to get updated
 time.sleep(2)
 
@@ -415,8 +396,7 @@ if useContextForScan:
 
         # Spider the target and recursively scan every site node found
         scanId = spider.scan_as_user(contextid=contextId, userid=userId,
-                url=target, maxchildren=None, recurse=True, subtreeonly=None,
-                apikey=apiKey)
+                url=target, maxchildren=None, recurse=True, subtreeonly=None)
         print('Start Spider scan with user ID: ' + userId +
                 '. Scan ID equals: ' + scanId)
         # Give the spider a chance to start
@@ -429,15 +409,13 @@ if useContextForScan:
         if useAjaxSpider:
             # Prepare Ajax Spider scan
             pprint('Set forced user mode enabled -> ' +
-                    forcedUser.set_forced_user_mode_enabled(boolean=True,
-                        apikey=apiKey))
+                    forcedUser.set_forced_user_mode_enabled(boolean=True))
             pprint('Set user ID: ' + userId + ' for forced user mode -> ' +
                         forcedUser.set_forced_user(contextid=contextId,
-                            userid=userId,
-                            apikey=apiKey))
+                            userid=userId))
             # Ajax Spider the target URL
             pprint('Ajax Spider the target with user ID: ' + userId + ' -> ' +
-                        ajax.scan(url=target, inscope=None, apikey=apiKey))
+                        ajax.scan(url=target, inscope=None))
             # Give the Ajax spider a chance to start
             time.sleep(10)
             while (ajax.status != 'stopped'):
@@ -447,22 +425,21 @@ if useContextForScan:
                 # Ajax Spider every url configured
                 pprint('Ajax Spider the URL: ' + url + ' with user ID: ' +
                         userId + ' -> ' +
-                        ajax.scan(url=url, inscope=None, apikey=apiKey))
+                        ajax.scan(url=url, inscope=None))
                 # Give the Ajax spider a chance to start
                 time.sleep(10)
                 while (ajax.status != 'stopped'):
                     print('Ajax Spider is ' + ajax.status)
                     time.sleep(5)
             pprint('Set forced user mode disabled -> ' +
-                    forcedUser.set_forced_user_mode_enabled(boolean=False,
-                        apikey=apiKey))
+                    forcedUser.set_forced_user_mode_enabled(boolean=False))
             print('Ajax Spider scan for user ID ' + userId + ' completed')
 
         # Launch Active Scan with the configured policy on the target url
         # and recursively scan every site node
         scanId = ascan.scan_as_user(url=target, contextid=contextId,
                 userid=userId, recurse=True, scanpolicyname=scanPolicyName,
-                method=None, postdata=True, apikey=apiKey)
+                method=None, postdata=True)
         print('Start Active Scan with user ID: ' + userId +
                 '. Scan ID equals: ' + scanId)
         # Give the scanner a chance to start
@@ -475,7 +452,7 @@ if useContextForScan:
 else:
     # Spider the target and recursively scan every site node found
     scanId = spider.scan(url=target, maxchildren=None, recurse=True,
-            contextname=None, subtreeonly=None, apikey=apiKey)
+            contextname=None, subtreeonly=None)
     print('Scan ID equals ' + scanId)
     # Give the Spider a chance to start
     time.sleep(2)
@@ -486,8 +463,7 @@ else:
 
     if useAjaxSpider:
         # Ajax Spider the target URL
-        pprint('Start Ajax Spider -> ' + ajax.scan(url=target, inscope=None,
-                apikey=apiKey))
+        pprint('Start Ajax Spider -> ' + ajax.scan(url=target, inscope=None))
         # Give the Ajax spider a chance to start
         time.sleep(10)
         while (ajax.status != 'stopped'):
@@ -496,7 +472,7 @@ else:
         for url in applicationURL:
             # Ajax Spider every url configured
             pprint('Ajax Spider the URL: ' + url + ' -> ' +
-                    ajax.scan(url=url, inscope=None, apikey=apiKey))
+                    ajax.scan(url=url, inscope=None))
             # Give the Ajax spider a chance to start
             time.sleep(10)
             while (ajax.status != 'stopped'):
@@ -507,8 +483,7 @@ else:
     # Launch Active scan with the configured policy on the target url and
     # recursively scan every site node
     scanId = zap.ascan.scan(url=target, recurse=True, inscopeonly=None,
-        scanpolicyname=scanPolicyName, method=None, postdata=True,
-        apikey=apiKey)
+        scanpolicyname=scanPolicyName, method=None, postdata=True)
     print('Start Active scan. Scan ID equals ' + scanId)
     while (int(ascan.status(scanId)) < 100):
         print('Active Scan progress: ' + ascan.status(scanId) + '%')
@@ -523,10 +498,10 @@ time.sleep(5)
 
 # To retrieve ZAP report in XML or HTML format
 ## print('XML report')
-## core.xmlreport(apikey=key)
+## core.xmlreport()
 print('HTML report:')
-pprint(core.htmlreport(apikey=apiKey))
+pprint(core.htmlreport())
 
 if shutdownOnceFinished:
     # Shutdown ZAP once finished
-    pprint('Shutdown ZAP -> ' + core.shutdown(apikey=apiKey))
+    pprint('Shutdown ZAP -> ' + core.shutdown())
