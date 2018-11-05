@@ -48,6 +48,7 @@ from .script import script
 from .search import search
 from .selenium import selenium
 from .sessionManagement import sessionManagement
+from .soap import soap
 from .spider import spider
 from .stats import stats
 from .users import users
@@ -101,6 +102,7 @@ class ZAPv2(object):
         self.search = search(self)
         self.selenium = selenium(self)
         self.sessionManagement = sessionManagement(self)
+        self.soap = soap(self)
         self.spider = spider(self)
         self.stats = stats(self)
         self.users = users(self)

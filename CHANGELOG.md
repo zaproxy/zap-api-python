@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 ### Added
 - Add API for WebSockets add-on, version 15.
+- Add API for SOAP Scanner add-on, version 3.
 ### Changed
 - Minimum Python 3 version is now 3.4.
 
