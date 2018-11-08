@@ -29,6 +29,7 @@ class importurls(object):
 
     def importurls(self, filepath, apikey=''):
         """
+        Imports URLs (one per line) from the file with the given file system path.
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'importurls/action/importurls/', {'filePath': filepath, 'apikey': apikey})))
