@@ -15,6 +15,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 sooner if the API request was not successful. This can be enabled when
 instantiating the `ZAPv2` class with the argument `validate_status_code`
 set to `True`.
+- Update Replacer API, per release of version 7.
+- Add description to Importurls API endpoint.
 
 ## [0.0.14] - 2017-12-04
 ### Changed
