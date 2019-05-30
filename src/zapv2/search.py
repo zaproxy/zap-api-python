@@ -28,6 +28,9 @@ class search(object):
         self.zap = zap
 
     def urls_by_url_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the URLs of the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
@@ -38,6 +41,9 @@ class search(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByUrlRegex/', params)))
 
     def urls_by_request_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the URLs of the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
@@ -48,6 +54,9 @@ class search(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByRequestRegex/', params)))
 
     def urls_by_response_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the URLs of the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
@@ -58,6 +67,9 @@ class search(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByResponseRegex/', params)))
 
     def urls_by_header_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the URLs of the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
@@ -68,6 +80,9 @@ class search(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByHeaderRegex/', params)))
 
     def messages_by_url_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
@@ -78,6 +93,9 @@ class search(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByUrlRegex/', params)))
 
     def messages_by_request_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
@@ -88,6 +106,9 @@ class search(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByRequestRegex/', params)))
 
     def messages_by_response_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
@@ -98,6 +119,9 @@ class search(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByResponseRegex/', params)))
 
     def messages_by_header_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
@@ -108,6 +132,9 @@ class search(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByHeaderRegex/', params)))
 
     def har_by_url_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
+        """
+        Returns the HTTP messages, in HAR format, that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex, 'apikey': apikey}
         if baseurl is not None:
             params['baseurl'] = baseurl
@@ -118,6 +145,9 @@ class search(object):
         return (self.zap._request_other(self.zap.base_other + 'search/other/harByUrlRegex/', params))
 
     def har_by_request_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
+        """
+        Returns the HTTP messages, in HAR format, that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex, 'apikey': apikey}
         if baseurl is not None:
             params['baseurl'] = baseurl
@@ -128,6 +158,9 @@ class search(object):
         return (self.zap._request_other(self.zap.base_other + 'search/other/harByRequestRegex/', params))
 
     def har_by_response_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
+        """
+        Returns the HTTP messages, in HAR format, that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex, 'apikey': apikey}
         if baseurl is not None:
             params['baseurl'] = baseurl
@@ -138,6 +171,9 @@ class search(object):
         return (self.zap._request_other(self.zap.base_other + 'search/other/harByResponseRegex/', params))
 
     def har_by_header_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
+        """
+        Returns the HTTP messages, in HAR format, that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
         params = {'regex': regex, 'apikey': apikey}
         if baseurl is not None:
             params['baseurl'] = baseurl

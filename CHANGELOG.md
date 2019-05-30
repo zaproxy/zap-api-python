@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Minimum Python 3 version is now 3.4.
 
 ### Changed
+- Update core APIs for ZAP 2.8.0.
 - Allow to validate the status code returned by the ZAP API, to fail
 sooner if the API request was not successful. This can be enabled when
 instantiating the `ZAPv2` class with the argument `validate_status_code`

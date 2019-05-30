@@ -103,6 +103,9 @@ class spider(object):
 
     @property
     def option_max_depth(self):
+        """
+        Gets the maximum depth the spider can crawl, 0 if unlimited.
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionMaxDepth/')))
 
     @property
@@ -338,6 +341,9 @@ class spider(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionMaxChildren/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_depth(self, integer, apikey=''):
+        """
+        Sets the maximum depth the spider can crawl, 0 for unlimited depth.
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionMaxDepth/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_duration(self, integer, apikey=''):

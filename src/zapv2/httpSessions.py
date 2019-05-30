@@ -55,6 +55,13 @@ class httpSessions(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/view/sessionTokens/', {'site': site})))
 
+    @property
+    def default_session_tokens(self):
+        """
+        Gets the default session tokens.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/view/defaultSessionTokens/')))
+
     def create_empty_session(self, site, session=None, apikey=''):
         """
         Creates an empty session for the given site. Optionally with the given name.
@@ -105,3 +112,24 @@ class httpSessions(object):
         Renames the session of the given site.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/renameSession/', {'site': site, 'oldSessionName': oldsessionname, 'newSessionName': newsessionname, 'apikey': apikey})))
+
+    def add_default_session_token(self, sessiontoken, tokenenabled=None, apikey=''):
+        """
+        Adds a default session token with the given name and enabled state.
+        """
+        params = {'sessionToken': sessiontoken, 'apikey': apikey}
+        if tokenenabled is not None:
+            params['tokenEnabled'] = tokenenabled
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/addDefaultSessionToken/', params)))
+
+    def set_default_session_token_enabled(self, sessiontoken, tokenenabled, apikey=''):
+        """
+        Sets whether or not the default session token with the given name is enabled.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/setDefaultSessionTokenEnabled/', {'sessionToken': sessiontoken, 'tokenEnabled': tokenenabled, 'apikey': apikey})))
+
+    def remove_default_session_token(self, sessiontoken, apikey=''):
+        """
+        Removes the default session token with the given name.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/removeDefaultSessionToken/', {'sessionToken': sessiontoken, 'apikey': apikey})))

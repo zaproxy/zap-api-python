@@ -29,15 +29,27 @@ class sessionManagement(object):
 
     @property
     def get_supported_session_management_methods(self):
+        """
+        Gets the name of the session management methods.
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'sessionManagement/view/getSupportedSessionManagementMethods/')))
 
     def get_session_management_method_config_params(self, methodname):
+        """
+        Gets the configuration parameters for the session management method with the given name.
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName': methodname})))
 
     def get_session_management_method(self, contextid):
+        """
+        Gets the name of the session management method for the context with the given ID.
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'sessionManagement/view/getSessionManagementMethod/', {'contextId': contextid})))
 
     def set_session_management_method(self, contextid, methodname, methodconfigparams=None, apikey=''):
+        """
+        Sets the session management method for the context with the given ID.
+        """
         params = {'contextId': contextid, 'methodName': methodname, 'apikey': apikey}
         if methodconfigparams is not None:
             params['methodConfigParams'] = methodconfigparams

@@ -35,11 +35,43 @@ class script(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/listEngines/')))
 
     @property
+    def list_types(self):
+        """
+        Lists the script types available.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/listTypes/')))
+
+    @property
     def list_scripts(self):
         """
         Lists the scripts available, with its engine, name, description, type and error state.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/listScripts/')))
+
+    def global_var(self, varkey):
+        """
+        Gets the value of the global variable with the given key. Returns an API error (DOES_NOT_EXIST) if no value was previously set.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/globalVar/', {'varKey': varkey})))
+
+    @property
+    def global_vars(self):
+        """
+        Gets all the global variables (key/value pairs).
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/globalVars/')))
+
+    def script_var(self, scriptname, varkey):
+        """
+        Gets the value of the variable with the given key for the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/scriptVar/', {'scriptName': scriptname, 'varKey': varkey})))
+
+    def script_vars(self, scriptname):
+        """
+        Gets all the variables (key/value pairs) of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/scriptVars/', {'scriptName': scriptname})))
 
     def enable(self, scriptname, apikey=''):
         """
@@ -72,6 +104,48 @@ class script(object):
 
     def run_stand_alone_script(self, scriptname, apikey=''):
         """
-        Runs the stand alone script with the give name
+        Runs the stand alone script with the given name
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/runStandAloneScript/', {'scriptName': scriptname, 'apikey': apikey})))
+
+    def clear_global_var(self, varkey, apikey=''):
+        """
+        Clears the global variable with the given key.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearGlobalVar/', {'varKey': varkey, 'apikey': apikey})))
+
+    def clear_global_vars(self, apikey=''):
+        """
+        Clears the global variables.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearGlobalVars/', {'apikey': apikey})))
+
+    def clear_script_var(self, scriptname, varkey, apikey=''):
+        """
+        Clears the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearScriptVar/', {'scriptName': scriptname, 'varKey': varkey, 'apikey': apikey})))
+
+    def clear_script_vars(self, scriptname, apikey=''):
+        """
+        Clears the variables of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearScriptVars/', {'scriptName': scriptname, 'apikey': apikey})))
+
+    def set_script_var(self, scriptname, varkey, varvalue=None, apikey=''):
+        """
+        Sets the value of the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+        """
+        params = {'scriptName': scriptname, 'varKey': varkey, 'apikey': apikey}
+        if varvalue is not None:
+            params['varValue'] = varvalue
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/setScriptVar/', params)))
+
+    def set_global_var(self, varkey, varvalue=None, apikey=''):
+        """
+        Sets the value of the global variable with the given key.
+        """
+        params = {'varKey': varkey, 'apikey': apikey}
+        if varvalue is not None:
+            params['varValue'] = varvalue
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/setGlobalVar/', params)))

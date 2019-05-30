@@ -27,47 +27,6 @@ class core(object):
     def __init__(self, zap):
         self.zap = zap
 
-    def alert(self, id):
-        """
-        Gets the alert with the given ID, the corresponding HTTP message can be obtained with the 'messageId' field and 'message' API method
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/alert/', {'id': id})))
-
-    def alerts(self, baseurl=None, start=None, count=None, riskid=None):
-        """
-        Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
-        """
-        params = {}
-        if baseurl is not None:
-            params['baseurl'] = baseurl
-        if start is not None:
-            params['start'] = start
-        if count is not None:
-            params['count'] = count
-        if riskid is not None:
-            params['riskId'] = riskid
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/alerts/', params)))
-
-    def alerts_summary(self, baseurl=None):
-        """
-        Gets number of alerts grouped by each risk level, optionally filtering by URL
-        """
-        params = {}
-        if baseurl is not None:
-            params['baseurl'] = baseurl
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/alertsSummary/', params)))
-
-    def number_of_alerts(self, baseurl=None, riskid=None):
-        """
-        Gets the number of alerts, optionally filtering by URL or riskId
-        """
-        params = {}
-        if baseurl is not None:
-            params['baseurl'] = baseurl
-        if riskid is not None:
-            params['riskId'] = riskid
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/numberOfAlerts/', params)))
-
     @property
     def hosts(self):
         """
@@ -90,6 +49,15 @@ class core(object):
         if baseurl is not None:
             params['baseurl'] = baseurl
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/urls/', params)))
+
+    def child_nodes(self, url=None):
+        """
+        Gets the child nodes underneath the specified URL in the Sites tree
+        """
+        params = {}
+        if url is not None:
+            params['url'] = url
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/childNodes/', params)))
 
     def message(self, id):
         """
@@ -213,6 +181,47 @@ class core(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionAlertOverridesFilePath/')))
 
+    def alert(self, id):
+        """
+        Gets the alert with the given ID, the corresponding HTTP message can be obtained with the 'messageId' field and 'message' API method
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/alert/', {'id': id})))
+
+    def alerts(self, baseurl=None, start=None, count=None, riskid=None):
+        """
+        Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
+        """
+        params = {}
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        if start is not None:
+            params['start'] = start
+        if count is not None:
+            params['count'] = count
+        if riskid is not None:
+            params['riskId'] = riskid
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/alerts/', params)))
+
+    def alerts_summary(self, baseurl=None):
+        """
+        Gets number of alerts grouped by each risk level, optionally filtering by URL
+        """
+        params = {}
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/alertsSummary/', params)))
+
+    def number_of_alerts(self, baseurl=None, riskid=None):
+        """
+        Gets the number of alerts, optionally filtering by URL or riskId
+        """
+        params = {}
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        if riskid is not None:
+            params['riskId'] = riskid
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/numberOfAlerts/', params)))
+
     @property
     def option_default_user_agent(self):
         """
@@ -253,6 +262,9 @@ class core(object):
 
     @property
     def option_timeout_in_secs(self):
+        """
+        Gets the connection time out, in seconds.
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionTimeoutInSecs/')))
 
     @property
@@ -316,8 +328,16 @@ class core(object):
             params['overwrite'] = overwrite
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/saveSession/', params)))
 
-    def snapshot_session(self, apikey=''):
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/snapshotSession/', {'apikey': apikey})))
+    def snapshot_session(self, name=None, overwrite=None, apikey=''):
+        """
+        Snapshots the session, optionally with the given name, and overwriting existing files. If no name is specified the name of the current session with a timestamp appended is used. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
+        """
+        params = {'apikey': apikey}
+        if name is not None:
+            params['name'] = name
+        if overwrite is not None:
+            params['overwrite'] = overwrite
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/snapshotSession/', params)))
 
     def clear_excluded_from_proxy(self, apikey=''):
         """
@@ -354,18 +374,6 @@ class core(object):
         if followredirects is not None:
             params['followRedirects'] = followredirects
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/sendRequest/', params)))
-
-    def delete_all_alerts(self, apikey=''):
-        """
-        Deletes all alerts of the current session.
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/deleteAllAlerts/', {'apikey': apikey})))
-
-    def delete_alert(self, id, apikey=''):
-        """
-        Deletes the alert with the given ID. 
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/deleteAlert/', {'id': id, 'apikey': apikey})))
 
     def run_garbage_collection(self, apikey=''):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/runGarbageCollection/', {'apikey': apikey})))
@@ -444,6 +452,33 @@ class core(object):
             params['filePath'] = filepath
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionAlertOverridesFilePath/', params)))
 
+    def enable_pkcs_12_client_certificate(self, filepath, password, index=None, apikey=''):
+        """
+        Enables use of a PKCS12 client certificate for the certificate with the given file system path, password, and optional index.
+        """
+        params = {'filePath': filepath, 'password': password, 'apikey': apikey}
+        if index is not None:
+            params['index'] = index
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/enablePKCS12ClientCertificate/', params)))
+
+    def disable_client_certificate(self, apikey=''):
+        """
+        Disables the option for use of client certificates.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/disableClientCertificate/', {'apikey': apikey})))
+
+    def delete_all_alerts(self, apikey=''):
+        """
+        Deletes all alerts of the current session.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/deleteAllAlerts/', {'apikey': apikey})))
+
+    def delete_alert(self, id, apikey=''):
+        """
+        Deletes the alert with the given ID. 
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/deleteAlert/', {'id': id, 'apikey': apikey})))
+
     def set_option_default_user_agent(self, string, apikey=''):
         """
         Sets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
@@ -487,6 +522,9 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionSingleCookieRequestHeader/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_timeout_in_secs(self, integer, apikey=''):
+        """
+        Sets the connection time out, in seconds.
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionTimeoutInSecs/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_use_proxy_chain(self, boolean, apikey=''):

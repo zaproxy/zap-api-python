@@ -71,6 +71,12 @@ class context(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/view/excludedTechnologyList/', {'contextName': contextname})))
 
+    def urls(self, contextname):
+        """
+        Lists the URLs accessed through/by ZAP, that belong to the context with the given name.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/view/urls/', {'contextName': contextname})))
+
     def exclude_from_context(self, contextname, regex, apikey=''):
         """
         Add exclude regex to context
@@ -82,6 +88,12 @@ class context(object):
         Add include regex to context
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/includeInContext/', {'contextName': contextname, 'regex': regex, 'apikey': apikey})))
+
+    def set_context_regexs(self, contextname, incregexs, excregexs, apikey=''):
+        """
+        Set the regexs to include and exclude for a context, both supplied as JSON string arrays
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/setContextRegexs/', {'contextName': contextname, 'incRegexs': incregexs, 'excRegexs': excregexs, 'apikey': apikey})))
 
     def new_context(self, contextname, apikey=''):
         """
