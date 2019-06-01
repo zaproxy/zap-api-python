@@ -48,6 +48,20 @@ class pscan(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/scanners/')))
 
+    @property
+    def current_rule(self):
+        """
+        Show information about the passive scan rule currently being run (if any).
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/currentRule/')))
+
+    @property
+    def max_alerts_per_rule(self):
+        """
+        Gets the maximum number of alerts a passive scan rule should raise.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/maxAlertsPerRule/')))
+
     def set_enabled(self, enabled, apikey=''):
         """
         Sets whether or not the passive scanning is enabled (Note: the enabled state is not persisted).
@@ -89,3 +103,9 @@ class pscan(object):
         Sets the alert threshold of the passive scanner with the given ID, accepted values for alert threshold: OFF, DEFAULT, LOW, MEDIUM and HIGH
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setScannerAlertThreshold/', {'id': id, 'alertThreshold': alertthreshold, 'apikey': apikey})))
+
+    def set_max_alerts_per_rule(self, maxalerts, apikey=''):
+        """
+        Sets the maximum number of alerts a passive scan rule should raise.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setMaxAlertsPerRule/', {'maxAlerts': maxalerts, 'apikey': apikey})))

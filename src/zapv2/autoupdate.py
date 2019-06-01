@@ -49,6 +49,13 @@ class autoupdate(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/installedAddons/')))
 
     @property
+    def local_addons(self):
+        """
+        Returns a list with all local add-ons, installed or not.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/localAddons/')))
+
+    @property
     def new_addons(self):
         """
         Return a list of any add-ons that have been added to the Marketplace since the last check for updates
@@ -132,6 +139,9 @@ class autoupdate(object):
         Installs or updates the specified add-on, returning when complete (ie not asynchronously)
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/installAddon/', {'id': id, 'apikey': apikey})))
+
+    def install_local_addon(self, file, apikey=''):
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/installLocalAddon/', {'file': file, 'apikey': apikey})))
 
     def uninstall_addon(self, id, apikey=''):
         """

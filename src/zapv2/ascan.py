@@ -67,6 +67,9 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/excludedFromScan/')))
 
     def scanners(self, scanpolicyname=None, policyid=None):
+        """
+        Gets the scanners, optionally, of the given scan policy and/or scanner policy/category ID.
+        """
         params = {}
         if scanpolicyname is not None:
             params['scanPolicyName'] = scanpolicyname
@@ -158,6 +161,13 @@ class ascan(object):
     @property
     def option_thread_per_host(self):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionThreadPerHost/')))
+
+    @property
+    def option_add_query_param(self):
+        """
+        Tells whether or not the active scanner should add a query parameter to GET request that don't have parameters to start with.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionAddQueryParam/')))
 
     @property
     def option_allow_attack_on_start(self):
@@ -272,24 +282,36 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/excludeFromScan/', {'regex': regex, 'apikey': apikey})))
 
     def enable_all_scanners(self, scanpolicyname=None, apikey=''):
+        """
+        Enables all scanners of the scan policy with the given name, or the default if none given.
+        """
         params = {'apikey': apikey}
         if scanpolicyname is not None:
             params['scanPolicyName'] = scanpolicyname
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/enableAllScanners/', params)))
 
     def disable_all_scanners(self, scanpolicyname=None, apikey=''):
+        """
+        Disables all scanners of the scan policy with the given name, or the default if none given.
+        """
         params = {'apikey': apikey}
         if scanpolicyname is not None:
             params['scanPolicyName'] = scanpolicyname
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/disableAllScanners/', params)))
 
     def enable_scanners(self, ids, scanpolicyname=None, apikey=''):
+        """
+        Enables the scanners with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
+        """
         params = {'ids': ids, 'apikey': apikey}
         if scanpolicyname is not None:
             params['scanPolicyName'] = scanpolicyname
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/enableScanners/', params)))
 
     def disable_scanners(self, ids, scanpolicyname=None, apikey=''):
+        """
+        Disables the scanners with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
+        """
         params = {'ids': ids, 'apikey': apikey}
         if scanpolicyname is not None:
             params['scanPolicyName'] = scanpolicyname
@@ -391,6 +413,12 @@ class ascan(object):
 
     def set_option_default_policy(self, string, apikey=''):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionDefaultPolicy/', {'String': string, 'apikey': apikey})))
+
+    def set_option_add_query_param(self, boolean, apikey=''):
+        """
+        Sets whether or not the active scanner should add a query param to GET requests which do not have parameters to start with.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionAddQueryParam/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_allow_attack_on_start(self, boolean, apikey=''):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionAllowAttackOnStart/', {'Boolean': boolean, 'apikey': apikey})))
