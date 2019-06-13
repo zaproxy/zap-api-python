@@ -27,6 +27,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 from .acsrf import acsrf
 from .alert import alert
+from .alertFilter import alertFilter
 from .ascan import ascan
 from .ajaxSpider import ajaxSpider
 from .authentication import authentication
@@ -82,6 +83,7 @@ class ZAPv2(object):
 
         self.acsrf = acsrf(self)
         self.alert = alert(self)
+        self.alertFilter = alertFilter(self)
         self.ajaxSpider = ajaxSpider(self)
         self.ascan = ascan(self)
         self.authentication = authentication(self)
