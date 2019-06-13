@@ -19,6 +19,7 @@ install_dependencies = (
 )
 test_requirements = (
     'mock',
+    'pyhamcrest',
     'pylama',
     'pytest',
     'requests_mock'

@@ -1,6 +1,8 @@
 """
 Tests related to the main Zap Client class
 """
+from hamcrest import assert_that
+from hamcrest import has_entries
 import pytest
 
 TEST_PROXIES = {
@@ -26,7 +28,7 @@ def test_urlopen(zap, client_mock):
 
     assert 'X-ZAP-API-Key' not in response._request.headers
     assert 'testapikey' not in response.query
-    assert response.proxies == TEST_PROXIES
+    assert_that(response.proxies, has_entries(TEST_PROXIES))
 
 
 def test_request_api_invalid_status_code(zap_strict, client_mock):
@@ -43,7 +45,7 @@ def test_request_api_invalid_status_code(zap_strict, client_mock):
     response = client_mock.request_history[0]
 
     assert_api_key(response)
-    assert response.proxies == TEST_PROXIES
+    assert_that(response.proxies, has_entries(TEST_PROXIES))
 
 
 def test_request_response(zap, client_mock):
@@ -55,7 +57,7 @@ def test_request_response(zap, client_mock):
     response = client_mock.request_history[0]
 
     assert_api_key(response)
-    assert response.proxies == TEST_PROXIES
+    assert_that(response.proxies, has_entries(TEST_PROXIES))
 
 
 def test_request_other(zap, client_mock):
@@ -68,4 +70,4 @@ def test_request_other(zap, client_mock):
     response = client_mock.request_history[0]
 
     assert_api_key(response)
-    assert response.proxies == TEST_PROXIES
+    assert_that(response.proxies, has_entries(TEST_PROXIES))
