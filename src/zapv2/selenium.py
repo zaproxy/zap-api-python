@@ -54,7 +54,6 @@ class selenium(object):
     @property
     def option_ie_driver_path(self):
         """
-        Returns the current path to IEDriverServer
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionIeDriverPath/')))
@@ -90,7 +89,6 @@ class selenium(object):
 
     def set_option_ie_driver_path(self, string, apikey=''):
         """
-        Sets the current path to IEDriverServer
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionIeDriverPath/', {'String': string, 'apikey': apikey})))

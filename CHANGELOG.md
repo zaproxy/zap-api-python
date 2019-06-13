@@ -5,10 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
-- Add API for WebSockets add-on, version 15.
+- Add API for Context Alert Filters add-on, version 8.
+- Add API for WebSockets add-on, version 19.
 - Add API for SOAP Scanner add-on, version 3.
 ### Changed
 - Minimum Python 3 version is now 3.4.
+- Update Selenium API, per release of version 15.0.0.
 
 ### Changed
 - Update core APIs for ZAP 2.8.0.

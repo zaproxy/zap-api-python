@@ -58,9 +58,24 @@ class websocket(object):
             params['payloadPreviewLength'] = payloadpreviewlength
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'websocket/view/messages/', params)))
 
+    @property
+    def break_text_message(self):
+        """
+        Returns a text representation of an intercepted websockets message
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'websocket/view/breakTextMessage/')))
+
     def send_text_message(self, channelid, outgoing, message, apikey=''):
         """
         Sends the specified message on the channel specified by channelId, if outgoing is 'True' then the message will be sent to the server and if it is 'False' then it will be sent to the client
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'websocket/action/sendTextMessage/', {'channelId': channelid, 'outgoing': outgoing, 'message': message, 'apikey': apikey})))
+
+    def set_break_text_message(self, message, outgoing, apikey=''):
+        """
+        Sets the text message for an intercepted websockets message
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'websocket/action/setBreakTextMessage/', {'message': message, 'outgoing': outgoing, 'apikey': apikey})))
