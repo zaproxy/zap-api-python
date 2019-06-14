@@ -3,16 +3,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+
 ## [0.0.15] - 2019-06-14
 ### Added
 - Add API for Context Alert Filters add-on, version 8.
 - Add API for WebSockets add-on, version 19.
 - Add API for SOAP Scanner add-on, version 3.
+
 ### Changed
 - Minimum Python 3 version is now 3.4.
 - Update Selenium API, per release of version 15.0.0.
-
-### Changed
 - Update core APIs for ZAP 2.8.0.
 - Allow to validate the status code returned by the ZAP API, to fail
 sooner if the API request was not successful. This can be enabled when
@@ -61,6 +63,7 @@ ensure it's automatically sent in all API requests.
 ### Changed
 - Moved from the main `zaproxy` repository.
 
+[Unreleased]: https://github.com/zaproxy/zap-api-python/compare/0.0.15...HEAD
 [0.0.15]: https://github.com/zaproxy/zap-api-python/compare/0.0.14...0.0.15
 [0.0.14]: https://github.com/zaproxy/zap-api-python/compare/0.0.13...0.0.14
 [0.0.13]: https://github.com/zaproxy/zap-api-python/compare/0.0.12...0.0.13
