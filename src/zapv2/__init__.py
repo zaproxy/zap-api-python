@@ -40,12 +40,14 @@ from .forcedUser import forcedUser
 from .httpSessions import httpSessions
 from .importLogFiles import importLogFiles
 from .importurls import importurls
+from .localProxies import localProxies
 from .openapi import openapi
 from .params import params
 from .pnh import pnh
 from .pscan import pscan
 from .replacer import replacer
 from .reveal import reveal
+from .ruleConfig import ruleConfig
 from .script import script
 from .search import search
 from .selenium import selenium
@@ -96,12 +98,14 @@ class ZAPv2(object):
         self.httpsessions = httpSessions(self)
         self.importLogFiles = importLogFiles(self)
         self.importurls = importurls(self)
+        self.localProxies = localProxies(self)
         self.openapi = openapi(self)
         self.params = params(self)
         self.pnh = pnh(self)
         self.pscan = pscan(self)
         self.replacer = replacer(self)
         self.reveal = reveal(self)
+        self.ruleConfig = ruleConfig(self)
         self.script = script(self)
         self.search = search(self)
         self.selenium = selenium(self)
