@@ -321,7 +321,7 @@ class core(object):
 
     def save_session(self, name, overwrite=None, apikey=''):
         """
-        Saves the session with the name supplied, optionally overwriting existing files. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
+        Saves the session.
         """
         params = {'name': name, 'apikey': apikey}
         if overwrite is not None:

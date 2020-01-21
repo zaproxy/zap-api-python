@@ -54,6 +54,12 @@ class script(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/globalVar/', {'varKey': varkey})))
 
+    def global_custom_var(self, varkey):
+        """
+        Gets the value (string representation) of a global custom variable. Returns an API error (DOES_NOT_EXIST) if no value was previously set.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/globalCustomVar/', {'varKey': varkey})))
+
     @property
     def global_vars(self):
         """
@@ -61,17 +67,36 @@ class script(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/globalVars/')))
 
+    @property
+    def global_custom_vars(self):
+        """
+        Gets all the global custom variables (key/value pairs, the value is the string representation).
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/globalCustomVars/')))
+
     def script_var(self, scriptname, varkey):
         """
         Gets the value of the variable with the given key for the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/scriptVar/', {'scriptName': scriptname, 'varKey': varkey})))
 
+    def script_custom_var(self, scriptname, varkey):
+        """
+        Gets the value (string representation) of a custom variable. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/scriptCustomVar/', {'scriptName': scriptname, 'varKey': varkey})))
+
     def script_vars(self, scriptname):
         """
         Gets all the variables (key/value pairs) of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/scriptVars/', {'scriptName': scriptname})))
+
+    def script_custom_vars(self, scriptname):
+        """
+        Gets all the custom variables (key/value pairs, the value is the string representation) of a script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/view/scriptCustomVars/', {'scriptName': scriptname})))
 
     def enable(self, scriptname, apikey=''):
         """
@@ -114,6 +139,12 @@ class script(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearGlobalVar/', {'varKey': varkey, 'apikey': apikey})))
 
+    def clear_global_custom_var(self, varkey, apikey=''):
+        """
+        Clears a global custom variable.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearGlobalCustomVar/', {'varKey': varkey, 'apikey': apikey})))
+
     def clear_global_vars(self, apikey=''):
         """
         Clears the global variables.
@@ -125,6 +156,12 @@ class script(object):
         Clears the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearScriptVar/', {'scriptName': scriptname, 'varKey': varkey, 'apikey': apikey})))
+
+    def clear_script_custom_var(self, scriptname, varkey, apikey=''):
+        """
+        Clears a script custom variable.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearScriptCustomVar/', {'scriptName': scriptname, 'varKey': varkey, 'apikey': apikey})))
 
     def clear_script_vars(self, scriptname, apikey=''):
         """

@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2016 the ZAP development team
+# Copyright 2020 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,27 +22,25 @@ This file was automatically generated.
 import six
 
 
-class openapi(object):
+class exportreport(object):
 
     def __init__(self, zap):
         self.zap = zap
 
-    def import_file(self, file, target=None, apikey=''):
+    @property
+    def formats(self):
         """
-        Imports an OpenAPI definition from a local file.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'file': file, 'apikey': apikey}
-        if target is not None:
-            params['target'] = target
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'openapi/action/importFile/', params)))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'exportreport/view/formats/')))
 
-    def import_url(self, url, hostoverride=None, apikey=''):
+    def generate(self, absolutepath, fileextension, sourcedetails, alertseverity, alertdetails, scanid=None, includepassivealerts=None, apikey=''):
         """
-        Imports an OpenAPI definition from a URL.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'url': url, 'apikey': apikey}
-        if hostoverride is not None:
-            params['hostOverride'] = hostoverride
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'openapi/action/importUrl/', params)))
+        params = {'absolutePath': absolutepath, 'fileExtension': fileextension, 'sourceDetails': sourcedetails, 'alertSeverity': alertseverity, 'alertDetails': alertdetails, 'apikey': apikey}
+        if scanid is not None:
+            params['scanId'] = scanid
+        if includepassivealerts is not None:
+            params['includePassiveAlerts'] = includepassivealerts
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'exportreport/action/generate/', params)))

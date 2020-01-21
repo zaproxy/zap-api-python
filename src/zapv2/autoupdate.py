@@ -136,7 +136,7 @@ class autoupdate(object):
 
     def install_addon(self, id, apikey=''):
         """
-        Installs or updates the specified add-on, returning when complete (ie not asynchronously)
+        Installs or updates the specified add-on, returning when complete (i.e. not asynchronously)
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/installAddon/', {'id': id, 'apikey': apikey})))
 

@@ -109,3 +109,15 @@ class pscan(object):
         Sets the maximum number of alerts a passive scan rule should raise.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setMaxAlertsPerRule/', {'maxAlerts': maxalerts, 'apikey': apikey})))
+
+    def disable_all_tags(self, apikey=''):
+        """
+        Disables all passive scan tags.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableAllTags/', {'apikey': apikey})))
+
+    def enable_all_tags(self, apikey=''):
+        """
+        Enables all passive scan tags.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableAllTags/', {'apikey': apikey})))

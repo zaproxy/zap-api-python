@@ -25,6 +25,7 @@ __version__ = '0.0.16'
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
+from .accessControl import accessControl
 from .acsrf import acsrf
 from .alert import alert
 from .alertFilter import alertFilter
@@ -36,6 +37,7 @@ from .autoupdate import autoupdate
 from .brk import brk
 from .context import context
 from .core import core
+from .exportreport import exportreport
 from .forcedUser import forcedUser
 from .httpSessions import httpSessions
 from .importLogFiles import importLogFiles
@@ -47,6 +49,7 @@ from .pnh import pnh
 from .pscan import pscan
 from .replacer import replacer
 from .reveal import reveal
+from .revisit import revisit
 from .ruleConfig import ruleConfig
 from .script import script
 from .search import search
@@ -56,6 +59,7 @@ from .soap import soap
 from .spider import spider
 from .stats import stats
 from .users import users
+from .wappalyzer import wappalyzer
 from .websocket import websocket
 
 
@@ -83,6 +87,7 @@ class ZAPv2(object):
         self.__apikey = apikey
         self.__validate_status_code=validate_status_code
 
+        self.accessControl = accessControl(self)
         self.acsrf = acsrf(self)
         self.alert = alert(self)
         self.alertFilter = alertFilter(self)
@@ -94,6 +99,7 @@ class ZAPv2(object):
         self.brk = brk(self)
         self.context = context(self)
         self.core = core(self)
+        self.exportreport = exportreport(self)
         self.forcedUser = forcedUser(self)
         self.httpsessions = httpSessions(self)
         self.importLogFiles = importLogFiles(self)
@@ -105,6 +111,7 @@ class ZAPv2(object):
         self.pscan = pscan(self)
         self.replacer = replacer(self)
         self.reveal = reveal(self)
+        self.revisit = revisit(self)
         self.ruleConfig = ruleConfig(self)
         self.script = script(self)
         self.search = search(self)
@@ -114,6 +121,7 @@ class ZAPv2(object):
         self.spider = spider(self)
         self.stats = stats(self)
         self.users = users(self)
+        self.wappalyzer = wappalyzer(self)
         self.websocket = websocket(self)
 
         # not very nice, but prevents warnings when accessing the ZAP API via https
