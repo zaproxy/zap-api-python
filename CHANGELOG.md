@@ -3,9 +3,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [0.0.16] - 2020-01-22
 ### Added
-- Core APIs from ZAP version 2.8.0.
+- Core APIs.
 - APIs from add-ons:
  - Access Control Testing;
  - Export Report;
@@ -76,7 +76,7 @@ ensure it's automatically sent in all API requests.
 ### Changed
 - Moved from the main `zaproxy` repository.
 
-[Unreleased]: https://github.com/zaproxy/zap-api-python/compare/0.0.15...HEAD
+[0.0.16]: https://github.com/zaproxy/zap-api-python/compare/0.0.15...0.0.16
 [0.0.15]: https://github.com/zaproxy/zap-api-python/compare/0.0.14...0.0.15
 [0.0.14]: https://github.com/zaproxy/zap-api-python/compare/0.0.13...0.0.14
 [0.0.13]: https://github.com/zaproxy/zap-api-python/compare/0.0.12...0.0.13
