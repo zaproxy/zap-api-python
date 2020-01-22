@@ -34,7 +34,15 @@ class alertFilter(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/view/alertFilterList/', {'contextId': contextid})))
 
-    def add_alert_filter(self, contextid, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, apikey=''):
+    @property
+    def global_alert_filter_list(self):
+        """
+        Lists the global alert filters.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/view/globalAlertFilterList/')))
+
+    def add_alert_filter(self, contextid, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, apikey=''):
         """
         Adds a new alert filter for the context with the given ID. 
         This component is optional and therefore the API will only work if it is installed
@@ -48,9 +56,19 @@ class alertFilter(object):
             params['parameter'] = parameter
         if enabled is not None:
             params['enabled'] = enabled
+        if parameterisregex is not None:
+            params['parameterIsRegex'] = parameterisregex
+        if attack is not None:
+            params['attack'] = attack
+        if attackisregex is not None:
+            params['attackIsRegex'] = attackisregex
+        if evidence is not None:
+            params['evidence'] = evidence
+        if evidenceisregex is not None:
+            params['evidenceIsRegex'] = evidenceisregex
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/addAlertFilter/', params)))
 
-    def remove_alert_filter(self, contextid, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, apikey=''):
+    def remove_alert_filter(self, contextid, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, apikey=''):
         """
         Removes an alert filter from the context with the given ID.
         This component is optional and therefore the API will only work if it is installed
@@ -64,4 +82,66 @@ class alertFilter(object):
             params['parameter'] = parameter
         if enabled is not None:
             params['enabled'] = enabled
+        if parameterisregex is not None:
+            params['parameterIsRegex'] = parameterisregex
+        if attack is not None:
+            params['attack'] = attack
+        if attackisregex is not None:
+            params['attackIsRegex'] = attackisregex
+        if evidence is not None:
+            params['evidence'] = evidence
+        if evidenceisregex is not None:
+            params['evidenceIsRegex'] = evidenceisregex
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/removeAlertFilter/', params)))
+
+    def add_global_alert_filter(self, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, apikey=''):
+        """
+        Adds a new global alert filter. 
+        This component is optional and therefore the API will only work if it is installed
+        """
+        params = {'ruleId': ruleid, 'newLevel': newlevel, 'apikey': apikey}
+        if url is not None:
+            params['url'] = url
+        if urlisregex is not None:
+            params['urlIsRegex'] = urlisregex
+        if parameter is not None:
+            params['parameter'] = parameter
+        if enabled is not None:
+            params['enabled'] = enabled
+        if parameterisregex is not None:
+            params['parameterIsRegex'] = parameterisregex
+        if attack is not None:
+            params['attack'] = attack
+        if attackisregex is not None:
+            params['attackIsRegex'] = attackisregex
+        if evidence is not None:
+            params['evidence'] = evidence
+        if evidenceisregex is not None:
+            params['evidenceIsRegex'] = evidenceisregex
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/addGlobalAlertFilter/', params)))
+
+    def remove_global_alert_filter(self, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, apikey=''):
+        """
+        Removes a global alert filter.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        params = {'ruleId': ruleid, 'newLevel': newlevel, 'apikey': apikey}
+        if url is not None:
+            params['url'] = url
+        if urlisregex is not None:
+            params['urlIsRegex'] = urlisregex
+        if parameter is not None:
+            params['parameter'] = parameter
+        if enabled is not None:
+            params['enabled'] = enabled
+        if parameterisregex is not None:
+            params['parameterIsRegex'] = parameterisregex
+        if attack is not None:
+            params['attack'] = attack
+        if attackisregex is not None:
+            params['attackIsRegex'] = attackisregex
+        if evidence is not None:
+            params['evidence'] = evidence
+        if evidenceisregex is not None:
+            params['evidenceIsRegex'] = evidenceisregex
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/removeGlobalAlertFilter/', params)))

@@ -101,3 +101,49 @@ class alert(object):
         Deletes the alert with the given ID. 
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/deleteAlert/', {'id': id, 'apikey': apikey})))
+
+    def update_alert(self, id, name, riskid, confidenceid, description, param=None, attack=None, otherinfo=None, solution=None, references=None, evidence=None, cweid=None, wascid=None, apikey=''):
+        """
+        Update the alert with the given ID, with the provided details.
+        """
+        params = {'id': id, 'name': name, 'riskId': riskid, 'confidenceId': confidenceid, 'description': description, 'apikey': apikey}
+        if param is not None:
+            params['param'] = param
+        if attack is not None:
+            params['attack'] = attack
+        if otherinfo is not None:
+            params['otherInfo'] = otherinfo
+        if solution is not None:
+            params['solution'] = solution
+        if references is not None:
+            params['references'] = references
+        if evidence is not None:
+            params['evidence'] = evidence
+        if cweid is not None:
+            params['cweId'] = cweid
+        if wascid is not None:
+            params['wascId'] = wascid
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/updateAlert/', params)))
+
+    def add_alert(self, messageid, name, riskid, confidenceid, description, param=None, attack=None, otherinfo=None, solution=None, references=None, evidence=None, cweid=None, wascid=None, apikey=''):
+        """
+        Add an alert associated with the given message ID, with the provided details. (The ID of the created alert is returned.)
+        """
+        params = {'messageId': messageid, 'name': name, 'riskId': riskid, 'confidenceId': confidenceid, 'description': description, 'apikey': apikey}
+        if param is not None:
+            params['param'] = param
+        if attack is not None:
+            params['attack'] = attack
+        if otherinfo is not None:
+            params['otherInfo'] = otherinfo
+        if solution is not None:
+            params['solution'] = solution
+        if references is not None:
+            params['references'] = references
+        if evidence is not None:
+            params['evidence'] = evidence
+        if cweid is not None:
+            params['cweId'] = cweid
+        if wascid is not None:
+            params['wascId'] = wascid
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/addAlert/', params)))

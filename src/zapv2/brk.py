@@ -75,7 +75,7 @@ class brk(object):
 
     def cont(self, apikey=''):
         """
-        Submits the currently intercepted message and unsets the global request/response break points
+        Submits the currently intercepted message and unsets the global request/response breakpoints
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/continue/', {'apikey': apikey})))
 
@@ -93,12 +93,12 @@ class brk(object):
 
     def add_http_breakpoint(self, string, location, match, inverse, ignorecase, apikey=''):
         """
-        Adds a custom HTTP breakpont. The string is the string to match. Location may be one of: url, request_header, request_body, response_header or response_body. Match may be: contains or regex. Inverse (match) may be true or false. Lastly, ignorecase (when matching the string) may be true or false.  
+        Adds a custom HTTP breakpoint. The string is the string to match. Location may be one of: url, request_header, request_body, response_header or response_body. Match may be: contains or regex. Inverse (match) may be true or false. Lastly, ignorecase (when matching the string) may be true or false.  
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/addHttpBreakpoint/', {'string': string, 'location': location, 'match': match, 'inverse': inverse, 'ignorecase': ignorecase, 'apikey': apikey})))
 
     def remove_http_breakpoint(self, string, location, match, inverse, ignorecase, apikey=''):
         """
-        Removes the specified break point
+        Removes the specified breakpoint
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/removeHttpBreakpoint/', {'string': string, 'location': location, 'match': match, 'inverse': inverse, 'ignorecase': ignorecase, 'apikey': apikey})))

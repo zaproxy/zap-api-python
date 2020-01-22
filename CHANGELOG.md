@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 ### Added
 - Core APIs from ZAP version 2.8.0.
+- APIs from add-ons:
+ - Access Control Testing;
+ - Export Report;
+ - Revisit;
+ - Wappalyzer - Technology Detection.
+
+### Changed
+- Core APIs updated for ZAP version 2.9.0.
+- Update APIs from add-ons:
+ - Alert Filters;
+ - OpenAPI Support;
+ - Replacer.
 
 ## [0.0.15] - 2019-06-14
 ### Added
