@@ -32,7 +32,7 @@ apiKey='qiiutul4utrfub1b8veqs50bk0'
 # MANDATORY. Define the listening address of ZAP instance
 localProxy = {"http": "http://127.0.0.1:8080", "https": "http://127.0.0.1:8080"}
 
-# MANDATORY. True to create another ZAP session (overwritte the former if the
+# MANDATORY. True to create another ZAP session (overwrite the former if the
 # same name already exists), False to use an existing one
 isNewSession = True
 # MANDATORY. ZAP Session name
