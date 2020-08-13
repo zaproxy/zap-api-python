@@ -70,7 +70,7 @@ class ZAPv2(object):
     base = 'http://zap/JSON/'
     base_other = 'http://zap/OTHER/'
 
-    def __init__(self, proxies=None, apikey=None, validate_status_code=False):
+    def __init__(self, proxies=None, apikey=None, validate_status_code=False, secure_only=False):
         """
         Creates an instance of the ZAP api client.
 
@@ -86,6 +86,10 @@ class ZAPv2(object):
         }
         self.__apikey = apikey
         self.__validate_status_code=validate_status_code
+        
+        if secure_only:
+            self.base = 'https://zap/JSON/'
+            self.base_other = 'https://zap/OTHER/"
 
         self.accessControl = accessControl(self)
         self.acsrf = acsrf(self)
@@ -151,7 +155,7 @@ class ZAPv2(object):
         :Parameters:
            - `url`: the url to GET at.
         """
-        if not url.startswith('http://zap/'):
+        if not (url.startswith('http://zap/') or url.startswith('https://zap')):
           # Only allow requests to the API so that we never leak the apikey
           raise ValueError('A non ZAP API url was specified ' + url)
 
