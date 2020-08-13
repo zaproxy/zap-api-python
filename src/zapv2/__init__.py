@@ -89,7 +89,7 @@ class ZAPv2(object):
         
         if secure_only:
             self.base = 'https://zap/JSON/'
-            self.base_other = 'https://zap/OTHER/"
+            self.base_other = 'https://zap/OTHER/'
 
         self.accessControl = accessControl(self)
         self.acsrf = acsrf(self)
