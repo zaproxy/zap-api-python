@@ -39,6 +39,7 @@ from .context import context
 from .core import core
 from .exportreport import exportreport
 from .forcedUser import forcedUser
+from .graphql import graphql
 from .httpSessions import httpSessions
 from .importLogFiles import importLogFiles
 from .importurls import importurls
@@ -101,6 +102,7 @@ class ZAPv2(object):
         self.core = core(self)
         self.exportreport = exportreport(self)
         self.forcedUser = forcedUser(self)
+        self.graphql = graphql(self)
         self.httpsessions = httpSessions(self)
         self.importLogFiles = importLogFiles(self)
         self.importurls = importurls(self)
