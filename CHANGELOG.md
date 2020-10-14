@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [0.0.17] - 2020-10-14
 ### Added
 - Add API for GraphQL add-on, version 0.2.0.
 
@@ -83,7 +83,7 @@ ensure it's automatically sent in all API requests.
 ### Changed
 - Moved from the main `zaproxy` repository.
 
-[Unreleased]: https://github.com/zaproxy/zap-api-python/compare/0.0.16...HEAD
+[0.0.17]: https://github.com/zaproxy/zap-api-python/compare/0.0.16...0.0.17
 [0.0.16]: https://github.com/zaproxy/zap-api-python/compare/0.0.15...0.0.16
 [0.0.15]: https://github.com/zaproxy/zap-api-python/compare/0.0.14...0.0.15
 [0.0.14]: https://github.com/zaproxy/zap-api-python/compare/0.0.13...0.0.14
