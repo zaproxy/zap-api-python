@@ -34,6 +34,13 @@ class acsrf(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'acsrf/view/optionTokensNames/')))
 
+    @property
+    def option_partial_matching_enabled(self):
+        """
+        Define if ZAP should detect CSRF tokens by searching for partial matches
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'acsrf/view/optionPartialMatchingEnabled/')))
+
     def add_option_token(self, string, apikey=''):
         """
         Adds an anti-CSRF token with the given name, enabled by default
@@ -45,6 +52,12 @@ class acsrf(object):
         Removes the anti-CSRF token with the given name
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'acsrf/action/removeOptionToken/', {'String': string, 'apikey': apikey})))
+
+    def set_option_partial_matching_enabled(self, boolean, apikey=''):
+        """
+        Define if ZAP should detect CSRF tokens by searching for partial matches.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'acsrf/action/setOptionPartialMatchingEnabled/', {'Boolean': boolean, 'apikey': apikey})))
 
     def gen_form(self, hrefid, apikey=''):
         """

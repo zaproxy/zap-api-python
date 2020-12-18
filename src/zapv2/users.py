@@ -54,6 +54,18 @@ class users(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/view/getAuthenticationCredentials/', {'contextId': contextid, 'userId': userid})))
 
+    def get_authentication_state(self, contextid, userid):
+        """
+        Gets the authentication state information for the user identified by the Context and User Ids.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/view/getAuthenticationState/', {'contextId': contextid, 'userId': userid})))
+
+    def get_authentication_session(self, contextid, userid):
+        """
+        Gets the authentication session information for the user identified by the Context and User Ids, e.g. cookies and realm credentials.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/view/getAuthenticationSession/', {'contextId': contextid, 'userId': userid})))
+
     def new_user(self, contextid, name, apikey=''):
         """
         Creates a new user with the given name for the context with the given ID.
@@ -86,3 +98,39 @@ class users(object):
         if authcredentialsconfigparams is not None:
             params['authCredentialsConfigParams'] = authcredentialsconfigparams
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/setAuthenticationCredentials/', params)))
+
+    def authenticate_as_user(self, contextid, userid, apikey=''):
+        """
+        Tries to authenticate as the identified user, returning the authentication request and whether it appears to have succeeded.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/authenticateAsUser/', {'contextId': contextid, 'userId': userid, 'apikey': apikey})))
+
+    def poll_as_user(self, contextid, userid, apikey=''):
+        """
+        Tries to poll as the identified user, returning the authentication request and whether it appears to have succeeded. This will only work if the polling verification strategy has been configured.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/pollAsUser/', {'contextId': contextid, 'userId': userid, 'apikey': apikey})))
+
+    def set_authentication_state(self, contextid, userid, lastpollresult=None, lastpolltimeinms=None, requestssincelastpoll=None, apikey=''):
+        """
+        Sets fields in the authentication state for the user identified by the Context and User Ids.
+        """
+        params = {'contextId': contextid, 'userId': userid, 'apikey': apikey}
+        if lastpollresult is not None:
+            params['lastPollResult'] = lastpollresult
+        if lastpolltimeinms is not None:
+            params['lastPollTimeInMs'] = lastpolltimeinms
+        if requestssincelastpoll is not None:
+            params['requestsSinceLastPoll'] = requestssincelastpoll
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/setAuthenticationState/', params)))
+
+    def set_cookie(self, contextid, userid, domain, name, value, path=None, secure=None, apikey=''):
+        """
+        Sets the specified cookie for the user identified by the Context and User Ids.
+        """
+        params = {'contextId': contextid, 'userId': userid, 'domain': domain, 'name': name, 'value': value, 'apikey': apikey}
+        if path is not None:
+            params['path'] = path
+        if secure is not None:
+            params['secure'] = secure
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/setCookie/', params)))

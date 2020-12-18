@@ -102,6 +102,18 @@ class alert(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/deleteAlert/', {'id': id, 'apikey': apikey})))
 
+    def update_alerts_confidence(self, ids, confidenceid, apikey=''):
+        """
+        Update the confidence of the alerts.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/updateAlertsConfidence/', {'ids': ids, 'confidenceId': confidenceid, 'apikey': apikey})))
+
+    def update_alerts_risk(self, ids, riskid, apikey=''):
+        """
+        Update the risk of the alerts.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/updateAlertsRisk/', {'ids': ids, 'riskId': riskid, 'apikey': apikey})))
+
     def update_alert(self, id, name, riskid, confidenceid, description, param=None, attack=None, otherinfo=None, solution=None, references=None, evidence=None, cweid=None, wascid=None, apikey=''):
         """
         Update the alert with the given ID, with the provided details.

@@ -287,6 +287,13 @@ class core(object):
     def option_use_proxy_chain_auth(self):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionUseProxyChainAuth/')))
 
+    @property
+    def option_use_socks_proxy(self):
+        """
+        Gets whether or not the SOCKS proxy should be used.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionUseSocksProxy/')))
+
     def access_url(self, url, followredirects=None, apikey=''):
         """
         Convenient and simple action to access a URL, optionally following redirections. Returns the request sent and response received and followed redirections, if any. Other actions are available which offer more control on what is sent, like, 'sendRequest' or 'sendHarRequest'.
@@ -535,6 +542,12 @@ class core(object):
 
     def set_option_use_proxy_chain_auth(self, boolean, apikey=''):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseProxyChainAuth/', {'Boolean': boolean, 'apikey': apikey})))
+
+    def set_option_use_socks_proxy(self, boolean, apikey=''):
+        """
+        Sets whether or not the SOCKS proxy should be used.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseSocksProxy/', {'Boolean': boolean, 'apikey': apikey})))
 
     def proxy_pac(self, apikey=''):
         return (self.zap._request_other(self.zap.base_other + 'core/other/proxy.pac/', {'apikey': apikey}))
