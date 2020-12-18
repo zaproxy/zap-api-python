@@ -28,6 +28,13 @@ class ajaxSpider(object):
         self.zap = zap
 
     @property
+    def allowed_resources(self):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/view/allowedResources/')))
+
+    @property
     def status(self):
         """
         This component is optional and therefore the API will only work if it is installed
@@ -131,7 +138,7 @@ class ajaxSpider(object):
 
     def scan(self, url=None, inscope=None, contextname=None, subtreeonly=None, apikey=''):
         """
-        Runs the spider against the given URL and/or context, optionally, spidering everything in scope. The parameter 'contextName' can be used to constrain the scan to a Context, the option 'in scope' is ignored if a context was also specified. The parameter 'subtreeOnly' allows to restrict the spider under a site's subtree (using the specified 'url').
+        Runs the AJAX Spider against a given target.
         This component is optional and therefore the API will only work if it is installed
         """
         params = {'apikey': apikey}
@@ -147,7 +154,7 @@ class ajaxSpider(object):
 
     def scan_as_user(self, contextname, username, url=None, subtreeonly=None, apikey=''):
         """
-        Runs the spider from the perspective of a User, obtained using the given context name and user name. The parameter 'url' allows to specify the starting point for the spider, otherwise it's used an existing URL from the context (if any). The parameter 'subtreeOnly' allows to restrict the spider under a site's subtree (using the specified 'url').
+        Runs the AJAX Spider from the perspective of a User of the web application.
         This component is optional and therefore the API will only work if it is installed
         """
         params = {'contextName': contextname, 'userName': username, 'apikey': apikey}
@@ -162,6 +169,27 @@ class ajaxSpider(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/stop/', {'apikey': apikey})))
+
+    def add_allowed_resource(self, regex, enabled=None, apikey=''):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        params = {'regex': regex, 'apikey': apikey}
+        if enabled is not None:
+            params['enabled'] = enabled
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/addAllowedResource/', params)))
+
+    def remove_allowed_resource(self, regex, apikey=''):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/removeAllowedResource/', {'regex': regex, 'apikey': apikey})))
+
+    def set_enabled_allowed_resource(self, regex, enabled, apikey=''):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setEnabledAllowedResource/', {'regex': regex, 'enabled': enabled, 'apikey': apikey})))
 
     def set_option_browser_id(self, string, apikey=''):
         """

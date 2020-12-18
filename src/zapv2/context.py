@@ -95,6 +95,23 @@ class context(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/setContextRegexs/', {'contextName': contextname, 'incRegexs': incregexs, 'excRegexs': excregexs, 'apikey': apikey})))
 
+    def set_context_checking_strategy(self, contextname, checkingstrategy, pollurl=None, polldata=None, pollheaders=None, pollfrequency=None, pollfrequencyunits=None, apikey=''):
+        """
+        Set the checking strategy for a context - this defines how ZAP checks that a request is authenticated
+        """
+        params = {'contextName': contextname, 'checkingStrategy': checkingstrategy, 'apikey': apikey}
+        if pollurl is not None:
+            params['pollUrl'] = pollurl
+        if polldata is not None:
+            params['pollData'] = polldata
+        if pollheaders is not None:
+            params['pollHeaders'] = pollheaders
+        if pollfrequency is not None:
+            params['pollFrequency'] = pollfrequency
+        if pollfrequencyunits is not None:
+            params['pollFrequencyUnits'] = pollfrequencyunits
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/setContextCheckingStrategy/', params)))
+
     def new_context(self, contextname, apikey=''):
         """
         Creates a new context with the given name in the current session
