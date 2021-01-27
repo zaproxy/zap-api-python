@@ -2,7 +2,6 @@
 
 [![Version](https://img.shields.io/pypi/v/python-owasp-zap-v2.4.svg)](https://pypi.python.org/pypi/python-owasp-zap-v2.4)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-[![Build Status](https://api.travis-ci.com/zaproxy/zap-api-python.svg?branch=master)](https://travis-ci.com/zaproxy/zap-api-python)
 
 The Python implementation to access the [OWASP ZAP API](https://www.zaproxy.org/docs/api/). For more information
 about OWASP ZAP consult the (main) [OWASP ZAP project](https://github.com/zaproxy/zaproxy/).
