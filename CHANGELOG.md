@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Added
+- Add API for Report Generation add-on, version 0.8.0.
+
 ### Changed
  - Python 2.7 is no longer supported.
 

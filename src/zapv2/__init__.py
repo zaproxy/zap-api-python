@@ -49,6 +49,7 @@ from .params import params
 from .pnh import pnh
 from .pscan import pscan
 from .replacer import replacer
+from .reports import reports
 from .reveal import reveal
 from .revisit import revisit
 from .ruleConfig import ruleConfig
@@ -112,6 +113,7 @@ class ZAPv2(object):
         self.pnh = pnh(self)
         self.pscan = pscan(self)
         self.replacer = replacer(self)
+        self.reports = reports(self)
         self.reveal = reveal(self)
         self.revisit = revisit(self)
         self.ruleConfig = ruleConfig(self)
