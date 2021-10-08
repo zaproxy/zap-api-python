@@ -26,13 +26,13 @@ test_requirements = (
 )
 setup(
     name="python-owasp-zap-v2.4",
-    version="0.0.19",
-    description="OWASP ZAP 2.10 API client",
-    long_description="OWASP Zed Attack Proxy 2.10 API Python client (the 2.4 package name has been kept to make it easier to upgrade)",
+    version="0.0.20",
+    description="OWASP ZAP 2.11 API client",
+    long_description="OWASP Zed Attack Proxy 2.11 API Python client (the 2.4 package name has been kept to make it easier to upgrade)",
     author="ZAP development team",
     author_email='',
     url="https://www.zaproxy.org/",
-    download_url="https://github.com/zaproxy/zap-api-python/releases/tag/0.0.19",
+    download_url="https://github.com/zaproxy/zap-api-python/releases/tag/0.0.20",
     platforms=['any'],
     license="ASL2.0",
     package_dir={
