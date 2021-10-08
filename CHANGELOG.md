@@ -5,10 +5,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
-- Add API for Report Generation add-on, version 0.8.0.
+- Add the APIs of the following add-ons:
+  - Automation Framework version 0.7.0;
+  - Report Generation add-on, version 0.8.0;
+  - Retest version 0.2.0.
 
 ### Changed
- - Python 2.7 is no longer supported.
+- Python 2.7 is no longer supported.
+- Update core APIs for 2.11.
+- Update the APIs of the following add-ons:
+  - Ajax Spider version 23.6.0;
+  - Alert Filters version 13;
+  - GraphQL Support version 0.6.0;
+  - OpenAPI Support version 23;
+  - Replacer version 9.
 
 ## [0.0.18] - 2020-12-18
 ### Changed

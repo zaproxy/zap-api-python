@@ -36,6 +36,22 @@ class graphql(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/view/optionArgsType/')))
 
     @property
+    def option_lenient_max_query_depth_enabled(self):
+        """
+        Returns whether or not lenient maximum query generation depth is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/view/optionLenientMaxQueryDepthEnabled/')))
+
+    @property
+    def option_max_additional_query_depth(self):
+        """
+        Returns the current maximum additional query generation depth.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/view/optionMaxAdditionalQueryDepth/')))
+
+    @property
     def option_max_args_depth(self):
         """
         Returns the current maximum arguments generation depth.
@@ -112,6 +128,20 @@ class graphql(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionRequestMethod/', {'String': string, 'apikey': apikey})))
+
+    def set_option_lenient_max_query_depth_enabled(self, boolean, apikey=''):
+        """
+        Sets whether or not Maximum Query Depth is enforced leniently.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionLenientMaxQueryDepthEnabled/', {'Boolean': boolean, 'apikey': apikey})))
+
+    def set_option_max_additional_query_depth(self, integer, apikey=''):
+        """
+        Sets the maximum additional query generation depth (used if enforced leniently).
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionMaxAdditionalQueryDepth/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_args_depth(self, integer, apikey=''):
         """

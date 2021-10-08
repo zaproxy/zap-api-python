@@ -33,6 +33,7 @@ from .ascan import ascan
 from .ajaxSpider import ajaxSpider
 from .authentication import authentication
 from .authorization import authorization
+from .automation import automation
 from .autoupdate import autoupdate
 from .brk import brk
 from .context import context
@@ -50,6 +51,7 @@ from .pnh import pnh
 from .pscan import pscan
 from .replacer import replacer
 from .reports import reports
+from .retest import retest
 from .reveal import reveal
 from .revisit import revisit
 from .ruleConfig import ruleConfig
@@ -97,6 +99,7 @@ class ZAPv2(object):
         self.ascan = ascan(self)
         self.authentication = authentication(self)
         self.authorization = authorization(self)
+        self.automation = automation(self)
         self.autoupdate = autoupdate(self)
         self.brk = brk(self)
         self.context = context(self)
@@ -114,6 +117,7 @@ class ZAPv2(object):
         self.pscan = pscan(self)
         self.replacer = replacer(self)
         self.reports = reports(self)
+        self.retest = retest(self)
         self.reveal = reveal(self)
         self.revisit = revisit(self)
         self.ruleConfig = ruleConfig(self)

@@ -200,6 +200,13 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionScanHeadersAllRequests/')))
 
     @property
+    def option_scan_null_json_values(self):
+        """
+        Tells whether or not the active scanner should scan null JSON values.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionScanNullJsonValues/')))
+
+    @property
     def option_show_advanced_dialog(self):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionShowAdvancedDialog/')))
 
@@ -467,6 +474,12 @@ class ascan(object):
         Sets whether or not the HTTP Headers of all requests should be scanned. Not just requests that send parameters, through the query or request body.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionScanHeadersAllRequests/', {'Boolean': boolean, 'apikey': apikey})))
+
+    def set_option_scan_null_json_values(self, boolean, apikey=''):
+        """
+        Sets whether or not the active scanner should scan null JSON values.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionScanNullJsonValues/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_show_advanced_dialog(self, boolean, apikey=''):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionShowAdvancedDialog/', {'Boolean': boolean, 'apikey': apikey})))
