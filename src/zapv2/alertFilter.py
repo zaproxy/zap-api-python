@@ -145,3 +145,45 @@ class alertFilter(object):
         if evidenceisregex is not None:
             params['evidenceIsRegex'] = evidenceisregex
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/removeGlobalAlertFilter/', params)))
+
+    def apply_all(self, apikey=''):
+        """
+        Applies all currently enabled Global and Context alert filters.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/applyAll/', {'apikey': apikey})))
+
+    def apply_context(self, apikey=''):
+        """
+        Applies all currently enabled Context alert filters.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/applyContext/', {'apikey': apikey})))
+
+    def apply_global(self, apikey=''):
+        """
+        Applies all currently enabled Global alert filters.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/applyGlobal/', {'apikey': apikey})))
+
+    def test_all(self, apikey=''):
+        """
+        Tests all currently enabled Global and Context alert filters.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/testAll/', {'apikey': apikey})))
+
+    def test_context(self, apikey=''):
+        """
+        Tests all currently enabled Context alert filters.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/testContext/', {'apikey': apikey})))
+
+    def test_global(self, apikey=''):
+        """
+        Tests all currently enabled Global alert filters.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/testGlobal/', {'apikey': apikey})))

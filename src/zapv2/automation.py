@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2016 the ZAP development team
+# Copyright 2021 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,31 +22,19 @@ This file was automatically generated.
 import six
 
 
-class openapi(object):
+class automation(object):
 
     def __init__(self, zap):
         self.zap = zap
 
-    def import_file(self, file, target=None, contextid=None, apikey=''):
+    def plan_progress(self, planid):
         """
-        Imports an OpenAPI definition from a local file.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'file': file, 'apikey': apikey}
-        if target is not None:
-            params['target'] = target
-        if contextid is not None:
-            params['contextId'] = contextid
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'openapi/action/importFile/', params)))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/view/planProgress/', {'planId': planid})))
 
-    def import_url(self, url, hostoverride=None, contextid=None, apikey=''):
+    def run_plan(self, filepath, apikey=''):
         """
-        Imports an OpenAPI definition from a URL.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'url': url, 'apikey': apikey}
-        if hostoverride is not None:
-            params['hostOverride'] = hostoverride
-        if contextid is not None:
-            params['contextId'] = contextid
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'openapi/action/importUrl/', params)))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/action/runPlan/', {'filePath': filepath, 'apikey': apikey})))

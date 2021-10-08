@@ -115,10 +115,6 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/excludedFromProxy/')))
 
     @property
-    def home_directory(self):
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/homeDirectory/')))
-
-    @property
     def session_location(self):
         """
         Gets the location of the current session file
@@ -131,27 +127,6 @@ class core(object):
         Gets all the domains that are excluded from the outgoing proxy. For each domain the following are shown: the index, the value (domain), if enabled, and if specified as a regex.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/proxyChainExcludedDomains/')))
-
-    @property
-    def option_proxy_chain_skip_name(self):
-        """
-        Use view proxyChainExcludedDomains instead.
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainSkipName/')))
-
-    @property
-    def option_proxy_excluded_domains(self):
-        """
-        Use view proxyChainExcludedDomains instead.
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyExcludedDomains/')))
-
-    @property
-    def option_proxy_excluded_domains_enabled(self):
-        """
-        Use view proxyChainExcludedDomains instead.
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyExcludedDomainsEnabled/')))
 
     @property
     def zap_home_path(self):
@@ -180,6 +155,31 @@ class core(object):
         Gets the path to the file with alert overrides.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionAlertOverridesFilePath/')))
+
+    @property
+    def home_directory(self):
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/homeDirectory/')))
+
+    @property
+    def option_proxy_chain_skip_name(self):
+        """
+        Use view proxyChainExcludedDomains instead.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainSkipName/')))
+
+    @property
+    def option_proxy_excluded_domains(self):
+        """
+        Use view proxyChainExcludedDomains instead.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyExcludedDomains/')))
+
+    @property
+    def option_proxy_excluded_domains_enabled(self):
+        """
+        Use view proxyChainExcludedDomains instead.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyExcludedDomainsEnabled/')))
 
     def alert(self, id):
         """
@@ -263,7 +263,7 @@ class core(object):
     @property
     def option_timeout_in_secs(self):
         """
-        Gets the connection time out, in seconds.
+        Gets the connection time out (in seconds).
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionTimeoutInSecs/')))
 
@@ -530,7 +530,7 @@ class core(object):
 
     def set_option_timeout_in_secs(self, integer, apikey=''):
         """
-        Sets the connection time out, in seconds.
+        Sets the connection time out (in seconds).
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionTimeoutInSecs/', {'Integer': integer, 'apikey': apikey})))
 
