@@ -45,6 +45,7 @@ from .httpSessions import httpSessions
 from .importLogFiles import importLogFiles
 from .importurls import importurls
 from .localProxies import localProxies
+from .network import network
 from .openapi import openapi
 from .params import params
 from .pnh import pnh
@@ -111,6 +112,7 @@ class ZAPv2(object):
         self.importLogFiles = importLogFiles(self)
         self.importurls = importurls(self)
         self.localProxies = localProxies(self)
+        self.network = network(self)
         self.openapi = openapi(self)
         self.params = params(self)
         self.pnh = pnh(self)

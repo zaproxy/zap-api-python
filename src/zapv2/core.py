@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2017 the ZAP development team
+# Copyright 2022 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -158,6 +158,9 @@ class core(object):
 
     @property
     def home_directory(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/homeDirectory/')))
 
     @property
@@ -238,26 +241,44 @@ class core(object):
 
     @property
     def option_http_state(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionHttpState/')))
 
     @property
     def option_proxy_chain_name(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainName/')))
 
     @property
     def option_proxy_chain_password(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainPassword/')))
 
     @property
     def option_proxy_chain_port(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainPort/')))
 
     @property
     def option_proxy_chain_realm(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainRealm/')))
 
     @property
     def option_proxy_chain_user_name(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainUserName/')))
 
     @property
@@ -269,22 +290,37 @@ class core(object):
 
     @property
     def option_http_state_enabled(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionHttpStateEnabled/')))
 
     @property
     def option_proxy_chain_prompt(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainPrompt/')))
 
     @property
     def option_single_cookie_request_header(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionSingleCookieRequestHeader/')))
 
     @property
     def option_use_proxy_chain(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionUseProxyChain/')))
 
     @property
     def option_use_proxy_chain_auth(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionUseProxyChainAuth/')))
 
     @property
@@ -359,6 +395,9 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/excludeFromProxy/', {'regex': regex, 'apikey': apikey})))
 
     def set_home_directory(self, dir, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setHomeDirectory/', {'dir': dir, 'apikey': apikey})))
 
     def set_mode(self, mode, apikey=''):
@@ -383,6 +422,9 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/sendRequest/', params)))
 
     def run_garbage_collection(self, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/runGarbageCollection/', {'apikey': apikey})))
 
     def delete_site_node(self, url, method=None, postdata=None, apikey=''):
@@ -493,12 +535,21 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionDefaultUserAgent/', {'String': string, 'apikey': apikey})))
 
     def set_option_proxy_chain_name(self, string, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainName/', {'String': string, 'apikey': apikey})))
 
     def set_option_proxy_chain_password(self, string, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPassword/', {'String': string, 'apikey': apikey})))
 
     def set_option_proxy_chain_realm(self, string, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainRealm/', {'String': string, 'apikey': apikey})))
 
     def set_option_proxy_chain_skip_name(self, string, apikey=''):
@@ -508,6 +559,9 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainSkipName/', {'String': string, 'apikey': apikey})))
 
     def set_option_proxy_chain_user_name(self, string, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainUserName/', {'String': string, 'apikey': apikey})))
 
     def set_option_dns_ttl_successful_queries(self, integer, apikey=''):
@@ -517,15 +571,27 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_http_state_enabled(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionHttpStateEnabled/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_proxy_chain_port(self, integer, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPort/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_proxy_chain_prompt(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPrompt/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_single_cookie_request_header(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionSingleCookieRequestHeader/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_timeout_in_secs(self, integer, apikey=''):
@@ -541,6 +607,9 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseProxyChain/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_use_proxy_chain_auth(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseProxyChainAuth/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_use_socks_proxy(self, boolean, apikey=''):
@@ -550,6 +619,9 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseSocksProxy/', {'Boolean': boolean, 'apikey': apikey})))
 
     def proxy_pac(self, apikey=''):
+        """
+        
+        """
         return (self.zap._request_other(self.zap.base_other + 'core/other/proxy.pac/', {'apikey': apikey}))
 
     def rootcert(self, apikey=''):
@@ -559,6 +631,9 @@ class core(object):
         return (self.zap._request_other(self.zap.base_other + 'core/other/rootcert/', {'apikey': apikey}))
 
     def setproxy(self, proxy, apikey=''):
+        """
+        
+        """
         return (self.zap._request_other(self.zap.base_other + 'core/other/setproxy/', {'proxy': proxy, 'apikey': apikey}))
 
     def xmlreport(self, apikey=''):

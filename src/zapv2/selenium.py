@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2017 the ZAP development team
+# Copyright 2022 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,6 +26,13 @@ class selenium(object):
 
     def __init__(self, zap):
         self.zap = zap
+
+    @property
+    def option_browser_extensions(self):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionBrowserExtensions/')))
 
     @property
     def option_chrome_driver_path(self):
@@ -57,6 +64,13 @@ class selenium(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionIeDriverPath/')))
+
+    @property
+    def option_last_directory(self):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionLastDirectory/')))
 
     @property
     def option_phantom_js_binary_path(self):
@@ -92,6 +106,12 @@ class selenium(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionIeDriverPath/', {'String': string, 'apikey': apikey})))
+
+    def set_option_last_directory(self, string, apikey=''):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionLastDirectory/', {'String': string, 'apikey': apikey})))
 
     def set_option_phantom_js_binary_path(self, string, apikey=''):
         """
