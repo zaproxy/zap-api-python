@@ -1,11 +1,13 @@
 ### Release to PyPi
 
-Example commands use the version `0.0.1`, it should be replaced accordingly to the version being released.
+Example commands use the version `0.0.X`, it should be replaced accordingly to the version being released.
+
+Ensure the description is right in `setup.py`.
 
 Tag (and push) the new version:
 
-    git tag -s 0.0.1 -m "Version 0.0.1."
-    git push upstream 0.0.1
+    git tag -s 0.0.X -m "Version 0.0.X."
+    git push upstream 0.0.X
 
 (Checkout the tag and ensure the working copy is clean.)
 
@@ -15,13 +17,15 @@ Build the distribution (source and wheel) files:
 
 Sign the distribution files:
 
-    gpg --detach-sign -a dist/python-owasp-zap-v2.4-0.0.1.tar.gz
-    gpg --detach-sign -a dist/python_owasp_zap_v2.4-0.0.1-py2.py3-none-any.whl
+    gpg --detach-sign -a dist/python-owasp-zap-v2.4-0.0.X.tar.gz
+    gpg --detach-sign -a dist/python_owasp_zap_v2.4-0.0.X-py2.py3-none-any.whl
 
 Upload to PyPi:
 
+     pip install twine
+     
      twine upload \
-         dist/python-owasp-zap-v2.4-0.0.1.tar.gz python-owasp-zap-v2.4-0.0.1.tar.gz.asc \
-         dist/python_owasp_zap_v2.4-0.0.1-py2.py3-none-any.whl python_owasp_zap_v2.4-0.0.1-py2.py3-none-any.whl.asc
+         dist/python-owasp-zap-v2.4-0.0.X.tar.gz dist/python-owasp-zap-v2.4-0.0.X.tar.gz.asc \
+         dist/python_owasp_zap_v2.4-0.0.X-py2.py3-none-any.whl dist/python_owasp_zap_v2.4-0.0.X-py2.py3-none-any.whl.asc
 
 The user must have permissions to upload to the `python-owasp-zap-v2.4` package.
