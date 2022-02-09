@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2017 the ZAP development team
+# Copyright 2022 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -78,54 +78,93 @@ class autoupdate(object):
 
     @property
     def option_addon_directories(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionAddonDirectories/')))
 
     @property
     def option_day_last_checked(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionDayLastChecked/')))
 
     @property
     def option_day_last_install_warned(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionDayLastInstallWarned/')))
 
     @property
     def option_day_last_update_warned(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionDayLastUpdateWarned/')))
 
     @property
     def option_download_directory(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionDownloadDirectory/')))
 
     @property
     def option_check_addon_updates(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionCheckAddonUpdates/')))
 
     @property
     def option_check_on_start(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionCheckOnStart/')))
 
     @property
     def option_download_new_release(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionDownloadNewRelease/')))
 
     @property
     def option_install_addon_updates(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionInstallAddonUpdates/')))
 
     @property
     def option_install_scanner_rules(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionInstallScannerRules/')))
 
     @property
     def option_report_alpha_addons(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionReportAlphaAddons/')))
 
     @property
     def option_report_beta_addons(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionReportBetaAddons/')))
 
     @property
     def option_report_release_addons(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/view/optionReportReleaseAddons/')))
 
     def download_latest_release(self, apikey=''):
@@ -141,6 +180,9 @@ class autoupdate(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/installAddon/', {'id': id, 'apikey': apikey})))
 
     def install_local_addon(self, file, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/installLocalAddon/', {'file': file, 'apikey': apikey})))
 
     def uninstall_addon(self, id, apikey=''):
@@ -150,25 +192,49 @@ class autoupdate(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/uninstallAddon/', {'id': id, 'apikey': apikey})))
 
     def set_option_check_addon_updates(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionCheckAddonUpdates/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_check_on_start(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionCheckOnStart/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_download_new_release(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionDownloadNewRelease/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_install_addon_updates(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionInstallAddonUpdates/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_install_scanner_rules(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionInstallScannerRules/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_report_alpha_addons(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionReportAlphaAddons/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_report_beta_addons(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionReportBetaAddons/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_report_release_addons(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionReportReleaseAddons/', {'Boolean': boolean, 'apikey': apikey})))

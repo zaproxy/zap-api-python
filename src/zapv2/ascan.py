@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2017 the ZAP development team
+# Copyright 2022 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,12 +28,18 @@ class ascan(object):
         self.zap = zap
 
     def status(self, scanid=None):
+        """
+        
+        """
         params = {}
         if scanid is not None:
             params['scanId'] = scanid
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/status/', params)))
 
     def scan_progress(self, scanid=None):
+        """
+        
+        """
         params = {}
         if scanid is not None:
             params['scanId'] = scanid
@@ -53,10 +59,16 @@ class ascan(object):
 
     @property
     def scans(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/scans/')))
 
     @property
     def scan_policy_names(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/scanPolicyNames/')))
 
     @property
@@ -78,6 +90,9 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/scanners/', params)))
 
     def policies(self, scanpolicyname=None, policyid=None):
+        """
+        
+        """
         params = {}
         if scanpolicyname is not None:
             params['scanPolicyName'] = scanpolicyname
@@ -87,6 +102,9 @@ class ascan(object):
 
     @property
     def attack_mode_queue(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/attackModeQueue/')))
 
     @property
@@ -112,54 +130,93 @@ class ascan(object):
 
     @property
     def option_attack_policy(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionAttackPolicy/')))
 
     @property
     def option_default_policy(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionDefaultPolicy/')))
 
     @property
     def option_delay_in_ms(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionDelayInMs/')))
 
     @property
     def option_handle_anti_csrf_tokens(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionHandleAntiCSRFTokens/')))
 
     @property
     def option_host_per_scan(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionHostPerScan/')))
 
     @property
     def option_max_chart_time_in_mins(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionMaxChartTimeInMins/')))
 
     @property
     def option_max_results_to_list(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionMaxResultsToList/')))
 
     @property
     def option_max_rule_duration_in_mins(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionMaxRuleDurationInMins/')))
 
     @property
     def option_max_scan_duration_in_mins(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionMaxScanDurationInMins/')))
 
     @property
     def option_max_scans_in_ui(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionMaxScansInUI/')))
 
     @property
     def option_target_params_enabled_rpc(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionTargetParamsEnabledRPC/')))
 
     @property
     def option_target_params_injectable(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionTargetParamsInjectable/')))
 
     @property
     def option_thread_per_host(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionThreadPerHost/')))
 
     @property
@@ -171,6 +228,9 @@ class ascan(object):
 
     @property
     def option_allow_attack_on_start(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionAllowAttackOnStart/')))
 
     @property
@@ -182,14 +242,23 @@ class ascan(object):
 
     @property
     def option_prompt_in_attack_mode(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionPromptInAttackMode/')))
 
     @property
     def option_prompt_to_clear_finished_scans(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionPromptToClearFinishedScans/')))
 
     @property
     def option_rescan_in_attack_mode(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionRescanInAttackMode/')))
 
     @property
@@ -208,6 +277,9 @@ class ascan(object):
 
     @property
     def option_show_advanced_dialog(self):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionShowAdvancedDialog/')))
 
     def scan(self, url=None, recurse=None, inscopeonly=None, scanpolicyname=None, method=None, postdata=None, contextid=None, apikey=''):
@@ -253,27 +325,51 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/scanAsUser/', params)))
 
     def pause(self, scanid, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/pause/', {'scanId': scanid, 'apikey': apikey})))
 
     def resume(self, scanid, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/resume/', {'scanId': scanid, 'apikey': apikey})))
 
     def stop(self, scanid, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/stop/', {'scanId': scanid, 'apikey': apikey})))
 
     def remove_scan(self, scanid, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/removeScan/', {'scanId': scanid, 'apikey': apikey})))
 
     def pause_all_scans(self, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/pauseAllScans/', {'apikey': apikey})))
 
     def resume_all_scans(self, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/resumeAllScans/', {'apikey': apikey})))
 
     def stop_all_scans(self, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/stopAllScans/', {'apikey': apikey})))
 
     def remove_all_scans(self, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/removeAllScans/', {'apikey': apikey})))
 
     def clear_excluded_from_scan(self, apikey=''):
@@ -325,36 +421,54 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/disableScanners/', params)))
 
     def set_enabled_policies(self, ids, scanpolicyname=None, apikey=''):
+        """
+        
+        """
         params = {'ids': ids, 'apikey': apikey}
         if scanpolicyname is not None:
             params['scanPolicyName'] = scanpolicyname
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setEnabledPolicies/', params)))
 
     def set_policy_attack_strength(self, id, attackstrength, scanpolicyname=None, apikey=''):
+        """
+        
+        """
         params = {'id': id, 'attackStrength': attackstrength, 'apikey': apikey}
         if scanpolicyname is not None:
             params['scanPolicyName'] = scanpolicyname
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setPolicyAttackStrength/', params)))
 
     def set_policy_alert_threshold(self, id, alertthreshold, scanpolicyname=None, apikey=''):
+        """
+        
+        """
         params = {'id': id, 'alertThreshold': alertthreshold, 'apikey': apikey}
         if scanpolicyname is not None:
             params['scanPolicyName'] = scanpolicyname
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setPolicyAlertThreshold/', params)))
 
     def set_scanner_attack_strength(self, id, attackstrength, scanpolicyname=None, apikey=''):
+        """
+        
+        """
         params = {'id': id, 'attackStrength': attackstrength, 'apikey': apikey}
         if scanpolicyname is not None:
             params['scanPolicyName'] = scanpolicyname
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setScannerAttackStrength/', params)))
 
     def set_scanner_alert_threshold(self, id, alertthreshold, scanpolicyname=None, apikey=''):
+        """
+        
+        """
         params = {'id': id, 'alertThreshold': alertthreshold, 'apikey': apikey}
         if scanpolicyname is not None:
             params['scanPolicyName'] = scanpolicyname
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setScannerAlertThreshold/', params)))
 
     def add_scan_policy(self, scanpolicyname, alertthreshold=None, attackstrength=None, apikey=''):
+        """
+        
+        """
         params = {'scanPolicyName': scanpolicyname, 'apikey': apikey}
         if alertthreshold is not None:
             params['alertThreshold'] = alertthreshold
@@ -363,9 +477,15 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/addScanPolicy/', params)))
 
     def remove_scan_policy(self, scanpolicyname, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/removeScanPolicy/', {'scanPolicyName': scanpolicyname, 'apikey': apikey})))
 
     def update_scan_policy(self, scanpolicyname, alertthreshold=None, attackstrength=None, apikey=''):
+        """
+        
+        """
         params = {'scanPolicyName': scanpolicyname, 'apikey': apikey}
         if alertthreshold is not None:
             params['alertThreshold'] = alertthreshold
@@ -416,9 +536,15 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/skipScanner/', {'scanId': scanid, 'scannerId': scannerid, 'apikey': apikey})))
 
     def set_option_attack_policy(self, string, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionAttackPolicy/', {'String': string, 'apikey': apikey})))
 
     def set_option_default_policy(self, string, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionDefaultPolicy/', {'String': string, 'apikey': apikey})))
 
     def set_option_add_query_param(self, boolean, apikey=''):
@@ -428,15 +554,27 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionAddQueryParam/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_allow_attack_on_start(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionAllowAttackOnStart/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_delay_in_ms(self, integer, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionDelayInMs/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_handle_anti_csrf_tokens(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionHandleAntiCSRFTokens/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_host_per_scan(self, integer, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionHostPerScan/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_inject_plugin_id_in_header(self, boolean, apikey=''):
@@ -446,27 +584,51 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionInjectPluginIdInHeader/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_max_chart_time_in_mins(self, integer, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionMaxChartTimeInMins/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_results_to_list(self, integer, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionMaxResultsToList/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_rule_duration_in_mins(self, integer, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionMaxRuleDurationInMins/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_scan_duration_in_mins(self, integer, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionMaxScanDurationInMins/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_scans_in_ui(self, integer, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionMaxScansInUI/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_prompt_in_attack_mode(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionPromptInAttackMode/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_prompt_to_clear_finished_scans(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionPromptToClearFinishedScans/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_rescan_in_attack_mode(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionRescanInAttackMode/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_scan_headers_all_requests(self, boolean, apikey=''):
@@ -482,13 +644,25 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionScanNullJsonValues/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_show_advanced_dialog(self, boolean, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionShowAdvancedDialog/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_target_params_enabled_rpc(self, integer, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionTargetParamsEnabledRPC/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_target_params_injectable(self, integer, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionTargetParamsInjectable/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_thread_per_host(self, integer, apikey=''):
+        """
+        
+        """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionThreadPerHost/', {'Integer': integer, 'apikey': apikey})))

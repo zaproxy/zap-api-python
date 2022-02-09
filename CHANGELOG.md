@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
-
+### Changed
+- Update core APIs for 2.11.1
+- Update all add-on APIs
 
 ## [0.0.19] - 2021-10-08
 ### Added

@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2021 the ZAP development team
+# Copyright 2022 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -38,3 +38,9 @@ class automation(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/action/runPlan/', {'filePath': filepath, 'apikey': apikey})))
+
+    def end_delay_job(self, apikey=''):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/action/endDelayJob/', {'apikey': apikey})))
