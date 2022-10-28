@@ -20,7 +20,7 @@ Client implementation for using the ZAP pentesting proxy remotely.
 """
 
 __docformat__ = 'restructuredtext'
-__version__ = '0.0.20'
+__version__ = '0.0.21'
 
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
@@ -38,6 +38,7 @@ from .autoupdate import autoupdate
 from .brk import brk
 from .context import context
 from .core import core
+from .exim import exim
 from .exportreport import exportreport
 from .forcedUser import forcedUser
 from .graphql import graphql
@@ -105,6 +106,7 @@ class ZAPv2(object):
         self.brk = brk(self)
         self.context = context(self)
         self.core = core(self)
+        self.exim = exim(self)
         self.exportreport = exportreport(self)
         self.forcedUser = forcedUser(self)
         self.graphql = graphql(self)

@@ -67,6 +67,86 @@ class network(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/getPassThroughs/')))
 
+    @property
+    def get_connection_timeout(self):
+        """
+        Gets the connection timeout, in seconds.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/getConnectionTimeout/')))
+
+    @property
+    def get_default_user_agent(self):
+        """
+        Gets the default user-agent.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/getDefaultUserAgent/')))
+
+    @property
+    def get_dns_ttl_successful_queries(self):
+        """
+        Gets the TTL (in seconds) of successful DNS queries.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/getDnsTtlSuccessfulQueries/')))
+
+    @property
+    def get_http_proxy(self):
+        """
+        Gets the HTTP proxy.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/getHttpProxy/')))
+
+    @property
+    def get_http_proxy_exclusions(self):
+        """
+        Gets the HTTP proxy exclusions.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/getHttpProxyExclusions/')))
+
+    @property
+    def get_socks_proxy(self):
+        """
+        Gets the SOCKS proxy.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/getSocksProxy/')))
+
+    @property
+    def is_http_proxy_auth_enabled(self):
+        """
+        Tells whether or not the HTTP proxy authentication is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/isHttpProxyAuthEnabled/')))
+
+    @property
+    def is_http_proxy_enabled(self):
+        """
+        Tells whether or not the HTTP proxy is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/isHttpProxyEnabled/')))
+
+    @property
+    def is_socks_proxy_enabled(self):
+        """
+        Tells whether or not the SOCKS proxy is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/isSocksProxyEnabled/')))
+
+    @property
+    def is_use_global_http_state(self):
+        """
+        Tells whether or not to use global HTTP state.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/isUseGlobalHttpState/')))
+
     def generate_root_ca_cert(self, apikey=''):
         """
         Generates a new Root CA certificate, used to issue server certificates.
@@ -167,6 +247,140 @@ class network(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setPassThroughEnabled/', {'authority': authority, 'enabled': enabled, 'apikey': apikey})))
+
+    def set_connection_timeout(self, timeout, apikey=''):
+        """
+        Sets the timeout, for reads and connects.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setConnectionTimeout/', {'timeout': timeout, 'apikey': apikey})))
+
+    def set_default_user_agent(self, useragent, apikey=''):
+        """
+        Sets the default user-agent.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setDefaultUserAgent/', {'userAgent': useragent, 'apikey': apikey})))
+
+    def set_dns_ttl_successful_queries(self, ttl, apikey=''):
+        """
+        Sets the TTL of successful DNS queries.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setDnsTtlSuccessfulQueries/', {'ttl': ttl, 'apikey': apikey})))
+
+    def add_http_proxy_exclusion(self, host, enabled=None, apikey=''):
+        """
+        Adds a host to be excluded from the HTTP proxy.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        params = {'host': host, 'apikey': apikey}
+        if enabled is not None:
+            params['enabled'] = enabled
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/addHttpProxyExclusion/', params)))
+
+    def remove_http_proxy_exclusion(self, host, apikey=''):
+        """
+        Removes a HTTP proxy exclusion.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/removeHttpProxyExclusion/', {'host': host, 'apikey': apikey})))
+
+    def set_http_proxy(self, host, port, realm=None, username=None, password=None, apikey=''):
+        """
+        Sets the HTTP proxy configuration.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        params = {'host': host, 'port': port, 'apikey': apikey}
+        if realm is not None:
+            params['realm'] = realm
+        if username is not None:
+            params['username'] = username
+        if password is not None:
+            params['password'] = password
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setHttpProxy/', params)))
+
+    def set_http_proxy_auth_enabled(self, enabled, apikey=''):
+        """
+        Sets whether or not the HTTP proxy authentication is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setHttpProxyAuthEnabled/', {'enabled': enabled, 'apikey': apikey})))
+
+    def set_http_proxy_enabled(self, enabled, apikey=''):
+        """
+        Sets whether or not the HTTP proxy is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setHttpProxyEnabled/', {'enabled': enabled, 'apikey': apikey})))
+
+    def set_http_proxy_exclusion_enabled(self, host, enabled, apikey=''):
+        """
+        Sets whether or not a HTTP proxy exclusion is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setHttpProxyExclusionEnabled/', {'host': host, 'enabled': enabled, 'apikey': apikey})))
+
+    def set_socks_proxy(self, host, port, version=None, usedns=None, username=None, password=None, apikey=''):
+        """
+        Sets the SOCKS proxy configuration.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        params = {'host': host, 'port': port, 'apikey': apikey}
+        if version is not None:
+            params['version'] = version
+        if usedns is not None:
+            params['useDns'] = usedns
+        if username is not None:
+            params['username'] = username
+        if password is not None:
+            params['password'] = password
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setSocksProxy/', params)))
+
+    def set_socks_proxy_enabled(self, enabled, apikey=''):
+        """
+        Sets whether or not the SOCKS proxy is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setSocksProxyEnabled/', {'enabled': enabled, 'apikey': apikey})))
+
+    def set_use_global_http_state(self, use, apikey=''):
+        """
+        Sets whether or not to use the global HTTP state.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setUseGlobalHttpState/', {'use': use, 'apikey': apikey})))
+
+    def add_pkcs_12_client_certificate(self, filepath, password, index=None, apikey=''):
+        """
+        Adds a client certificate contained in a PKCS#12 file, the certificate is automatically set as active and used.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        params = {'filePath': filepath, 'password': password, 'apikey': apikey}
+        if index is not None:
+            params['index'] = index
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/addPkcs12ClientCertificate/', params)))
+
+    def set_use_client_certificate(self, use, apikey=''):
+        """
+        Sets whether or not to use the active client certificate.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setUseClientCertificate/', {'use': use, 'apikey': apikey})))
+
+    def proxy_pac(self, apikey=''):
+        """
+        Provides a PAC file, proxying through the main proxy.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return (self.zap._request_other(self.zap.base_other + 'network/other/proxy.pac/', {'apikey': apikey}))
+
+    def set_proxy(self, proxy, apikey=''):
+        """
+        Sets the HTTP proxy configuration.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return (self.zap._request_other(self.zap.base_other + 'network/other/setProxy/', {'proxy': proxy, 'apikey': apikey}))
 
     def root_ca_cert(self, apikey=''):
         """

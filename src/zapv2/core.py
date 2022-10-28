@@ -247,6 +247,13 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionHttpState/')))
 
     @property
+    def option_http_state_enabled(self):
+        """
+        
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionHttpStateEnabled/')))
+
+    @property
     def option_proxy_chain_name(self):
         """
         
@@ -268,6 +275,13 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainPort/')))
 
     @property
+    def option_proxy_chain_prompt(self):
+        """
+        
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainPrompt/')))
+
+    @property
     def option_proxy_chain_realm(self):
         """
         
@@ -282,32 +296,18 @@ class core(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainUserName/')))
 
     @property
-    def option_timeout_in_secs(self):
-        """
-        Gets the connection time out (in seconds).
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionTimeoutInSecs/')))
-
-    @property
-    def option_http_state_enabled(self):
-        """
-        
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionHttpStateEnabled/')))
-
-    @property
-    def option_proxy_chain_prompt(self):
-        """
-        
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionProxyChainPrompt/')))
-
-    @property
     def option_single_cookie_request_header(self):
         """
         
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionSingleCookieRequestHeader/')))
+
+    @property
+    def option_timeout_in_secs(self):
+        """
+        Gets the connection time out (in seconds).
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/optionTimeoutInSecs/')))
 
     @property
     def option_use_proxy_chain(self):
@@ -534,6 +534,18 @@ class core(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionDefaultUserAgent/', {'String': string, 'apikey': apikey})))
 
+    def set_option_dns_ttl_successful_queries(self, integer, apikey=''):
+        """
+        Sets the TTL (in seconds) of successful DNS queries (applies after ZAP restart).
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer': integer, 'apikey': apikey})))
+
+    def set_option_http_state_enabled(self, boolean, apikey=''):
+        """
+        
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionHttpStateEnabled/', {'Boolean': boolean, 'apikey': apikey})))
+
     def set_option_proxy_chain_name(self, string, apikey=''):
         """
         
@@ -545,6 +557,18 @@ class core(object):
         
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPassword/', {'String': string, 'apikey': apikey})))
+
+    def set_option_proxy_chain_port(self, integer, apikey=''):
+        """
+        
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPort/', {'Integer': integer, 'apikey': apikey})))
+
+    def set_option_proxy_chain_prompt(self, boolean, apikey=''):
+        """
+        
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPrompt/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_proxy_chain_realm(self, string, apikey=''):
         """
@@ -563,30 +587,6 @@ class core(object):
         
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainUserName/', {'String': string, 'apikey': apikey})))
-
-    def set_option_dns_ttl_successful_queries(self, integer, apikey=''):
-        """
-        Sets the TTL (in seconds) of successful DNS queries (applies after ZAP restart).
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer': integer, 'apikey': apikey})))
-
-    def set_option_http_state_enabled(self, boolean, apikey=''):
-        """
-        
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionHttpStateEnabled/', {'Boolean': boolean, 'apikey': apikey})))
-
-    def set_option_proxy_chain_port(self, integer, apikey=''):
-        """
-        
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPort/', {'Integer': integer, 'apikey': apikey})))
-
-    def set_option_proxy_chain_prompt(self, boolean, apikey=''):
-        """
-        
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPrompt/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_single_cookie_request_header(self, boolean, apikey=''):
         """

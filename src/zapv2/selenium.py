@@ -35,6 +35,14 @@ class selenium(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionBrowserExtensions/')))
 
     @property
+    def option_chrome_binary_path(self):
+        """
+        Returns the current path to Chrome binary
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionChromeBinaryPath/')))
+
+    @property
     def option_chrome_driver_path(self):
         """
         Returns the current path to ChromeDriver
@@ -79,6 +87,13 @@ class selenium(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionPhantomJsBinaryPath/')))
+
+    def set_option_chrome_binary_path(self, string, apikey=''):
+        """
+        Sets the current path to Chrome binary
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionChromeBinaryPath/', {'String': string, 'apikey': apikey})))
 
     def set_option_chrome_driver_path(self, string, apikey=''):
         """
