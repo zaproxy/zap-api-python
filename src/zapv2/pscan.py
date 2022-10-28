@@ -44,7 +44,7 @@ class pscan(object):
     @property
     def scanners(self):
         """
-        Lists all passive scanners with its ID, name, enabled state and alert threshold.
+        Lists all passive scan rules with their ID, name, enabled state, and alert threshold.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/scanners/')))
 
@@ -54,6 +54,13 @@ class pscan(object):
         Show information about the passive scan rule currently being run (if any).
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/currentRule/')))
+
+    @property
+    def current_tasks(self):
+        """
+        Show information about the passive scan tasks currently being run (if any).
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/currentTasks/')))
 
     @property
     def max_alerts_per_rule(self):
@@ -76,25 +83,25 @@ class pscan(object):
 
     def enable_all_scanners(self, apikey=''):
         """
-        Enables all passive scanners
+        Enables all passive scan rules
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableAllScanners/', {'apikey': apikey})))
 
     def disable_all_scanners(self, apikey=''):
         """
-        Disables all passive scanners
+        Disables all passive scan rules
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableAllScanners/', {'apikey': apikey})))
 
     def enable_scanners(self, ids, apikey=''):
         """
-        Enables all passive scanners with the given IDs (comma separated list of IDs)
+        Enables all passive scan rules with the given IDs (comma separated list of IDs)
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableScanners/', {'ids': ids, 'apikey': apikey})))
 
     def disable_scanners(self, ids, apikey=''):
         """
-        Disables all passive scanners with the given IDs (comma separated list of IDs)
+        Disables all passive scan rules with the given IDs (comma separated list of IDs)
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableScanners/', {'ids': ids, 'apikey': apikey})))
 
@@ -121,3 +128,9 @@ class pscan(object):
         Enables all passive scan tags.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableAllTags/', {'apikey': apikey})))
+
+    def clear_queue(self, apikey=''):
+        """
+        Clears the passive scan queue.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/clearQueue/', {'apikey': apikey})))

@@ -80,7 +80,7 @@ class ascan(object):
 
     def scanners(self, scanpolicyname=None, policyid=None):
         """
-        Gets the scanners, optionally, of the given scan policy and/or scanner policy/category ID.
+        Gets the scan rules, optionally, of the given scan policy or scanner policy/category ID.
         """
         params = {}
         if scanpolicyname is not None:
@@ -284,7 +284,7 @@ class ascan(object):
 
     def scan(self, url=None, recurse=None, inscopeonly=None, scanpolicyname=None, method=None, postdata=None, contextid=None, apikey=''):
         """
-        Runs the active scanner against the given URL and/or Context. Optionally, the 'recurse' parameter can be used to scan URLs under the given URL, the parameter 'inScopeOnly' can be used to constrain the scan to URLs that are in scope (ignored if a Context is specified), the parameter 'scanPolicyName' allows to specify the scan policy (if none is given it uses the default scan policy), the parameters 'method' and 'postData' allow to select a given request in conjunction with the given URL.
+        Runs the active scanner against the given URL or Context. Optionally, the 'recurse' parameter can be used to scan URLs under the given URL, the parameter 'inScopeOnly' can be used to constrain the scan to URLs that are in scope (ignored if a Context is specified), the parameter 'scanPolicyName' allows to specify the scan policy (if none is given it uses the default scan policy), the parameters 'method' and 'postData' allow to select a given request in conjunction with the given URL.
         """
         params = {'apikey': apikey}
         if url is not None:
@@ -386,7 +386,7 @@ class ascan(object):
 
     def enable_all_scanners(self, scanpolicyname=None, apikey=''):
         """
-        Enables all scanners of the scan policy with the given name, or the default if none given.
+        Enables all scan rules of the scan policy with the given name, or the default if none given.
         """
         params = {'apikey': apikey}
         if scanpolicyname is not None:
@@ -395,7 +395,7 @@ class ascan(object):
 
     def disable_all_scanners(self, scanpolicyname=None, apikey=''):
         """
-        Disables all scanners of the scan policy with the given name, or the default if none given.
+        Disables all scan rules of the scan policy with the given name, or the default if none given.
         """
         params = {'apikey': apikey}
         if scanpolicyname is not None:
@@ -404,7 +404,7 @@ class ascan(object):
 
     def enable_scanners(self, ids, scanpolicyname=None, apikey=''):
         """
-        Enables the scanners with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
+        Enables the scan rules with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
         """
         params = {'ids': ids, 'apikey': apikey}
         if scanpolicyname is not None:
@@ -413,7 +413,7 @@ class ascan(object):
 
     def disable_scanners(self, ids, scanpolicyname=None, apikey=''):
         """
-        Disables the scanners with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
+        Disables the scan rules with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
         """
         params = {'ids': ids, 'apikey': apikey}
         if scanpolicyname is not None:

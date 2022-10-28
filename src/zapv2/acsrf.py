@@ -59,8 +59,11 @@ class acsrf(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'acsrf/action/setOptionPartialMatchingEnabled/', {'Boolean': boolean, 'apikey': apikey})))
 
-    def gen_form(self, hrefid, apikey=''):
+    def gen_form(self, hrefid, actionurl=None, apikey=''):
         """
         Generate a form for testing lack of anti-CSRF tokens - typically invoked via ZAP
         """
-        return (self.zap._request_other(self.zap.base_other + 'acsrf/other/genForm/', {'hrefId': hrefid, 'apikey': apikey}))
+        params = {'hrefId': hrefid, 'apikey': apikey}
+        if actionurl is not None:
+            params['actionUrl'] = actionurl
+        return (self.zap._request_other(self.zap.base_other + 'acsrf/other/genForm/', params))
