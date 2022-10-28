@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
 ## [0.0.21] - 2022-10-28
 ### Added
 - Add the API of the following add-on:
@@ -125,6 +127,7 @@ ensure it's automatically sent in all API requests.
 ### Changed
 - Moved from the main `zaproxy` repository.
 
+[Unreleased]: https://github.com/zaproxy/zap-api-python/compare/0.0.21...HEAD
 [0.0.21]: https://github.com/zaproxy/zap-api-python/compare/0.0.20...0.0.21
 [0.0.20]: https://github.com/zaproxy/zap-api-python/compare/0.0.19...0.0.20
 [0.0.19]: https://github.com/zaproxy/zap-api-python/compare/0.0.18...0.0.19
