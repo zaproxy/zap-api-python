@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 
 '''
 This script aims to be the most generic and the most explicit possible.
@@ -354,6 +354,7 @@ if useScanPolicy:
         ascan.set_policy_attack_strength(id=policyId,
                                          attackstrength=attackStrength,
                                          scanpolicyname=scanPolicyName)
+    ascanIds = ",".join(str(id) for id in ascanIds)
     if isWhiteListPolicy:
         # Disable all active scanners in order to enable only what you need
         pprint('Disable all scanners -> ' +
