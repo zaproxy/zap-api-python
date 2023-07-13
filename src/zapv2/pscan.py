@@ -107,7 +107,7 @@ class pscan(object):
 
     def set_scanner_alert_threshold(self, id, alertthreshold, apikey=''):
         """
-        Sets the alert threshold of the passive scanner with the given ID, accepted values for alert threshold: OFF, DEFAULT, LOW, MEDIUM and HIGH
+        Sets the alert threshold of the passive scan rule with the given ID, accepted values for alert threshold: OFF, DEFAULT, LOW, MEDIUM and HIGH
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setScannerAlertThreshold/', {'id': id, 'alertThreshold': alertthreshold, 'apikey': apikey})))
 

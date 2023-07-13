@@ -217,6 +217,13 @@ class spider(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionParseComments/')))
 
     @property
+    def option_parse_ds_store(self):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionParseDsStore/')))
+
+    @property
     def option_parse_git(self):
         """
         
@@ -510,6 +517,12 @@ class spider(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionParseComments/', {'Boolean': boolean, 'apikey': apikey})))
+
+    def set_option_parse_ds_store(self, boolean, apikey=''):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionParseDsStore/', {'Boolean': boolean, 'apikey': apikey})))
 
     def set_option_parse_git(self, boolean, apikey=''):
         """

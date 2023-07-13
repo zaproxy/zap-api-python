@@ -83,7 +83,6 @@ class selenium(object):
     @property
     def option_phantom_js_binary_path(self):
         """
-        Returns the current path to PhantomJS binary
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionPhantomJsBinaryPath/')))
@@ -130,7 +129,6 @@ class selenium(object):
 
     def set_option_phantom_js_binary_path(self, string, apikey=''):
         """
-        Sets the current path to PhantomJS binary
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionPhantomJsBinaryPath/', {'String': string, 'apikey': apikey})))

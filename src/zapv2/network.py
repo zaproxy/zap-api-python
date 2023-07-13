@@ -147,6 +147,14 @@ class network(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/isUseGlobalHttpState/')))
 
+    @property
+    def get_rate_limit_rules(self):
+        """
+        List of rate limit rules.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/view/getRateLimitRules/')))
+
     def generate_root_ca_cert(self, apikey=''):
         """
         Generates a new Root CA certificate, used to issue server certificates.
@@ -281,7 +289,7 @@ class network(object):
 
     def remove_http_proxy_exclusion(self, host, apikey=''):
         """
-        Removes a HTTP proxy exclusion.
+        Removes an HTTP proxy exclusion.
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/removeHttpProxyExclusion/', {'host': host, 'apikey': apikey})))
@@ -316,7 +324,7 @@ class network(object):
 
     def set_http_proxy_exclusion_enabled(self, host, enabled, apikey=''):
         """
-        Sets whether or not a HTTP proxy exclusion is enabled.
+        Sets whether or not an HTTP proxy exclusion is enabled.
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setHttpProxyExclusionEnabled/', {'host': host, 'enabled': enabled, 'apikey': apikey})))
@@ -367,6 +375,27 @@ class network(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setUseClientCertificate/', {'use': use, 'apikey': apikey})))
+
+    def add_rate_limit_rule(self, description, enabled, matchregex, matchstring, requestspersecond, groupby, apikey=''):
+        """
+        Adds a rate limit rule
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/addRateLimitRule/', {'description': description, 'enabled': enabled, 'matchRegex': matchregex, 'matchString': matchstring, 'requestsPerSecond': requestspersecond, 'groupBy': groupby, 'apikey': apikey})))
+
+    def remove_rate_limit_rule(self, description, apikey=''):
+        """
+        Remove a rate limit rule
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/removeRateLimitRule/', {'description': description, 'apikey': apikey})))
+
+    def set_rate_limit_rule_enabled(self, description, enabled, apikey=''):
+        """
+        Set enabled state for a rate limit rule.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'network/action/setRateLimitRuleEnabled/', {'description': description, 'enabled': enabled, 'apikey': apikey})))
 
     def proxy_pac(self, apikey=''):
         """
