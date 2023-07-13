@@ -3,7 +3,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [0.0.22] - 2023-07-13
+### Changed
+- Update core APIs for 2.13.
+- Update the APIs of the following add-ons:
+  - AJAX Spider version 23.15.0;
+  - Alert Filters version 17;
+  - GraphQL Support version 0.18.0;
+  - Network version 0.10.0;
+  - Selenium version 15.13.0;
+  - Spider version 0.5.0.
 
 ## [0.0.21] - 2022-10-28
 ### Added
@@ -127,7 +136,7 @@ ensure it's automatically sent in all API requests.
 ### Changed
 - Moved from the main `zaproxy` repository.
 
-[Unreleased]: https://github.com/zaproxy/zap-api-python/compare/0.0.21...HEAD
+[0.0.22]: https://github.com/zaproxy/zap-api-python/compare/0.0.21...0.0.22
 [0.0.21]: https://github.com/zaproxy/zap-api-python/compare/0.0.20...0.0.21
 [0.0.20]: https://github.com/zaproxy/zap-api-python/compare/0.0.19...0.0.20
 [0.0.19]: https://github.com/zaproxy/zap-api-python/compare/0.0.18...0.0.19

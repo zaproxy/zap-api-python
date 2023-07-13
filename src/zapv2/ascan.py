@@ -164,6 +164,13 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionHostPerScan/')))
 
     @property
+    def option_max_alerts_per_rule(self):
+        """
+        Gets the maximum number of alerts that a rule can raise before being skipped.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionMaxAlertsPerRule/')))
+
+    @property
     def option_max_chart_time_in_mins(self):
         """
         
@@ -236,7 +243,7 @@ class ascan(object):
     @property
     def option_inject_plugin_id_in_header(self):
         """
-        Tells whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scanner that's sending the requests.
+        Tells whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scan rule that's sending the requests.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionInjectPluginIdInHeader/')))
 
@@ -531,7 +538,7 @@ class ascan(object):
 
     def skip_scanner(self, scanid, scannerid, apikey=''):
         """
-        Skips the scanner using the given IDs of the scan and the scanner.
+        Skips the scan rule using the given IDs of the scan and the scan rule.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/skipScanner/', {'scanId': scanid, 'scannerId': scannerid, 'apikey': apikey})))
 
@@ -579,9 +586,15 @@ class ascan(object):
 
     def set_option_inject_plugin_id_in_header(self, boolean, apikey=''):
         """
-        Sets whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scanner that's sending the requests.
+        Sets whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scan rule that's sending the requests.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionInjectPluginIdInHeader/', {'Boolean': boolean, 'apikey': apikey})))
+
+    def set_option_max_alerts_per_rule(self, integer, apikey=''):
+        """
+        Sets the maximum number of alerts that a rule can raise before being skipped.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionMaxAlertsPerRule/', {'Integer': integer, 'apikey': apikey})))
 
     def set_option_max_chart_time_in_mins(self, integer, apikey=''):
         """

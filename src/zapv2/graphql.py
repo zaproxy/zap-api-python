@@ -76,6 +76,14 @@ class graphql(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/view/optionOptionalArgsEnabled/')))
 
     @property
+    def option_query_gen_enabled(self):
+        """
+        Returns whether the query generator is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/view/optionQueryGenEnabled/')))
+
+    @property
     def option_query_split_type(self):
         """
         Returns the current level for which a single query is generated.
@@ -163,3 +171,10 @@ class graphql(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionOptionalArgsEnabled/', {'Boolean': boolean, 'apikey': apikey})))
+
+    def set_option_query_gen_enabled(self, boolean, apikey=''):
+        """
+        Sets whether the query generator is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionQueryGenEnabled/', {'Boolean': boolean, 'apikey': apikey})))

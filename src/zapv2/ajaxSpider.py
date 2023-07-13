@@ -35,6 +35,13 @@ class ajaxSpider(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/view/allowedResources/')))
 
+    def excluded_elements(self, contextname):
+        """
+        Gets the excluded elements. The excluded elements are not clicked during crawling, for example, to prevent logging out.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/view/excludedElements/', {'contextName': contextname})))
+
     @property
     def status(self):
         """
@@ -195,6 +202,51 @@ class ajaxSpider(object):
         if enabled is not None:
             params['enabled'] = enabled
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/addAllowedResource/', params)))
+
+    def add_excluded_element(self, contextname, description, element, xpath=None, text=None, attributename=None, attributevalue=None, enabled=None, apikey=''):
+        """
+        Adds an excluded element to a context.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        params = {'contextName': contextname, 'description': description, 'element': element, 'apikey': apikey}
+        if xpath is not None:
+            params['xpath'] = xpath
+        if text is not None:
+            params['text'] = text
+        if attributename is not None:
+            params['attributeName'] = attributename
+        if attributevalue is not None:
+            params['attributeValue'] = attributevalue
+        if enabled is not None:
+            params['enabled'] = enabled
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/addExcludedElement/', params)))
+
+    def modify_excluded_element(self, contextname, description, element, descriptionnew=None, xpath=None, text=None, attributename=None, attributevalue=None, enabled=None, apikey=''):
+        """
+        Modifies an excluded element of a context.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        params = {'contextName': contextname, 'description': description, 'element': element, 'apikey': apikey}
+        if descriptionnew is not None:
+            params['descriptionNew'] = descriptionnew
+        if xpath is not None:
+            params['xpath'] = xpath
+        if text is not None:
+            params['text'] = text
+        if attributename is not None:
+            params['attributeName'] = attributename
+        if attributevalue is not None:
+            params['attributeValue'] = attributevalue
+        if enabled is not None:
+            params['enabled'] = enabled
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/modifyExcludedElement/', params)))
+
+    def remove_excluded_element(self, contextname, description, apikey=''):
+        """
+        Removes an excluded element from a context.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/removeExcludedElement/', {'contextName': contextname, 'description': description, 'apikey': apikey})))
 
     def remove_allowed_resource(self, regex, apikey=''):
         """

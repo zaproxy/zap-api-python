@@ -42,7 +42,7 @@ class alertFilter(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/view/globalAlertFilterList/')))
 
-    def add_alert_filter(self, contextid, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, apikey=''):
+    def add_alert_filter(self, contextid, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, methods=None, apikey=''):
         """
         Adds a new alert filter for the context with the given ID. 
         This component is optional and therefore the API will only work if it is installed
@@ -66,9 +66,11 @@ class alertFilter(object):
             params['evidence'] = evidence
         if evidenceisregex is not None:
             params['evidenceIsRegex'] = evidenceisregex
+        if methods is not None:
+            params['methods'] = methods
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/addAlertFilter/', params)))
 
-    def remove_alert_filter(self, contextid, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, apikey=''):
+    def remove_alert_filter(self, contextid, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, methods=None, apikey=''):
         """
         Removes an alert filter from the context with the given ID.
         This component is optional and therefore the API will only work if it is installed
@@ -92,9 +94,11 @@ class alertFilter(object):
             params['evidence'] = evidence
         if evidenceisregex is not None:
             params['evidenceIsRegex'] = evidenceisregex
+        if methods is not None:
+            params['methods'] = methods
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/removeAlertFilter/', params)))
 
-    def add_global_alert_filter(self, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, apikey=''):
+    def add_global_alert_filter(self, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, methods=None, apikey=''):
         """
         Adds a new global alert filter. 
         This component is optional and therefore the API will only work if it is installed
@@ -118,9 +122,11 @@ class alertFilter(object):
             params['evidence'] = evidence
         if evidenceisregex is not None:
             params['evidenceIsRegex'] = evidenceisregex
+        if methods is not None:
+            params['methods'] = methods
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/addGlobalAlertFilter/', params)))
 
-    def remove_global_alert_filter(self, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, apikey=''):
+    def remove_global_alert_filter(self, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, methods=None, apikey=''):
         """
         Removes a global alert filter.
         This component is optional and therefore the API will only work if it is installed
@@ -144,6 +150,8 @@ class alertFilter(object):
             params['evidence'] = evidence
         if evidenceisregex is not None:
             params['evidenceIsRegex'] = evidenceisregex
+        if methods is not None:
+            params['methods'] = methods
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alertFilter/action/removeGlobalAlertFilter/', params)))
 
     def apply_all(self, apikey=''):
