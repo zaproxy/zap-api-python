@@ -15,7 +15,7 @@ The latest released version can be downloaded from the [https://pypi.python.org/
 ## Getting Help
 
 For help using OWASP ZAP API refer to:
-  * [Examples](https://github.com/zaproxy/zap-api-python/tree/master/src/examples) - collection of examples using the library;
+  * [Examples](https://github.com/zaproxy/zap-api-python/tree/main/src/examples) - collection of examples using the library;
   * [API Documentation](https://www.zaproxy.org/docs/api/)
   * [OWASP ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
   
