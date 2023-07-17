@@ -15,17 +15,12 @@ Build the distribution (source and wheel) files:
 
     python setup.py sdist bdist_wheel --universal
 
-Sign the distribution files:
-
-    gpg --detach-sign -a dist/python-owasp-zap-v2.4-0.0.X.tar.gz
-    gpg --detach-sign -a dist/python_owasp_zap_v2.4-0.0.X-py2.py3-none-any.whl
-
 Upload to PyPi:
 
      pip install twine
      
      twine upload \
-         dist/python-owasp-zap-v2.4-0.0.X.tar.gz dist/python-owasp-zap-v2.4-0.0.X.tar.gz.asc \
-         dist/python_owasp_zap_v2.4-0.0.X-py2.py3-none-any.whl dist/python_owasp_zap_v2.4-0.0.X-py2.py3-none-any.whl.asc
+         dist/python-owasp-zap-v2.4-0.0.X.tar.gz \
+         dist/python_owasp_zap_v2.4-0.0.X-py2.py3-none-any.whl
 
 The user must have permissions to upload to the `python-owasp-zap-v2.4` package.
