@@ -20,7 +20,7 @@ Upload to PyPi:
      pip install twine
      
      twine upload \
-         dist/python-owasp-zap-v2.4-0.0.X.tar.gz \
-         dist/python_owasp_zap_v2.4-0.0.X-py2.py3-none-any.whl
+         dist/zaproxy-0.0.X.tar.gz \
+         dist/zaproxy-0.0.X-py2.py3-none-any.whl
 
-The user must have permissions to upload to the `python-owasp-zap-v2.4` package.
+The user must have permissions to upload to the `zaproxy` package.

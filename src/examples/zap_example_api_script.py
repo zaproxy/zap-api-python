@@ -2,7 +2,7 @@
 
 '''
 This script aims to be the most generic and the most explicit possible.
-It works with OWASP ZAP API Python client.
+It works with ZAP API Python client.
 To use it, you have to load the Python API client module and start ZAP
 
 Before starting this script for the first time: Open ZAP, go to
