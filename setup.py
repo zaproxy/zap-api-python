@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 __docformat__ = "restructuredtext"
 ZAP_VERSION = "2.13"
 # Ensure __version__ in src/zapv2/__init__.py matches.
-PACKAGE_VERSION = "0.1.1"
+PACKAGE_VERSION = "0.2.0"
 
 install_dependencies = ("requests", "six")
 test_requirements = ("mock", "pyhamcrest", "pylama", "pytest", "requests_mock")
