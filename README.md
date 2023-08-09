@@ -1,27 +1,27 @@
-# OWASP ZAP Python API
+# ZAP Python API
 
-[![Version](https://img.shields.io/pypi/v/python-owasp-zap-v2.4.svg)](https://pypi.python.org/pypi/python-owasp-zap-v2.4)
+[![Version](https://img.shields.io/pypi/v/zaproxy.svg)](https://pypi.python.org/pypi/zaproxy)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-The Python implementation to access the [OWASP ZAP API](https://www.zaproxy.org/docs/api/). For more information
-about OWASP ZAP consult the (main) [OWASP ZAP project](https://github.com/zaproxy/zaproxy/).
+The Python implementation to access the [ZAP API](https://www.zaproxy.org/docs/api/). For more information
+about ZAP consult the (main) [ZAP project](https://github.com/zaproxy/zaproxy/).
 
 ## How to Obtain
 
-The latest released version can be downloaded from the [https://pypi.python.org/pypi/python-owasp-zap-v2.4](https://pypi.python.org/pypi/python-owasp-zap-v2.4) using:
+The latest released version can be downloaded from the [https://pypi.python.org/pypi/zaproxy](https://pypi.python.org/pypi/zaproxy) using:
 
-    pip install python-owasp-zap-v2.4
+    pip install zaproxy
 
 ## Getting Help
 
-For help using OWASP ZAP API refer to:
+For help using the ZAP API, refer to:
   * [Examples](https://github.com/zaproxy/zap-api-python/tree/main/src/examples) - collection of examples using the library;
   * [API Documentation](https://www.zaproxy.org/docs/api/)
-  * [OWASP ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
+  * [ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
   
 ## Issues
 
-To report issues related to OWASP ZAP API, bugs and enhancements requests, use the [issue tracker of the main OWASP ZAP project](https://github.com/zaproxy/zaproxy/issues).
+To report issues related to ZAP API, bugs and enhancements requests, use the [issue tracker of the main ZAP project](https://github.com/zaproxy/zaproxy/issues).
 
 ## Updating the Generated Files
 
@@ -34,7 +34,7 @@ You should typically generate the core API calls from the latest release tag e.g
 ```
 cd zaproxy
 git fetch upstream -t
-git checkout tags/v2.11.1
+git checkout tags/v2.13.0
 ./gradlew generatePythonApiEndpoints
 cd ..
 ```

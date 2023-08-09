@@ -3,55 +3,42 @@
 Standard build script.
 """
 
-__docformat__ = 'restructuredtext'
+from setuptools import setup, find_packages
 
+__docformat__ = "restructuredtext"
+ZAP_VERSION = "2.13"
+PACKAGE_VERSION = "0.1.0"
 
-try:
-    from setuptools import setup, find_packages
-except ImportError:
-    print('You must have setuptools installed to use setup.py. Exiting...')
-    raise SystemExit(1)
-
-
-install_dependencies = (
-    'requests',
-    'six'
-)
-test_requirements = (
-    'mock',
-    'pyhamcrest',
-    'pylama',
-    'pytest',
-    'requests_mock'
-)
+install_dependencies = ("requests", "six")
+test_requirements = ("mock", "pyhamcrest", "pylama", "pytest", "requests_mock")
 setup(
-    name="python-owasp-zap-v2.4",
-    version="0.0.23",
-    description="OWASP ZAP 2.13 API client",
-    long_description="OWASP Zed Attack Proxy 2.13 API Python client (the 2.4 package name has been kept to make it easier to upgrade)",
-    author="ZAP development team",
-    author_email='',
+    name="zaproxy",
+    version=PACKAGE_VERSION,
+    description=f"ZAP {ZAP_VERSION} API client",
+    long_description=f"Zed Attack Proxy {ZAP_VERSION} API Python client",
+    author="ZAP Development Team",
+    author_email="zaproxy-develop@googlegroups.com",
     url="https://www.zaproxy.org/",
-    download_url="https://github.com/zaproxy/zap-api-python/releases/tag/0.0.23",
-    platforms=['any'],
+    download_url=f"https://github.com/zaproxy/zap-api-python/releases/tag/{PACKAGE_VERSION}",
+    platforms=["any"],
     license="ASL2.0",
     package_dir={
-        '': 'src',
+        "": "src",
     },
-    packages=find_packages('src'),
+    packages=find_packages("src"),
     classifiers=[
-        'License :: OSI Approved :: Apache Software License',
-        'Development Status :: 5 - Production/Stable',
-        'Topic :: Security',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        'Intended Audience :: Developers',
-        'Intended Audience :: Information Technology',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3.10',
+        "License :: OSI Approved :: Apache Software License",
+        "Development Status :: 5 - Production/Stable",
+        "Topic :: Security",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Information Technology",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     install_requires=install_dependencies,
     tests_require=test_requirements,
-    extras_require={'tests': test_requirements}
+    extras_require={"tests": test_requirements},
 )

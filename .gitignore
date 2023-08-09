@@ -52,9 +52,6 @@ coverage.xml
 # Django stuff:
 *.log
 
-# Sphinx documentation
-docs/_build/
-
 # PyBuilder
 target/
 
@@ -65,3 +62,6 @@ target/
 # -------
 .pydevproject
 .project
+
+# VS Code
+.vscode/
