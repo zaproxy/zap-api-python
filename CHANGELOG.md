@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [0.1.1] - 2023-08-09
+### Fixed
+- Correct module version.
+- Use download link from PyPI.
+
 ## [0.1.0] - 2023-08-09
 ### Changed
 - Rename package from `python-owasp-zap-v2.4` to `zaproxy`.
@@ -140,6 +145,7 @@ ensure it's automatically sent in all API requests.
 ### Changed
 - Moved from the main `zaproxy` repository.
 
+[0.1.1]: https://github.com/zaproxy/zap-api-python/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/zaproxy/zap-api-python/compare/0.0.22...0.1.0
 [0.0.22]: https://github.com/zaproxy/zap-api-python/compare/0.0.21...0.0.22
 [0.0.21]: https://github.com/zaproxy/zap-api-python/compare/0.0.20...0.0.21

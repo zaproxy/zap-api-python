@@ -7,7 +7,8 @@ from setuptools import setup, find_packages
 
 __docformat__ = "restructuredtext"
 ZAP_VERSION = "2.13"
-PACKAGE_VERSION = "0.1.0"
+# Ensure __version__ in src/zapv2/__init__.py matches.
+PACKAGE_VERSION = "0.1.1"
 
 install_dependencies = ("requests", "six")
 test_requirements = ("mock", "pyhamcrest", "pylama", "pytest", "requests_mock")
@@ -19,7 +20,7 @@ setup(
     author="ZAP Development Team",
     author_email="zaproxy-develop@googlegroups.com",
     url="https://www.zaproxy.org/",
-    download_url=f"https://github.com/zaproxy/zap-api-python/releases/tag/{PACKAGE_VERSION}",
+    download_url=f"https://pypi.org/project/zaproxy/{PACKAGE_VERSION}/#files",
     platforms=["any"],
     license="ASL2.0",
     package_dir={
