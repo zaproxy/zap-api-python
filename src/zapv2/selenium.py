@@ -59,6 +59,13 @@ class selenium(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionFirefoxBinaryPath/')))
 
     @property
+    def option_firefox_default_profile(self):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionFirefoxDefaultProfile/')))
+
+    @property
     def option_firefox_driver_path(self):
         """
         Returns the current path to Firefox driver (geckodriver)
@@ -87,6 +94,13 @@ class selenium(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionPhantomJsBinaryPath/')))
 
+    def get_browser_arguments(self, browser):
+        """
+        Gets the browser arguments.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/getBrowserArguments/', {'browser': browser})))
+
     def set_option_chrome_binary_path(self, string, apikey=''):
         """
         Sets the current path to Chrome binary
@@ -107,6 +121,12 @@ class selenium(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionFirefoxBinaryPath/', {'String': string})))
+
+    def set_option_firefox_default_profile(self, string, apikey=''):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionFirefoxDefaultProfile/', {'String': string})))
 
     def set_option_firefox_driver_path(self, string, apikey=''):
         """
@@ -132,3 +152,27 @@ class selenium(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionPhantomJsBinaryPath/', {'String': string})))
+
+    def add_browser_argument(self, browser, argument, enabled=None, apikey=''):
+        """
+        Adds a browser argument.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        params = {'browser': browser, 'argument': argument}
+        if enabled is not None:
+            params['enabled'] = enabled
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/addBrowserArgument/', params)))
+
+    def remove_browser_argument(self, browser, argument, apikey=''):
+        """
+        Removes a browser argument.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/removeBrowserArgument/', {'browser': browser, 'argument': argument})))
+
+    def set_browser_argument_enabled(self, browser, argument, enabled, apikey=''):
+        """
+        Sets whether or not a browser argument is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setBrowserArgumentEnabled/', {'browser': browser, 'argument': argument, 'enabled': enabled})))

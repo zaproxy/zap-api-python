@@ -33,7 +33,7 @@ class alert(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/view/alert/', {'id': id})))
 
-    def alerts(self, baseurl=None, start=None, count=None, riskid=None):
+    def alerts(self, baseurl=None, start=None, count=None, riskid=None, contextname=None):
         """
         Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
         """
@@ -46,6 +46,8 @@ class alert(object):
             params['count'] = count
         if riskid is not None:
             params['riskId'] = riskid
+        if contextname is not None:
+            params['contextName'] = contextname
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/view/alerts/', params)))
 
     def alerts_summary(self, baseurl=None):
@@ -95,6 +97,19 @@ class alert(object):
         Deletes all alerts of the current session.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/deleteAllAlerts/', {})))
+
+    def delete_alerts(self, contextname=None, baseurl=None, riskid=None, apikey=''):
+        """
+        Deletes all the alerts optionally filtered by URL which fall within the Context with the provided name, risk, or base URL.
+        """
+        params = {}
+        if contextname is not None:
+            params['contextName'] = contextname
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        if riskid is not None:
+            params['riskId'] = riskid
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/deleteAlerts/', params)))
 
     def delete_alert(self, id, apikey=''):
         """
