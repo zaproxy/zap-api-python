@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Deprecated
+- The class `localProxies` will be removed in a future version, having been superseded by `network`.
+
+### Removed
+- The classes `exportreport`, `importLogFiles`, and `importurls` were removed as the corresponding add-ons no longer exist.
 
 ## [0.1.1] - 2023-08-09
 ### Fixed

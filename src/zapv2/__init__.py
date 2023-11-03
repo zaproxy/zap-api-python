@@ -39,12 +39,9 @@ from .brk import brk
 from .context import context
 from .core import core
 from .exim import exim
-from .exportreport import exportreport
 from .forcedUser import forcedUser
 from .graphql import graphql
 from .httpSessions import httpSessions
-from .importLogFiles import importLogFiles
-from .importurls import importurls
 from .localProxies import localProxies
 from .network import network
 from .openapi import openapi
@@ -107,12 +104,9 @@ class ZAPv2(object):
         self.context = context(self)
         self.core = core(self)
         self.exim = exim(self)
-        self.exportreport = exportreport(self)
         self.forcedUser = forcedUser(self)
         self.graphql = graphql(self)
         self.httpsessions = httpSessions(self)
-        self.importLogFiles = importLogFiles(self)
-        self.importurls = importurls(self)
         self.localProxies = localProxies(self)
         self.network = network(self)
         self.openapi = openapi(self)
