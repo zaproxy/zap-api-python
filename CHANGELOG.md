@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Deprecated
+- The parameter `apikey` in the functions is no longer functional and will be removed in a future version.
+  The API key should be set when creating the API client (i.e. `ZAPv2(apikey='MyApiKey')`), which was added in the version 0.0.9, seven years ago.
 - The class `localProxies` will be removed in a future version, having been superseded by `network`.
 
 ### Removed

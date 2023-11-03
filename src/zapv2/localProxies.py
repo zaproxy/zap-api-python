@@ -38,7 +38,7 @@ class localProxies(object):
         """
         Adds an new proxy using the details supplied.
         """
-        params = {'address': address, 'port': port, 'apikey': apikey}
+        params = {'address': address, 'port': port}
         if behindnat is not None:
             params['behindNat'] = behindnat
         if alwaysdecodezip is not None:
@@ -51,4 +51,4 @@ class localProxies(object):
         """
         Removes the additional proxy with the specified address and port.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'localProxies/action/removeAdditionalProxy/', {'address': address, 'port': port, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'localProxies/action/removeAdditionalProxy/', {'address': address, 'port': port})))

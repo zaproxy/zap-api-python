@@ -47,7 +47,7 @@ class reports(object):
         Generate a report with the supplied parameters.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'title': title, 'template': template, 'apikey': apikey}
+        params = {'title': title, 'template': template}
         if theme is not None:
             params['theme'] = theme
         if description is not None:

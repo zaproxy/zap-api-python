@@ -167,12 +167,6 @@ class ZAPv2(object):
         if self.__apikey is not None:
           self.session.headers['X-ZAP-API-Key'] = self.__apikey
 
-        query = query or {}
-        if self.__apikey is not None:
-          # Add the apikey to get params for backwards compatibility
-          if not query.get('apikey'):
-            query['apikey'] = self.__apikey
-
         response = self.session.get(url, params=query, proxies=self.__proxies, verify=False)
 
         if (self.__validate_status_code and response.status_code >= 300 and response.status_code < 500):

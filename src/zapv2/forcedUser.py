@@ -44,10 +44,10 @@ class forcedUser(object):
         """
         Sets the user (ID) that should be used in 'forced user' mode for the given context (ID)
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'forcedUser/action/setForcedUser/', {'contextId': contextid, 'userId': userid, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'forcedUser/action/setForcedUser/', {'contextId': contextid, 'userId': userid})))
 
     def set_forced_user_mode_enabled(self, boolean, apikey=''):
         """
         Sets if 'forced user' mode should be enabled or not
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'forcedUser/action/setForcedUserModeEnabled/', {'boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'forcedUser/action/setForcedUserModeEnabled/', {'boolean': boolean})))

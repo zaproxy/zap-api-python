@@ -59,7 +59,7 @@ class brk(object):
         """
         Controls the global break functionality. The type may be one of: http-all, http-request or http-response. The state may be true (for turning break on for the specified type) or false (for turning break off). Scope is not currently used.
         """
-        params = {'type': type, 'state': state, 'apikey': apikey}
+        params = {'type': type, 'state': state}
         if scope is not None:
             params['scope'] = scope
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/break/', params)))
@@ -68,7 +68,7 @@ class brk(object):
         """
         Overwrites the currently intercepted message with the data provided
         """
-        params = {'httpHeader': httpheader, 'apikey': apikey}
+        params = {'httpHeader': httpheader}
         if httpbody is not None:
             params['httpBody'] = httpbody
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/setHttpMessage/', params)))
@@ -77,28 +77,28 @@ class brk(object):
         """
         Submits the currently intercepted message and unsets the global request/response breakpoints
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/continue/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/continue/', {})))
 
     def step(self, apikey=''):
         """
         Submits the currently intercepted message, the next request or response will automatically be intercepted
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/step/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/step/', {})))
 
     def drop(self, apikey=''):
         """
         Drops the currently intercepted message
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/drop/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/drop/', {})))
 
     def add_http_breakpoint(self, string, location, match, inverse, ignorecase, apikey=''):
         """
         Adds a custom HTTP breakpoint. The string is the string to match. Location may be one of: url, request_header, request_body, response_header or response_body. Match may be: contains or regex. Inverse (match) may be true or false. Lastly, ignorecase (when matching the string) may be true or false.  
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/addHttpBreakpoint/', {'string': string, 'location': location, 'match': match, 'inverse': inverse, 'ignorecase': ignorecase, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/addHttpBreakpoint/', {'string': string, 'location': location, 'match': match, 'inverse': inverse, 'ignorecase': ignorecase})))
 
     def remove_http_breakpoint(self, string, location, match, inverse, ignorecase, apikey=''):
         """
         Removes the specified breakpoint
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/removeHttpBreakpoint/', {'string': string, 'location': location, 'match': match, 'inverse': inverse, 'ignorecase': ignorecase, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'break/action/removeHttpBreakpoint/', {'string': string, 'location': location, 'match': match, 'inverse': inverse, 'ignorecase': ignorecase})))

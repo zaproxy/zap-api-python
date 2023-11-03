@@ -14,7 +14,7 @@ TEST_PROXIES = {
 def assert_api_key(response, apikey='testapikey'):
     """Some requests should contain valid ZAP api key."""
     assert response._request.headers['X-ZAP-API-Key'] == apikey
-    assert 'apikey=%s' % apikey in response.query
+    assert 'apikey=%s' % apikey not in response.query
 
 
 def test_urlopen(zap, client_mock):

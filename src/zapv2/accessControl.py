@@ -46,7 +46,7 @@ class accessControl(object):
         Starts an Access Control scan with the given context ID and user ID. (Optional parameters: user ID for Unauthenticated user, boolean identifying whether or not Alerts are raised, and the Risk level for the Alerts.) [This assumes the Access Control rules were previously established via ZAP gui and the necessary Context exported/imported.]
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'contextId': contextid, 'userId': userid, 'apikey': apikey}
+        params = {'contextId': contextid, 'userId': userid}
         if scanasunauthuser is not None:
             params['scanAsUnAuthUser'] = scanasunauthuser
         if raisealert is not None:
@@ -60,4 +60,4 @@ class accessControl(object):
         Generates an Access Control report for the given context ID and saves it based on the provided filename (path). 
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'accessControl/action/writeHTMLreport/', {'contextId': contextid, 'fileName': filename, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'accessControl/action/writeHTMLreport/', {'contextId': contextid, 'fileName': filename})))

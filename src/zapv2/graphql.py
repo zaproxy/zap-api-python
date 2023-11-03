@@ -104,14 +104,14 @@ class graphql(object):
         Imports a GraphQL Schema from a File.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/importFile/', {'endurl': endurl, 'file': file, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/importFile/', {'endurl': endurl, 'file': file})))
 
     def import_url(self, endurl, url=None, apikey=''):
         """
         Imports a GraphQL Schema from a URL.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'endurl': endurl, 'apikey': apikey}
+        params = {'endurl': endurl}
         if url is not None:
             params['url'] = url
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/importUrl/', params)))
@@ -121,60 +121,60 @@ class graphql(object):
         Sets how arguments are specified.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionArgsType/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionArgsType/', {'String': string})))
 
     def set_option_query_split_type(self, string, apikey=''):
         """
         Sets the level for which a single query is generated.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionQuerySplitType/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionQuerySplitType/', {'String': string})))
 
     def set_option_request_method(self, string, apikey=''):
         """
         Sets the request method.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionRequestMethod/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionRequestMethod/', {'String': string})))
 
     def set_option_lenient_max_query_depth_enabled(self, boolean, apikey=''):
         """
         Sets whether or not Maximum Query Depth is enforced leniently.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionLenientMaxQueryDepthEnabled/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionLenientMaxQueryDepthEnabled/', {'Boolean': boolean})))
 
     def set_option_max_additional_query_depth(self, integer, apikey=''):
         """
         Sets the maximum additional query generation depth (used if enforced leniently).
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionMaxAdditionalQueryDepth/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionMaxAdditionalQueryDepth/', {'Integer': integer})))
 
     def set_option_max_args_depth(self, integer, apikey=''):
         """
         Sets the maximum arguments generation depth.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionMaxArgsDepth/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionMaxArgsDepth/', {'Integer': integer})))
 
     def set_option_max_query_depth(self, integer, apikey=''):
         """
         Sets the maximum query generation depth.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionMaxQueryDepth/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionMaxQueryDepth/', {'Integer': integer})))
 
     def set_option_optional_args_enabled(self, boolean, apikey=''):
         """
         Sets whether or not Optional Arguments should be specified.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionOptionalArgsEnabled/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionOptionalArgsEnabled/', {'Boolean': boolean})))
 
     def set_option_query_gen_enabled(self, boolean, apikey=''):
         """
         Sets whether the query generator is enabled.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionQueryGenEnabled/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'graphql/action/setOptionQueryGenEnabled/', {'Boolean': boolean})))

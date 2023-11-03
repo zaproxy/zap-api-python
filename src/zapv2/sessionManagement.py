@@ -50,7 +50,7 @@ class sessionManagement(object):
         """
         Sets the session management method for the context with the given ID.
         """
-        params = {'contextId': contextid, 'methodName': methodname, 'apikey': apikey}
+        params = {'contextId': contextid, 'methodName': methodname}
         if methodconfigparams is not None:
             params['methodConfigParams'] = methodconfigparams
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'sessionManagement/action/setSessionManagementMethod/', params)))

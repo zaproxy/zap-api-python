@@ -171,70 +171,70 @@ class autoupdate(object):
         """
         Downloads the latest release, if any 
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/downloadLatestRelease/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/downloadLatestRelease/', {})))
 
     def install_addon(self, id, apikey=''):
         """
         Installs or updates the specified add-on, returning when complete (i.e. not asynchronously)
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/installAddon/', {'id': id, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/installAddon/', {'id': id})))
 
     def install_local_addon(self, file, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/installLocalAddon/', {'file': file, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/installLocalAddon/', {'file': file})))
 
     def uninstall_addon(self, id, apikey=''):
         """
         Uninstalls the specified add-on 
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/uninstallAddon/', {'id': id, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/uninstallAddon/', {'id': id})))
 
     def set_option_check_addon_updates(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionCheckAddonUpdates/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionCheckAddonUpdates/', {'Boolean': boolean})))
 
     def set_option_check_on_start(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionCheckOnStart/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionCheckOnStart/', {'Boolean': boolean})))
 
     def set_option_download_new_release(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionDownloadNewRelease/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionDownloadNewRelease/', {'Boolean': boolean})))
 
     def set_option_install_addon_updates(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionInstallAddonUpdates/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionInstallAddonUpdates/', {'Boolean': boolean})))
 
     def set_option_install_scanner_rules(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionInstallScannerRules/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionInstallScannerRules/', {'Boolean': boolean})))
 
     def set_option_report_alpha_addons(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionReportAlphaAddons/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionReportAlphaAddons/', {'Boolean': boolean})))
 
     def set_option_report_beta_addons(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionReportBetaAddons/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionReportBetaAddons/', {'Boolean': boolean})))
 
     def set_option_report_release_addons(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionReportReleaseAddons/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'autoupdate/action/setOptionReportReleaseAddons/', {'Boolean': boolean})))

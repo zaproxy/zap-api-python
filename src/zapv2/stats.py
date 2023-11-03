@@ -93,7 +93,7 @@ class stats(object):
         """
         Clears all of the statistics
         """
-        params = {'apikey': apikey}
+        params = {}
         if keyprefix is not None:
             params['keyPrefix'] = keyprefix
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'stats/action/clearStats/', params)))
@@ -102,22 +102,22 @@ class stats(object):
         """
         Sets the Statsd service hostname, supply an empty string to stop using a Statsd service
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'stats/action/setOptionStatsdHost/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'stats/action/setOptionStatsdHost/', {'String': string})))
 
     def set_option_statsd_prefix(self, string, apikey=''):
         """
         Sets the prefix to be applied to all stats sent to the configured Statsd service
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'stats/action/setOptionStatsdPrefix/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'stats/action/setOptionStatsdPrefix/', {'String': string})))
 
     def set_option_in_memory_enabled(self, boolean, apikey=''):
         """
         Sets whether in memory statistics are enabled
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'stats/action/setOptionInMemoryEnabled/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'stats/action/setOptionInMemoryEnabled/', {'Boolean': boolean})))
 
     def set_option_statsd_port(self, integer, apikey=''):
         """
         Sets the Statsd service port
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'stats/action/setOptionStatsdPort/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'stats/action/setOptionStatsdPort/', {'Integer': integer})))

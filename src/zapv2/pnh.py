@@ -31,46 +31,46 @@ class pnh(object):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pnh/action/monitor/', {'id': id, 'message': message, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pnh/action/monitor/', {'id': id, 'message': message})))
 
     def oracle(self, id, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pnh/action/oracle/', {'id': id, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pnh/action/oracle/', {'id': id})))
 
     def start_monitoring(self, url, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pnh/action/startMonitoring/', {'url': url, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pnh/action/startMonitoring/', {'url': url})))
 
     def stop_monitoring(self, id, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pnh/action/stopMonitoring/', {'id': id, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pnh/action/stopMonitoring/', {'id': id})))
 
     def pnh(self, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return (self.zap._request_other(self.zap.base_other + 'pnh/other/pnh/', {'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'pnh/other/pnh/', {}))
 
     def manifest(self, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return (self.zap._request_other(self.zap.base_other + 'pnh/other/manifest/', {'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'pnh/other/manifest/', {}))
 
     def service(self, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return (self.zap._request_other(self.zap.base_other + 'pnh/other/service/', {'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'pnh/other/service/', {}))
 
     def fx__pnh_xpi(self, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return (self.zap._request_other(self.zap.base_other + 'pnh/other/fx_pnh.xpi/', {'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'pnh/other/fx_pnh.xpi/', {}))

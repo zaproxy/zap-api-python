@@ -38,10 +38,10 @@ class revisit(object):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'revisit/action/revisitSiteOn/', {'site': site, 'startTime': starttime, 'endTime': endtime, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'revisit/action/revisitSiteOn/', {'site': site, 'startTime': starttime, 'endTime': endtime})))
 
     def revisit_site_off(self, site, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'revisit/action/revisitSiteOff/', {'site': site, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'revisit/action/revisitSiteOff/', {'site': site})))

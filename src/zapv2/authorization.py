@@ -37,7 +37,7 @@ class authorization(object):
         """
         Sets the authorization detection method for a context as one that identifies un-authorized messages based on: the message's status code or a regex pattern in the response's header or body. Also, whether all conditions must match or just some can be specified via the logicalOperator parameter, which accepts two values: "AND" (default), "OR".  
         """
-        params = {'contextId': contextid, 'apikey': apikey}
+        params = {'contextId': contextid}
         if headerregex is not None:
             params['headerRegex'] = headerregex
         if bodyregex is not None:

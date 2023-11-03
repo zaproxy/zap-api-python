@@ -102,19 +102,19 @@ class script(object):
         """
         Enables the script with the given name
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/enable/', {'scriptName': scriptname, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/enable/', {'scriptName': scriptname})))
 
     def disable(self, scriptname, apikey=''):
         """
         Disables the script with the given name
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/disable/', {'scriptName': scriptname, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/disable/', {'scriptName': scriptname})))
 
     def load(self, scriptname, scripttype, scriptengine, filename, scriptdescription=None, charset=None, apikey=''):
         """
         Loads a script into ZAP from the given local file, with the given name, type and engine, optionally with a description, and a charset name to read the script (the charset name is required if the script is not in UTF-8, for example, in ISO-8859-1).
         """
-        params = {'scriptName': scriptname, 'scriptType': scripttype, 'scriptEngine': scriptengine, 'fileName': filename, 'apikey': apikey}
+        params = {'scriptName': scriptname, 'scriptType': scripttype, 'scriptEngine': scriptengine, 'fileName': filename}
         if scriptdescription is not None:
             params['scriptDescription'] = scriptdescription
         if charset is not None:
@@ -125,55 +125,55 @@ class script(object):
         """
         Removes the script with the given name
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/remove/', {'scriptName': scriptname, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/remove/', {'scriptName': scriptname})))
 
     def run_stand_alone_script(self, scriptname, apikey=''):
         """
         Runs the stand alone script with the given name
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/runStandAloneScript/', {'scriptName': scriptname, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/runStandAloneScript/', {'scriptName': scriptname})))
 
     def clear_global_var(self, varkey, apikey=''):
         """
         Clears the global variable with the given key.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearGlobalVar/', {'varKey': varkey, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearGlobalVar/', {'varKey': varkey})))
 
     def clear_global_custom_var(self, varkey, apikey=''):
         """
         Clears a global custom variable.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearGlobalCustomVar/', {'varKey': varkey, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearGlobalCustomVar/', {'varKey': varkey})))
 
     def clear_global_vars(self, apikey=''):
         """
         Clears the global variables.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearGlobalVars/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearGlobalVars/', {})))
 
     def clear_script_var(self, scriptname, varkey, apikey=''):
         """
         Clears the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearScriptVar/', {'scriptName': scriptname, 'varKey': varkey, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearScriptVar/', {'scriptName': scriptname, 'varKey': varkey})))
 
     def clear_script_custom_var(self, scriptname, varkey, apikey=''):
         """
         Clears a script custom variable.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearScriptCustomVar/', {'scriptName': scriptname, 'varKey': varkey, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearScriptCustomVar/', {'scriptName': scriptname, 'varKey': varkey})))
 
     def clear_script_vars(self, scriptname, apikey=''):
         """
         Clears the variables of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearScriptVars/', {'scriptName': scriptname, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/clearScriptVars/', {'scriptName': scriptname})))
 
     def set_script_var(self, scriptname, varkey, varvalue=None, apikey=''):
         """
         Sets the value of the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
         """
-        params = {'scriptName': scriptname, 'varKey': varkey, 'apikey': apikey}
+        params = {'scriptName': scriptname, 'varKey': varkey}
         if varvalue is not None:
             params['varValue'] = varvalue
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/setScriptVar/', params)))
@@ -182,7 +182,7 @@ class script(object):
         """
         Sets the value of the global variable with the given key.
         """
-        params = {'varKey': varkey, 'apikey': apikey}
+        params = {'varKey': varkey}
         if varvalue is not None:
             params['varValue'] = varvalue
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'script/action/setGlobalVar/', params)))

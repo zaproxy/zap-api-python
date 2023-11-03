@@ -37,10 +37,10 @@ class automation(object):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/action/runPlan/', {'filePath': filepath, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/action/runPlan/', {'filePath': filepath})))
 
     def end_delay_job(self, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/action/endDelayJob/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/action/endDelayJob/', {})))

@@ -40,4 +40,4 @@ class reveal(object):
         Sets if shows hidden fields and enables disabled fields
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'reveal/action/setReveal/', {'reveal': reveal, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'reveal/action/setReveal/', {'reveal': reveal})))
