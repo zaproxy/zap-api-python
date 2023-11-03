@@ -334,7 +334,7 @@ class core(object):
         """
         Convenient and simple action to access a URL, optionally following redirections. Returns the request sent and response received and followed redirections, if any. Other actions are available which offer more control on what is sent, like, 'sendRequest' or 'sendHarRequest'.
         """
-        params = {'url': url, 'apikey': apikey}
+        params = {'url': url}
         if followredirects is not None:
             params['followRedirects'] = followredirects
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/accessUrl/', params)))
@@ -343,13 +343,13 @@ class core(object):
         """
         Shuts down ZAP
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/shutdown/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/shutdown/', {})))
 
     def new_session(self, name=None, overwrite=None, apikey=''):
         """
         Creates a new session, optionally overwriting existing files. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
         """
-        params = {'apikey': apikey}
+        params = {}
         if name is not None:
             params['name'] = name
         if overwrite is not None:
@@ -360,13 +360,13 @@ class core(object):
         """
         Loads the session with the given name. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/loadSession/', {'name': name, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/loadSession/', {'name': name})))
 
     def save_session(self, name, overwrite=None, apikey=''):
         """
         Saves the session.
         """
-        params = {'name': name, 'apikey': apikey}
+        params = {'name': name}
         if overwrite is not None:
             params['overwrite'] = overwrite
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/saveSession/', params)))
@@ -375,7 +375,7 @@ class core(object):
         """
         Snapshots the session, optionally with the given name, and overwriting existing files. If no name is specified the name of the current session with a timestamp appended is used. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
         """
-        params = {'apikey': apikey}
+        params = {}
         if name is not None:
             params['name'] = name
         if overwrite is not None:
@@ -386,37 +386,37 @@ class core(object):
         """
         Clears the regexes of URLs excluded from the local proxies.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/clearExcludedFromProxy/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/clearExcludedFromProxy/', {})))
 
     def exclude_from_proxy(self, regex, apikey=''):
         """
         Adds a regex of URLs that should be excluded from the local proxies.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/excludeFromProxy/', {'regex': regex, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/excludeFromProxy/', {'regex': regex})))
 
     def set_home_directory(self, dir, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setHomeDirectory/', {'dir': dir, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setHomeDirectory/', {'dir': dir})))
 
     def set_mode(self, mode, apikey=''):
         """
         Sets the mode, which may be one of [safe, protect, standard, attack]
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setMode/', {'mode': mode, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setMode/', {'mode': mode})))
 
     def generate_root_ca(self, apikey=''):
         """
         Generates a new Root CA certificate for the local proxies.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/generateRootCA/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/generateRootCA/', {})))
 
     def send_request(self, request, followredirects=None, apikey=''):
         """
         Sends the HTTP request, optionally following redirections. Returns the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are not allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
         """
-        params = {'request': request, 'apikey': apikey}
+        params = {'request': request}
         if followredirects is not None:
             params['followRedirects'] = followredirects
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/sendRequest/', params)))
@@ -425,13 +425,13 @@ class core(object):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/runGarbageCollection/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/runGarbageCollection/', {})))
 
     def delete_site_node(self, url, method=None, postdata=None, apikey=''):
         """
         Deletes the site node found in the Sites Tree on the basis of the URL, HTTP method, and post data (if applicable and specified). 
         """
-        params = {'url': url, 'apikey': apikey}
+        params = {'url': url}
         if method is not None:
             params['method'] = method
         if postdata is not None:
@@ -442,7 +442,7 @@ class core(object):
         """
         Adds a domain to be excluded from the outgoing proxy, using the specified value. Optionally sets if the new entry is enabled (default, true) and whether or not the new value is specified as a regex (default, false).
         """
-        params = {'value': value, 'apikey': apikey}
+        params = {'value': value}
         if isregex is not None:
             params['isRegex'] = isregex
         if isenabled is not None:
@@ -453,7 +453,7 @@ class core(object):
         """
         Modifies a domain excluded from the outgoing proxy. Allows to modify the value, if enabled or if a regex. The domain is selected with its index, which can be obtained with the view proxyChainExcludedDomains.
         """
-        params = {'idx': idx, 'apikey': apikey}
+        params = {'idx': idx}
         if value is not None:
             params['value'] = value
         if isregex is not None:
@@ -466,37 +466,37 @@ class core(object):
         """
         Removes a domain excluded from the outgoing proxy, with the given index. The index can be obtained with the view proxyChainExcludedDomains.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/removeProxyChainExcludedDomain/', {'idx': idx, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/removeProxyChainExcludedDomain/', {'idx': idx})))
 
     def enable_all_proxy_chain_excluded_domains(self, apikey=''):
         """
         Enables all domains excluded from the outgoing proxy.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/enableAllProxyChainExcludedDomains/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/enableAllProxyChainExcludedDomains/', {})))
 
     def disable_all_proxy_chain_excluded_domains(self, apikey=''):
         """
         Disables all domains excluded from the outgoing proxy.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/disableAllProxyChainExcludedDomains/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/disableAllProxyChainExcludedDomains/', {})))
 
     def set_option_maximum_alert_instances(self, numberofinstances, apikey=''):
         """
         Sets the maximum number of alert instances to include in a report. A value of zero is treated as unlimited.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionMaximumAlertInstances/', {'numberOfInstances': numberofinstances, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionMaximumAlertInstances/', {'numberOfInstances': numberofinstances})))
 
     def set_option_merge_related_alerts(self, enabled, apikey=''):
         """
         Sets whether or not related alerts will be merged in any reports generated.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionMergeRelatedAlerts/', {'enabled': enabled, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionMergeRelatedAlerts/', {'enabled': enabled})))
 
     def set_option_alert_overrides_file_path(self, filepath=None, apikey=''):
         """
         Sets (or clears, if empty) the path to the file with alert overrides.
         """
-        params = {'apikey': apikey}
+        params = {}
         if filepath is not None:
             params['filePath'] = filepath
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionAlertOverridesFilePath/', params)))
@@ -505,7 +505,7 @@ class core(object):
         """
         Enables use of a PKCS12 client certificate for the certificate with the given file system path, password, and optional index.
         """
-        params = {'filePath': filepath, 'password': password, 'apikey': apikey}
+        params = {'filePath': filepath, 'password': password}
         if index is not None:
             params['index'] = index
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/enablePKCS12ClientCertificate/', params)))
@@ -514,163 +514,163 @@ class core(object):
         """
         Disables the option for use of client certificates.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/disableClientCertificate/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/disableClientCertificate/', {})))
 
     def delete_all_alerts(self, apikey=''):
         """
         Deletes all alerts of the current session.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/deleteAllAlerts/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/deleteAllAlerts/', {})))
 
     def delete_alert(self, id, apikey=''):
         """
         Deletes the alert with the given ID. 
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/deleteAlert/', {'id': id, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/deleteAlert/', {'id': id})))
 
     def set_option_default_user_agent(self, string, apikey=''):
         """
         Sets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionDefaultUserAgent/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionDefaultUserAgent/', {'String': string})))
 
     def set_option_dns_ttl_successful_queries(self, integer, apikey=''):
         """
         Sets the TTL (in seconds) of successful DNS queries (applies after ZAP restart).
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer': integer})))
 
     def set_option_http_state_enabled(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionHttpStateEnabled/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionHttpStateEnabled/', {'Boolean': boolean})))
 
     def set_option_proxy_chain_name(self, string, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainName/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainName/', {'String': string})))
 
     def set_option_proxy_chain_password(self, string, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPassword/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPassword/', {'String': string})))
 
     def set_option_proxy_chain_port(self, integer, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPort/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPort/', {'Integer': integer})))
 
     def set_option_proxy_chain_prompt(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPrompt/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainPrompt/', {'Boolean': boolean})))
 
     def set_option_proxy_chain_realm(self, string, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainRealm/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainRealm/', {'String': string})))
 
     def set_option_proxy_chain_skip_name(self, string, apikey=''):
         """
         Use actions [add|modify|remove]ProxyChainExcludedDomain instead.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainSkipName/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainSkipName/', {'String': string})))
 
     def set_option_proxy_chain_user_name(self, string, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainUserName/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionProxyChainUserName/', {'String': string})))
 
     def set_option_single_cookie_request_header(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionSingleCookieRequestHeader/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionSingleCookieRequestHeader/', {'Boolean': boolean})))
 
     def set_option_timeout_in_secs(self, integer, apikey=''):
         """
         Sets the connection time out (in seconds).
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionTimeoutInSecs/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionTimeoutInSecs/', {'Integer': integer})))
 
     def set_option_use_proxy_chain(self, boolean, apikey=''):
         """
         Sets whether or not the outgoing proxy should be used. The address/hostname of the outgoing proxy must be set to enable this option.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseProxyChain/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseProxyChain/', {'Boolean': boolean})))
 
     def set_option_use_proxy_chain_auth(self, boolean, apikey=''):
         """
         
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseProxyChainAuth/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseProxyChainAuth/', {'Boolean': boolean})))
 
     def set_option_use_socks_proxy(self, boolean, apikey=''):
         """
         Sets whether or not the SOCKS proxy should be used.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseSocksProxy/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setOptionUseSocksProxy/', {'Boolean': boolean})))
 
     def proxy_pac(self, apikey=''):
         """
         
         """
-        return (self.zap._request_other(self.zap.base_other + 'core/other/proxy.pac/', {'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'core/other/proxy.pac/', {}))
 
     def rootcert(self, apikey=''):
         """
         Gets the Root CA certificate used by the local proxies.
         """
-        return (self.zap._request_other(self.zap.base_other + 'core/other/rootcert/', {'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'core/other/rootcert/', {}))
 
     def setproxy(self, proxy, apikey=''):
         """
         
         """
-        return (self.zap._request_other(self.zap.base_other + 'core/other/setproxy/', {'proxy': proxy, 'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'core/other/setproxy/', {'proxy': proxy}))
 
     def xmlreport(self, apikey=''):
         """
         Generates a report in XML format
         """
-        return (self.zap._request_other(self.zap.base_other + 'core/other/xmlreport/', {'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'core/other/xmlreport/', {}))
 
     def htmlreport(self, apikey=''):
         """
         Generates a report in HTML format
         """
-        return (self.zap._request_other(self.zap.base_other + 'core/other/htmlreport/', {'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'core/other/htmlreport/', {}))
 
     def jsonreport(self, apikey=''):
         """
         Generates a report in JSON format
         """
-        return (self.zap._request_other(self.zap.base_other + 'core/other/jsonreport/', {'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'core/other/jsonreport/', {}))
 
     def mdreport(self, apikey=''):
         """
         Generates a report in Markdown format
         """
-        return (self.zap._request_other(self.zap.base_other + 'core/other/mdreport/', {'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'core/other/mdreport/', {}))
 
     def message_har(self, id, apikey=''):
         """
         Gets the message with the given ID in HAR format
         """
-        return (self.zap._request_other(self.zap.base_other + 'core/other/messageHar/', {'id': id, 'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'core/other/messageHar/', {'id': id}))
 
     def messages_har(self, baseurl=None, start=None, count=None, apikey=''):
         """
         Gets the HTTP messages sent through/by ZAP, in HAR format, optionally filtered by URL and paginated with 'start' position and 'count' of messages
         """
-        params = {'apikey': apikey}
+        params = {}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
@@ -683,13 +683,13 @@ class core(object):
         """
         Gets the HTTP messages with the given IDs, in HAR format.
         """
-        return (self.zap._request_other(self.zap.base_other + 'core/other/messagesHarById/', {'ids': ids, 'apikey': apikey}))
+        return (self.zap._request_other(self.zap.base_other + 'core/other/messagesHarById/', {'ids': ids}))
 
     def send_har_request(self, request, followredirects=None, apikey=''):
         """
         Sends the first HAR request entry, optionally following redirections. Returns, in HAR format, the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are not allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
         """
-        params = {'request': request, 'apikey': apikey}
+        params = {'request': request}
         if followredirects is not None:
             params['followRedirects'] = followredirects
         return (self.zap._request_other(self.zap.base_other + 'core/other/sendHarRequest/', params))

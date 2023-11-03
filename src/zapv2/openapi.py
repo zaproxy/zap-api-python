@@ -32,7 +32,7 @@ class openapi(object):
         Imports an OpenAPI definition from a local file.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'file': file, 'apikey': apikey}
+        params = {'file': file}
         if target is not None:
             params['target'] = target
         if contextid is not None:
@@ -44,7 +44,7 @@ class openapi(object):
         Imports an OpenAPI definition from a URL.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'url': url, 'apikey': apikey}
+        params = {'url': url}
         if hostoverride is not None:
             params['hostOverride'] = hostoverride
         if contextid is not None:

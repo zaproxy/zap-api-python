@@ -32,11 +32,11 @@ class soap(object):
         Import a WSDL definition from local file.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'soap/action/importFile/', {'file': file, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'soap/action/importFile/', {'file': file})))
 
     def import_url(self, url, apikey=''):
         """
         Import a WSDL definition from a URL.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'soap/action/importUrl/', {'url': url, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'soap/action/importUrl/', {'url': url})))

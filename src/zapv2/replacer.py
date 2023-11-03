@@ -40,7 +40,7 @@ class replacer(object):
         Adds a replacer rule. For the parameters: desc is a user friendly description, enabled is true or false, matchType is one of [REQ_HEADER, REQ_HEADER_STR, REQ_BODY_STR, RESP_HEADER, RESP_HEADER_STR, RESP_BODY_STR], matchRegex should be true if the matchString should be treated as a regex otherwise false, matchString is the string that will be matched against, replacement is the replacement string, initiators may be blank (for all initiators) or a comma separated list of integers as defined in <a href="https://github.com/zaproxy/zaproxy/blob/main/zap/src/main/java/org/parosproxy/paros/network/HttpSender.java">HttpSender</a>  
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'description': description, 'enabled': enabled, 'matchType': matchtype, 'matchRegex': matchregex, 'matchString': matchstring, 'apikey': apikey}
+        params = {'description': description, 'enabled': enabled, 'matchType': matchtype, 'matchRegex': matchregex, 'matchString': matchstring}
         if replacement is not None:
             params['replacement'] = replacement
         if initiators is not None:
@@ -54,11 +54,11 @@ class replacer(object):
         Removes the rule with the given description
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'replacer/action/removeRule/', {'description': description, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'replacer/action/removeRule/', {'description': description})))
 
     def set_enabled(self, description, bool, apikey=''):
         """
         Enables or disables the rule with the given description based on the bool parameter  
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'replacer/action/setEnabled/', {'description': description, 'bool': bool, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'replacer/action/setEnabled/', {'description': description, 'bool': bool})))

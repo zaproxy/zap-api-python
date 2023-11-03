@@ -135,7 +135,7 @@ class search(object):
         """
         Returns the HTTP messages, in HAR format, that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
         """
-        params = {'regex': regex, 'apikey': apikey}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
@@ -148,7 +148,7 @@ class search(object):
         """
         Returns the HTTP messages, in HAR format, that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
         """
-        params = {'regex': regex, 'apikey': apikey}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
@@ -161,7 +161,7 @@ class search(object):
         """
         Returns the HTTP messages, in HAR format, that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
         """
-        params = {'regex': regex, 'apikey': apikey}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:
@@ -174,7 +174,7 @@ class search(object):
         """
         Returns the HTTP messages, in HAR format, that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
         """
-        params = {'regex': regex, 'apikey': apikey}
+        params = {'regex': regex}
         if baseurl is not None:
             params['baseurl'] = baseurl
         if start is not None:

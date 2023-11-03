@@ -62,7 +62,7 @@ class authentication(object):
         """
         Sets the authentication method for the context with the given ID.
         """
-        params = {'contextId': contextid, 'authMethodName': authmethodname, 'apikey': apikey}
+        params = {'contextId': contextid, 'authMethodName': authmethodname}
         if authmethodconfigparams is not None:
             params['authMethodConfigParams'] = authmethodconfigparams
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'authentication/action/setAuthenticationMethod/', params)))
@@ -71,10 +71,10 @@ class authentication(object):
         """
         Sets the logged in indicator for the context with the given ID.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'authentication/action/setLoggedInIndicator/', {'contextId': contextid, 'loggedInIndicatorRegex': loggedinindicatorregex, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'authentication/action/setLoggedInIndicator/', {'contextId': contextid, 'loggedInIndicatorRegex': loggedinindicatorregex})))
 
     def set_logged_out_indicator(self, contextid, loggedoutindicatorregex, apikey=''):
         """
         Sets the logged out indicator for the context with the given ID.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'authentication/action/setLoggedOutIndicator/', {'contextId': contextid, 'loggedOutIndicatorRegex': loggedoutindicatorregex, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'authentication/action/setLoggedOutIndicator/', {'contextId': contextid, 'loggedOutIndicatorRegex': loggedoutindicatorregex})))

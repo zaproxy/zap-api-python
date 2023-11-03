@@ -66,7 +66,7 @@ class httpSessions(object):
         """
         Creates an empty session for the given site. Optionally with the given name.
         """
-        params = {'site': site, 'apikey': apikey}
+        params = {'site': site}
         if session is not None:
             params['session'] = session
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/createEmptySession/', params)))
@@ -75,49 +75,49 @@ class httpSessions(object):
         """
         Removes the session from the given site.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/removeSession/', {'site': site, 'session': session, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/removeSession/', {'site': site, 'session': session})))
 
     def set_active_session(self, site, session, apikey=''):
         """
         Sets the given session as active for the given site.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/setActiveSession/', {'site': site, 'session': session, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/setActiveSession/', {'site': site, 'session': session})))
 
     def unset_active_session(self, site, apikey=''):
         """
         Unsets the active session of the given site.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/unsetActiveSession/', {'site': site, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/unsetActiveSession/', {'site': site})))
 
     def add_session_token(self, site, sessiontoken, apikey=''):
         """
         Adds the session token to the given site.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/addSessionToken/', {'site': site, 'sessionToken': sessiontoken, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/addSessionToken/', {'site': site, 'sessionToken': sessiontoken})))
 
     def remove_session_token(self, site, sessiontoken, apikey=''):
         """
         Removes the session token from the given site.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/removeSessionToken/', {'site': site, 'sessionToken': sessiontoken, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/removeSessionToken/', {'site': site, 'sessionToken': sessiontoken})))
 
     def set_session_token_value(self, site, session, sessiontoken, tokenvalue, apikey=''):
         """
         Sets the value of the session token of the given session for the given site.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/setSessionTokenValue/', {'site': site, 'session': session, 'sessionToken': sessiontoken, 'tokenValue': tokenvalue, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/setSessionTokenValue/', {'site': site, 'session': session, 'sessionToken': sessiontoken, 'tokenValue': tokenvalue})))
 
     def rename_session(self, site, oldsessionname, newsessionname, apikey=''):
         """
         Renames the session of the given site.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/renameSession/', {'site': site, 'oldSessionName': oldsessionname, 'newSessionName': newsessionname, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/renameSession/', {'site': site, 'oldSessionName': oldsessionname, 'newSessionName': newsessionname})))
 
     def add_default_session_token(self, sessiontoken, tokenenabled=None, apikey=''):
         """
         Adds a default session token with the given name and enabled state.
         """
-        params = {'sessionToken': sessiontoken, 'apikey': apikey}
+        params = {'sessionToken': sessiontoken}
         if tokenenabled is not None:
             params['tokenEnabled'] = tokenenabled
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/addDefaultSessionToken/', params)))
@@ -126,10 +126,10 @@ class httpSessions(object):
         """
         Sets whether or not the default session token with the given name is enabled.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/setDefaultSessionTokenEnabled/', {'sessionToken': sessiontoken, 'tokenEnabled': tokenenabled, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/setDefaultSessionTokenEnabled/', {'sessionToken': sessiontoken, 'tokenEnabled': tokenenabled})))
 
     def remove_default_session_token(self, sessiontoken, apikey=''):
         """
         Removes the default session token with the given name.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/removeDefaultSessionToken/', {'sessionToken': sessiontoken, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'httpSessions/action/removeDefaultSessionToken/', {'sessionToken': sessiontoken})))

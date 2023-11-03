@@ -73,64 +73,64 @@ class pscan(object):
         """
         Sets whether or not the passive scanning is enabled (Note: the enabled state is not persisted).
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setEnabled/', {'enabled': enabled, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setEnabled/', {'enabled': enabled})))
 
     def set_scan_only_in_scope(self, onlyinscope, apikey=''):
         """
         Sets whether or not the passive scan should be performed only on messages that are in scope.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setScanOnlyInScope/', {'onlyInScope': onlyinscope, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setScanOnlyInScope/', {'onlyInScope': onlyinscope})))
 
     def enable_all_scanners(self, apikey=''):
         """
         Enables all passive scan rules
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableAllScanners/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableAllScanners/', {})))
 
     def disable_all_scanners(self, apikey=''):
         """
         Disables all passive scan rules
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableAllScanners/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableAllScanners/', {})))
 
     def enable_scanners(self, ids, apikey=''):
         """
         Enables all passive scan rules with the given IDs (comma separated list of IDs)
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableScanners/', {'ids': ids, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableScanners/', {'ids': ids})))
 
     def disable_scanners(self, ids, apikey=''):
         """
         Disables all passive scan rules with the given IDs (comma separated list of IDs)
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableScanners/', {'ids': ids, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableScanners/', {'ids': ids})))
 
     def set_scanner_alert_threshold(self, id, alertthreshold, apikey=''):
         """
         Sets the alert threshold of the passive scan rule with the given ID, accepted values for alert threshold: OFF, DEFAULT, LOW, MEDIUM and HIGH
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setScannerAlertThreshold/', {'id': id, 'alertThreshold': alertthreshold, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setScannerAlertThreshold/', {'id': id, 'alertThreshold': alertthreshold})))
 
     def set_max_alerts_per_rule(self, maxalerts, apikey=''):
         """
         Sets the maximum number of alerts a passive scan rule should raise.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setMaxAlertsPerRule/', {'maxAlerts': maxalerts, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setMaxAlertsPerRule/', {'maxAlerts': maxalerts})))
 
     def disable_all_tags(self, apikey=''):
         """
         Disables all passive scan tags.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableAllTags/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableAllTags/', {})))
 
     def enable_all_tags(self, apikey=''):
         """
         Enables all passive scan tags.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableAllTags/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableAllTags/', {})))
 
     def clear_queue(self, apikey=''):
         """
         Clears the passive scan queue.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/clearQueue/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/clearQueue/', {})))

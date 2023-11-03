@@ -81,25 +81,25 @@ class context(object):
         """
         Add exclude regex to context
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/excludeFromContext/', {'contextName': contextname, 'regex': regex, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/excludeFromContext/', {'contextName': contextname, 'regex': regex})))
 
     def include_in_context(self, contextname, regex, apikey=''):
         """
         Add include regex to context
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/includeInContext/', {'contextName': contextname, 'regex': regex, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/includeInContext/', {'contextName': contextname, 'regex': regex})))
 
     def set_context_regexs(self, contextname, incregexs, excregexs, apikey=''):
         """
         Set the regexs to include and exclude for a context, both supplied as JSON string arrays
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/setContextRegexs/', {'contextName': contextname, 'incRegexs': incregexs, 'excRegexs': excregexs, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/setContextRegexs/', {'contextName': contextname, 'incRegexs': incregexs, 'excRegexs': excregexs})))
 
     def set_context_checking_strategy(self, contextname, checkingstrategy, pollurl=None, polldata=None, pollheaders=None, pollfrequency=None, pollfrequencyunits=None, apikey=''):
         """
         Set the checking strategy for a context - this defines how ZAP checks that a request is authenticated
         """
-        params = {'contextName': contextname, 'checkingStrategy': checkingstrategy, 'apikey': apikey}
+        params = {'contextName': contextname, 'checkingStrategy': checkingstrategy}
         if pollurl is not None:
             params['pollUrl'] = pollurl
         if polldata is not None:
@@ -116,52 +116,52 @@ class context(object):
         """
         Creates a new context with the given name in the current session
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/newContext/', {'contextName': contextname, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/newContext/', {'contextName': contextname})))
 
     def remove_context(self, contextname, apikey=''):
         """
         Removes a context in the current session
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/removeContext/', {'contextName': contextname, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/removeContext/', {'contextName': contextname})))
 
     def export_context(self, contextname, contextfile, apikey=''):
         """
         Exports the context with the given name to a file. If a relative file path is specified it will be resolved against the "contexts" directory in ZAP "home" dir.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/exportContext/', {'contextName': contextname, 'contextFile': contextfile, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/exportContext/', {'contextName': contextname, 'contextFile': contextfile})))
 
     def import_context(self, contextfile, apikey=''):
         """
         Imports a context from a file. If a relative file path is specified it will be resolved against the "contexts" directory in ZAP "home" dir.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/importContext/', {'contextFile': contextfile, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/importContext/', {'contextFile': contextfile})))
 
     def include_context_technologies(self, contextname, technologynames, apikey=''):
         """
         Includes technologies with the given names, separated by a comma, to a context
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/includeContextTechnologies/', {'contextName': contextname, 'technologyNames': technologynames, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/includeContextTechnologies/', {'contextName': contextname, 'technologyNames': technologynames})))
 
     def include_all_context_technologies(self, contextname, apikey=''):
         """
         Includes all built in technologies in to a context
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/includeAllContextTechnologies/', {'contextName': contextname, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/includeAllContextTechnologies/', {'contextName': contextname})))
 
     def exclude_context_technologies(self, contextname, technologynames, apikey=''):
         """
         Excludes technologies with the given names, separated by a comma, from a context
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/excludeContextTechnologies/', {'contextName': contextname, 'technologyNames': technologynames, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/excludeContextTechnologies/', {'contextName': contextname, 'technologyNames': technologynames})))
 
     def exclude_all_context_technologies(self, contextname, apikey=''):
         """
         Excludes all built in technologies from a context
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/excludeAllContextTechnologies/', {'contextName': contextname, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/excludeAllContextTechnologies/', {'contextName': contextname})))
 
     def set_context_in_scope(self, contextname, booleaninscope, apikey=''):
         """
         Sets a context to in scope (contexts are in scope by default)
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/setContextInScope/', {'contextName': contextname, 'booleanInScope': booleaninscope, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'context/action/setContextInScope/', {'contextName': contextname, 'booleanInScope': booleaninscope})))

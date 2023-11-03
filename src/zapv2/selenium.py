@@ -92,43 +92,43 @@ class selenium(object):
         Sets the current path to Chrome binary
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionChromeBinaryPath/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionChromeBinaryPath/', {'String': string})))
 
     def set_option_chrome_driver_path(self, string, apikey=''):
         """
         Sets the current path to ChromeDriver
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionChromeDriverPath/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionChromeDriverPath/', {'String': string})))
 
     def set_option_firefox_binary_path(self, string, apikey=''):
         """
         Sets the current path to Firefox binary
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionFirefoxBinaryPath/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionFirefoxBinaryPath/', {'String': string})))
 
     def set_option_firefox_driver_path(self, string, apikey=''):
         """
         Sets the current path to Firefox driver (geckodriver)
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionFirefoxDriverPath/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionFirefoxDriverPath/', {'String': string})))
 
     def set_option_ie_driver_path(self, string, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionIeDriverPath/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionIeDriverPath/', {'String': string})))
 
     def set_option_last_directory(self, string, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionLastDirectory/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionLastDirectory/', {'String': string})))
 
     def set_option_phantom_js_binary_path(self, string, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionPhantomJsBinaryPath/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionPhantomJsBinaryPath/', {'String': string})))

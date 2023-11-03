@@ -44,19 +44,19 @@ class ruleConfig(object):
         """
         Reset the specified rule configuration, which must already exist
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ruleConfig/action/resetRuleConfigValue/', {'key': key, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ruleConfig/action/resetRuleConfigValue/', {'key': key})))
 
     def reset_all_rule_config_values(self, apikey=''):
         """
         Reset all of the rule configurations
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ruleConfig/action/resetAllRuleConfigValues/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ruleConfig/action/resetAllRuleConfigValues/', {})))
 
     def set_rule_config_value(self, key, value=None, apikey=''):
         """
         Set the specified rule configuration, which must already exist
         """
-        params = {'key': key, 'apikey': apikey}
+        params = {'key': key}
         if value is not None:
             params['value'] = value
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ruleConfig/action/setRuleConfigValue/', params)))

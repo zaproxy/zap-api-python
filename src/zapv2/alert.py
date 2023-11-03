@@ -94,31 +94,31 @@ class alert(object):
         """
         Deletes all alerts of the current session.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/deleteAllAlerts/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/deleteAllAlerts/', {})))
 
     def delete_alert(self, id, apikey=''):
         """
         Deletes the alert with the given ID. 
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/deleteAlert/', {'id': id, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/deleteAlert/', {'id': id})))
 
     def update_alerts_confidence(self, ids, confidenceid, apikey=''):
         """
         Update the confidence of the alerts.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/updateAlertsConfidence/', {'ids': ids, 'confidenceId': confidenceid, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/updateAlertsConfidence/', {'ids': ids, 'confidenceId': confidenceid})))
 
     def update_alerts_risk(self, ids, riskid, apikey=''):
         """
         Update the risk of the alerts.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/updateAlertsRisk/', {'ids': ids, 'riskId': riskid, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/action/updateAlertsRisk/', {'ids': ids, 'riskId': riskid})))
 
     def update_alert(self, id, name, riskid, confidenceid, description, param=None, attack=None, otherinfo=None, solution=None, references=None, evidence=None, cweid=None, wascid=None, apikey=''):
         """
         Update the alert with the given ID, with the provided details.
         """
-        params = {'id': id, 'name': name, 'riskId': riskid, 'confidenceId': confidenceid, 'description': description, 'apikey': apikey}
+        params = {'id': id, 'name': name, 'riskId': riskid, 'confidenceId': confidenceid, 'description': description}
         if param is not None:
             params['param'] = param
         if attack is not None:
@@ -141,7 +141,7 @@ class alert(object):
         """
         Add an alert associated with the given message ID, with the provided details. (The ID of the created alert is returned.)
         """
-        params = {'messageId': messageid, 'name': name, 'riskId': riskid, 'confidenceId': confidenceid, 'description': description, 'apikey': apikey}
+        params = {'messageId': messageid, 'name': name, 'riskId': riskid, 'confidenceId': confidenceid, 'description': description}
         if param is not None:
             params['param'] = param
         if attack is not None:

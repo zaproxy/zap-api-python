@@ -31,4 +31,4 @@ class retest(object):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'retest/action/retest/', {'alertIds': alertids, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'retest/action/retest/', {'alertIds': alertids})))

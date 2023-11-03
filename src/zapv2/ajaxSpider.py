@@ -163,7 +163,7 @@ class ajaxSpider(object):
         Runs the AJAX Spider against a given target.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'apikey': apikey}
+        params = {}
         if url is not None:
             params['url'] = url
         if inscope is not None:
@@ -179,7 +179,7 @@ class ajaxSpider(object):
         Runs the AJAX Spider from the perspective of a User of the web application.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'contextName': contextname, 'userName': username, 'apikey': apikey}
+        params = {'contextName': contextname, 'userName': username}
         if url is not None:
             params['url'] = url
         if subtreeonly is not None:
@@ -191,14 +191,14 @@ class ajaxSpider(object):
         Stops the AJAX Spider.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/stop/', {'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/stop/', {})))
 
     def add_allowed_resource(self, regex, enabled=None, apikey=''):
         """
         Adds an allowed resource.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'regex': regex, 'apikey': apikey}
+        params = {'regex': regex}
         if enabled is not None:
             params['enabled'] = enabled
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/addAllowedResource/', params)))
@@ -208,7 +208,7 @@ class ajaxSpider(object):
         Adds an excluded element to a context.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'contextName': contextname, 'description': description, 'element': element, 'apikey': apikey}
+        params = {'contextName': contextname, 'description': description, 'element': element}
         if xpath is not None:
             params['xpath'] = xpath
         if text is not None:
@@ -226,7 +226,7 @@ class ajaxSpider(object):
         Modifies an excluded element of a context.
         This component is optional and therefore the API will only work if it is installed
         """
-        params = {'contextName': contextname, 'description': description, 'element': element, 'apikey': apikey}
+        params = {'contextName': contextname, 'description': description, 'element': element}
         if descriptionnew is not None:
             params['descriptionNew'] = descriptionnew
         if xpath is not None:
@@ -246,88 +246,88 @@ class ajaxSpider(object):
         Removes an excluded element from a context.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/removeExcludedElement/', {'contextName': contextname, 'description': description, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/removeExcludedElement/', {'contextName': contextname, 'description': description})))
 
     def remove_allowed_resource(self, regex, apikey=''):
         """
         Removes an allowed resource.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/removeAllowedResource/', {'regex': regex, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/removeAllowedResource/', {'regex': regex})))
 
     def set_enabled_allowed_resource(self, regex, enabled, apikey=''):
         """
         Sets whether or not an allowed resource is enabled.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setEnabledAllowedResource/', {'regex': regex, 'enabled': enabled, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setEnabledAllowedResource/', {'regex': regex, 'enabled': enabled})))
 
     def set_option_browser_id(self, string, apikey=''):
         """
         Sets the configuration of the AJAX Spider to use one of the supported browsers.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionBrowserId/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionBrowserId/', {'String': string})))
 
     def set_option_click_default_elems(self, boolean, apikey=''):
         """
         Sets whether or not the the AJAX Spider will only click on the default HTML elements.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionClickDefaultElems/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionClickDefaultElems/', {'Boolean': boolean})))
 
     def set_option_click_elems_once(self, boolean, apikey=''):
         """
         When enabled, the crawler attempts to interact with each element (e.g., by clicking) only once.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionClickElemsOnce/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionClickElemsOnce/', {'Boolean': boolean})))
 
     def set_option_event_wait(self, integer, apikey=''):
         """
         Sets the time to wait after an event (in milliseconds). For example: the wait delay after the cursor hovers over an element, in order for a menu to display, etc.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionEventWait/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionEventWait/', {'Integer': integer})))
 
     def set_option_max_crawl_depth(self, integer, apikey=''):
         """
         Sets the maximum depth that the crawler can reach.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionMaxCrawlDepth/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionMaxCrawlDepth/', {'Integer': integer})))
 
     def set_option_max_crawl_states(self, integer, apikey=''):
         """
         Sets the maximum number of states that the crawler should crawl.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionMaxCrawlStates/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionMaxCrawlStates/', {'Integer': integer})))
 
     def set_option_max_duration(self, integer, apikey=''):
         """
         The maximum time that the crawler is allowed to run.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionMaxDuration/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionMaxDuration/', {'Integer': integer})))
 
     def set_option_number_of_browsers(self, integer, apikey=''):
         """
         Sets the number of windows to be used by AJAX Spider.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionNumberOfBrowsers/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionNumberOfBrowsers/', {'Integer': integer})))
 
     def set_option_random_inputs(self, boolean, apikey=''):
         """
         When enabled, inserts random values into form fields.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionRandomInputs/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionRandomInputs/', {'Boolean': boolean})))
 
     def set_option_reload_wait(self, integer, apikey=''):
         """
         Sets the time to wait after the page is loaded before interacting with it.
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionReloadWait/', {'Integer': integer, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionReloadWait/', {'Integer': integer})))

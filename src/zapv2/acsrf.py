@@ -45,25 +45,25 @@ class acsrf(object):
         """
         Adds an anti-CSRF token with the given name, enabled by default
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'acsrf/action/addOptionToken/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'acsrf/action/addOptionToken/', {'String': string})))
 
     def remove_option_token(self, string, apikey=''):
         """
         Removes the anti-CSRF token with the given name
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'acsrf/action/removeOptionToken/', {'String': string, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'acsrf/action/removeOptionToken/', {'String': string})))
 
     def set_option_partial_matching_enabled(self, boolean, apikey=''):
         """
         Define if ZAP should detect CSRF tokens by searching for partial matches.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'acsrf/action/setOptionPartialMatchingEnabled/', {'Boolean': boolean, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'acsrf/action/setOptionPartialMatchingEnabled/', {'Boolean': boolean})))
 
     def gen_form(self, hrefid, actionurl=None, apikey=''):
         """
         Generate a form for testing lack of anti-CSRF tokens - typically invoked via ZAP
         """
-        params = {'hrefId': hrefid, 'apikey': apikey}
+        params = {'hrefId': hrefid}
         if actionurl is not None:
             params['actionUrl'] = actionurl
         return (self.zap._request_other(self.zap.base_other + 'acsrf/other/genForm/', params))

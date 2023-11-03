@@ -70,31 +70,31 @@ class users(object):
         """
         Creates a new user with the given name for the context with the given ID.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/newUser/', {'contextId': contextid, 'name': name, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/newUser/', {'contextId': contextid, 'name': name})))
 
     def remove_user(self, contextid, userid, apikey=''):
         """
         Removes the user with the given ID that belongs to the context with the given ID.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/removeUser/', {'contextId': contextid, 'userId': userid, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/removeUser/', {'contextId': contextid, 'userId': userid})))
 
     def set_user_enabled(self, contextid, userid, enabled, apikey=''):
         """
         Sets whether or not the user, with the given ID that belongs to the context with the given ID, should be enabled.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/setUserEnabled/', {'contextId': contextid, 'userId': userid, 'enabled': enabled, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/setUserEnabled/', {'contextId': contextid, 'userId': userid, 'enabled': enabled})))
 
     def set_user_name(self, contextid, userid, name, apikey=''):
         """
         Renames the user with the given ID that belongs to the context with the given ID.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/setUserName/', {'contextId': contextid, 'userId': userid, 'name': name, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/setUserName/', {'contextId': contextid, 'userId': userid, 'name': name})))
 
     def set_authentication_credentials(self, contextid, userid, authcredentialsconfigparams=None, apikey=''):
         """
         Sets the authentication credentials for the user with the given ID that belongs to the context with the given ID.
         """
-        params = {'contextId': contextid, 'userId': userid, 'apikey': apikey}
+        params = {'contextId': contextid, 'userId': userid}
         if authcredentialsconfigparams is not None:
             params['authCredentialsConfigParams'] = authcredentialsconfigparams
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/setAuthenticationCredentials/', params)))
@@ -103,19 +103,19 @@ class users(object):
         """
         Tries to authenticate as the identified user, returning the authentication request and whether it appears to have succeeded.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/authenticateAsUser/', {'contextId': contextid, 'userId': userid, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/authenticateAsUser/', {'contextId': contextid, 'userId': userid})))
 
     def poll_as_user(self, contextid, userid, apikey=''):
         """
         Tries to poll as the identified user, returning the authentication request and whether it appears to have succeeded. This will only work if the polling verification strategy has been configured.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/pollAsUser/', {'contextId': contextid, 'userId': userid, 'apikey': apikey})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/action/pollAsUser/', {'contextId': contextid, 'userId': userid})))
 
     def set_authentication_state(self, contextid, userid, lastpollresult=None, lastpolltimeinms=None, requestssincelastpoll=None, apikey=''):
         """
         Sets fields in the authentication state for the user identified by the Context and User Ids.
         """
-        params = {'contextId': contextid, 'userId': userid, 'apikey': apikey}
+        params = {'contextId': contextid, 'userId': userid}
         if lastpollresult is not None:
             params['lastPollResult'] = lastpollresult
         if lastpolltimeinms is not None:
@@ -128,7 +128,7 @@ class users(object):
         """
         Sets the specified cookie for the user identified by the Context and User Ids.
         """
-        params = {'contextId': contextid, 'userId': userid, 'domain': domain, 'name': name, 'value': value, 'apikey': apikey}
+        params = {'contextId': contextid, 'userId': userid, 'domain': domain, 'name': name, 'value': value}
         if path is not None:
             params['path'] = path
         if secure is not None:
