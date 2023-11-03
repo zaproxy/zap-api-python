@@ -150,12 +150,15 @@ class ZAPv2(object):
         # Must never leak the API key via proxied requests
         return requests.get(url, proxies=self.__proxies, verify=False, *args, **kwargs).text
 
-    def _request_api(self, url, query=None):
+    def _request_api(self, url, query=None, method="GET", body=None):
         """
         Shortcut for an API request. Will always add the apikey (if defined)
 
         :Parameters:
-           - `url`: the url to GET at.
+           - `url`: the url.
+           - `query`: Dictionary, list of tuples or bytes to send in the query string of the request.
+           - `method`: String, the method of the request.
+           - `body`: Dictionary, list of tuples, bytes, or file-like object to send in the body of the request.
         """
         if not url.startswith('http://zap/'):
           # Only allow requests to the API so that we never leak the apikey
@@ -167,7 +170,7 @@ class ZAPv2(object):
         if self.__apikey is not None:
           self.session.headers['X-ZAP-API-Key'] = self.__apikey
 
-        response = self.session.get(url, params=query, proxies=self.__proxies, verify=False)
+        response = self.session.request(method, url, params=query, data=body, proxies=self.__proxies, verify=False)
 
         if (self.__validate_status_code and response.status_code >= 300 and response.status_code < 500):
             raise Exception("Non-successful status code returned from ZAP, which indicates a bad request: "
@@ -179,24 +182,28 @@ class ZAPv2(object):
                                 + "response: " + response.text )
         return response
 
-    def _request(self, url, get=None):
+    def _request(self, url, get=None, method="GET", body=None):
         """
-        Shortcut for a GET request.
+        Shortcut for an API request.
 
         :Parameters:
-           - `url`: the url to GET at.
+           - `url`: the url.
            - `get`: the dictionary to turn into GET variables.
+           - `method`: the method to request.
+           - `body`: the data to send in the body.
         """
-        data = self._request_api(url, get)
+        data = self._request_api(url, get, method, body)
         return data.json()
 
-    def _request_other(self, url, get=None):
+    def _request_other(self, url, get=None, method="GET", body=None):
         """
-        Shortcut for an API OTHER GET request.
+        Shortcut for an API OTHER request.
 
         :Parameters:
-           - `url`: the url to GET at.
+           - `url`: the url.
            - `get`: the dictionary to turn into GET variables.
+           - `method`: the method to request.
+           - `body`: the data to send in the body.
         """
-        data = self._request_api(url, get)
+        data = self._request_api(url, get, method, body)
         return data.text
