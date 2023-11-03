@@ -516,6 +516,12 @@ class core(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/disableClientCertificate/', {})))
 
+    def create_sbom_zip(self, filepath, apikey=''):
+        """
+        Create a zip file of the ZAP core and add-on SBOMs
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/createSbomZip/', {'filePath': filepath})))
+
     def delete_all_alerts(self, apikey=''):
         """
         Deletes all alerts of the current session.
@@ -693,3 +699,15 @@ class core(object):
         if followredirects is not None:
             params['followRedirects'] = followredirects
         return (self.zap._request_other(self.zap.base_other + 'core/other/sendHarRequest/', params))
+
+    def file_download(self, filename, apikey=''):
+        """
+        Download a file from the transfer directory
+        """
+        return (self.zap._request_other(self.zap.base_other + 'core/other/fileDownload/', {'fileName': filename}))
+
+    def file_upload(self, filename, filecontents, apikey=''):
+        """
+        Upload a file to the transfer directory. Only POST requests accepted with encodings of "multipart/form-data" or "application/x-www-form-urlencoded".
+        """
+        return (self.zap._request_other(self.zap.base_other + 'core/other/fileUpload/', method="POST", body={'fileName': filename, 'fileContents': filecontents}))
