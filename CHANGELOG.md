@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Changed
+- Allow to call the ZAP API with custom HTTP method and body (e.g. file upload).
+
 ### Deprecated
 - The parameter `apikey` in the functions is no longer functional and will be removed in a future version.
   The API key should be set when creating the API client (i.e. `ZAPv2(apikey='MyApiKey')`), which was added in the version 0.0.9, seven years ago.
