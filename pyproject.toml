@@ -1,0 +1,52 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "zaproxy"
+# Ensure __version__ in src/zapv2/__init__.py matches.
+version = "0.3.0"
+description = "ZAP API Client"
+authors = ["ZAP Development Team <zaproxy-develop@googlegroups.com>"]
+license = "Apache-2.0"
+
+homepage = "https://www.zaproxy.org/"
+repository = "https://github.com/zaproxy/zap-api-python.git"
+documentation = "https://www.zaproxy.org/docs/api/"
+
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Development Status :: 5 - Production/Stable",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+
+packages = [
+    { include = "zapv2", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.31.0"
+six = "^1.16.0"
+
+[tool.poetry.group.dev.dependencies]
+pylama = {extras = ["toml"], version = "^8.4.1"}
+pytest = "^7.4.3"
+mock = "^5.1.0"
+PyHamcrest = "^2.1.0"
+requests-mock = "^1.11.0"
+
+[tool.pylama]
+linters = "pyflakes"
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]

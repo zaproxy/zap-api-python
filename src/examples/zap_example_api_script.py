@@ -41,7 +41,7 @@ sessionName = 'WebgoatSession'
 # Define the list of global exclude URL regular expressions. List can be empty.
 # The expressions must follow the java.util.regex.Pattern class syntax
 # The following example excludes every single URL except http://localhost:8081
-globalExcludeUrl = ['^(?:(?!http:\/\/localhost:8081).*).$']
+globalExcludeUrl = ['^(?:(?!http://localhost:8081).*).$']
 
 # MANDATORY. Define if an outgoing proxy server is used
 useProxyChain = False
@@ -139,7 +139,7 @@ isLoggedInIndicator = False
 # MANDATORY only if useContextForScan is True. Ignored otherwise.
 # Define either a loggedin or a loggedout indicator regular expression.
 # It allows ZAP to see if the user is always authenticated during scans.
-indicatorRegex = '\QLocation: http://localhost:8081/WebGoat/login.mvc\E'
+indicatorRegex = '\\QLocation: http://localhost:8081/WebGoat/login.mvc\\E'
 
 
 # MANDATORY only if useContextForScan is True. Ignored otherwise.
