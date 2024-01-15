@@ -40,7 +40,7 @@ class users(object):
         """
         Gets the data of the user with the given ID that belongs to the context with the given ID.
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'users/view/getUserById/', {'contextId': contextid, 'userId': userid})))
+        return (self.zap._request(self.zap.base + 'users/view/getUserById/', {'contextId': contextid, 'userId': userid}))
 
     def get_authentication_credentials_config_params(self, contextid):
         """
