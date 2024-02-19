@@ -40,7 +40,7 @@ six = "^1.16.0"
 
 [tool.poetry.group.dev.dependencies]
 pylama = {extras = ["toml"], version = "^8.4.1"}
-pytest = "^8.0.0"
+pytest = "^8.0.1"
 mock = "^5.1.0"
 PyHamcrest = "^2.1.0"
 requests-mock = "^1.11.0"
