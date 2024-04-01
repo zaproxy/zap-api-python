@@ -43,7 +43,7 @@ pylama = {extras = ["toml"], version = "^8.4.1"}
 pytest = "^8.1.1"
 mock = "^5.1.0"
 PyHamcrest = "^2.1.0"
-requests-mock = "^1.11.0"
+requests-mock = "^1.12.1"
 
 [tool.pylama]
 linters = "pyflakes"
