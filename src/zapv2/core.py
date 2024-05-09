@@ -225,6 +225,15 @@ class core(object):
             params['riskId'] = riskid
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/numberOfAlerts/', params)))
 
+    def get_log_level(self, name=None):
+        """
+        The detailed logging config, optionally filtered based on a name (ex: starts with).
+        """
+        params = {}
+        if name is not None:
+            params['name'] = name
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/view/getLogLevel/', params)))
+
     @property
     def option_default_user_agent(self):
         """
@@ -533,6 +542,12 @@ class core(object):
         Deletes the alert with the given ID. 
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/deleteAlert/', {'id': id})))
+
+    def set_log_level(self, name, loglevel, apikey=''):
+        """
+        Sets the logging level for a given logger name.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'core/action/setLogLevel/', {'name': name, 'logLevel': loglevel})))
 
     def set_option_default_user_agent(self, string, apikey=''):
         """

@@ -241,6 +241,13 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionAllowAttackOnStart/')))
 
     @property
+    def option_encode_cookie_values(self):
+        """
+        Tells whether or not the active scanner should encode cookie values.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionEncodeCookieValues/')))
+
+    @property
     def option_inject_plugin_id_in_header(self):
         """
         Tells whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scan rule that's sending the requests.
@@ -571,6 +578,12 @@ class ascan(object):
         
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionDelayInMs/', {'Integer': integer})))
+
+    def set_option_encode_cookie_values(self, boolean, apikey=''):
+        """
+        Sets whether or not the active scanner should encode cookie values.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionEncodeCookieValues/', {'Boolean': boolean})))
 
     def set_option_handle_anti_csrf_tokens(self, boolean, apikey=''):
         """

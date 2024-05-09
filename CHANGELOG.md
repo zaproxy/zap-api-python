@@ -3,7 +3,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [0.3.0] - 2024-05-09
+### Added
+- Add the API of the following add-on:
+  - Custom Payloads version 0.13.0.
+
+### Changed
+- Update core APIs for 2.15.
+
 ### Fixed
 - Return the whole response from `users.get_user_by_id`.
 
@@ -164,7 +171,7 @@ ensure it's automatically sent in all API requests.
 ### Changed
 - Moved from the main `zaproxy` repository.
 
-[Unreleased]: https://github.com/zaproxy/zap-api-python/compare/0.2.0...HEAD
+[0.3.0]: https://github.com/zaproxy/zap-api-python/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/zaproxy/zap-api-python/compare/0.1.1...0.2.0
 [0.1.1]: https://github.com/zaproxy/zap-api-python/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/zaproxy/zap-api-python/compare/0.0.22...0.1.0

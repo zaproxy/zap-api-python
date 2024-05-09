@@ -30,7 +30,7 @@ class wappalyzer(object):
     @property
     def list_sites(self):
         """
-        Lists all the sites recognized by the wappalyzer addon.
+        Lists all the sites recognized by the Technology Detection add-on.
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'wappalyzer/view/listSites/')))

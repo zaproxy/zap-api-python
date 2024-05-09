@@ -271,7 +271,7 @@ class ajaxSpider(object):
 
     def set_option_click_default_elems(self, boolean, apikey=''):
         """
-        Sets whether or not the the AJAX Spider will only click on the default HTML elements.
+        Sets whether or not the AJAX Spider will only click on the default HTML elements.
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionClickDefaultElems/', {'Boolean': boolean})))
