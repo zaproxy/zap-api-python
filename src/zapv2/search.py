@@ -40,6 +40,19 @@ class search(object):
             params['count'] = count
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByUrlRegex/', params)))
 
+    def urls_by_tag_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the URLs of the HTTP messages that match the given regular expression in their history Tags optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
+        params = {'regex': regex}
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        if start is not None:
+            params['start'] = start
+        if count is not None:
+            params['count'] = count
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByTagRegex/', params)))
+
     def urls_by_request_regex(self, regex, baseurl=None, start=None, count=None):
         """
         Returns the URLs of the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -92,6 +105,19 @@ class search(object):
             params['count'] = count
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByUrlRegex/', params)))
 
+    def messages_by_tag_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the HTTP messages that match the given regular expression in their history Tags optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
+        params = {'regex': regex}
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        if start is not None:
+            params['start'] = start
+        if count is not None:
+            params['count'] = count
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByTagRegex/', params)))
+
     def messages_by_request_regex(self, regex, baseurl=None, start=None, count=None):
         """
         Returns the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -143,6 +169,19 @@ class search(object):
         if count is not None:
             params['count'] = count
         return (self.zap._request_other(self.zap.base_other + 'search/other/harByUrlRegex/', params))
+
+    def har_by_tag_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
+        """
+        Returns the HTTP messages, in HAR format, that match the given regular expression in their history Tags optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
+        params = {'regex': regex}
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        if start is not None:
+            params['start'] = start
+        if count is not None:
+            params['count'] = count
+        return (self.zap._request_other(self.zap.base_other + 'search/other/harByTagRegex/', params))
 
     def har_by_request_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
         """
