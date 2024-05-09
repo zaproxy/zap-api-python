@@ -38,6 +38,7 @@ from .autoupdate import autoupdate
 from .brk import brk
 from .context import context
 from .core import core
+from .custompayloads import custompayloads
 from .exim import exim
 from .forcedUser import forcedUser
 from .graphql import graphql
@@ -103,6 +104,7 @@ class ZAPv2(object):
         self.brk = brk(self)
         self.context = context(self)
         self.core = core(self)
+        self.custompayloads = custompayloads(self)
         self.exim = exim(self)
         self.forcedUser = forcedUser(self)
         self.graphql = graphql(self)
