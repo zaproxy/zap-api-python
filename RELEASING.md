@@ -9,14 +9,5 @@ Tag (and push) the new version:
     git tag -s 0.0.X -m "Version 0.0.X."
     git push upstream 0.0.X
 
-(Checkout the tag and ensure the working copy is clean.)
-
-Build the distribution (source and wheel) files:
-
-     poetry build
-
-Upload to PyPi:
-
-     poetry publish
-
-The user must have permissions to upload to the `zaproxy` package.
+The workflow [Release PyPI](https://github.com/zaproxy/zap-api-python/blob/main/.github/workflows/release.yml)
+will be triggered by the tag push and release to PyPI.

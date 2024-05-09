@@ -1,0 +1,19 @@
+name: Release PyPI
+
+on:
+  push:
+    tags:
+
+jobs:
+  pypi-publish:
+    name: Upload release to PyPI
+    runs-on: ubuntu-latest
+    environment:
+      name: release
+      url: https://pypi.org/p/zaproxy
+    permissions:
+      id-token: write
+    steps:
+    - run: poetry build
+    - name: Publish package distributions to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
