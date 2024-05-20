@@ -31,7 +31,7 @@ class automation(object):
         """
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/view/planProgress/', {'planId': planid})))
+        return (self.zap._request(self.zap.base + 'automation/view/planProgress/', {'planId': planid}))
 
     def run_plan(self, filepath, apikey=''):
         """
