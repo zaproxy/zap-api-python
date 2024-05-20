@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
 ## [0.3.1] - 2024-05-20
 ### Fixed
 - Return the whole response from `automation.plan_progress`.
@@ -175,6 +177,7 @@ ensure it's automatically sent in all API requests.
 ### Changed
 - Moved from the main `zaproxy` repository.
 
+[Unreleased]: https://github.com/zaproxy/zap-api-python/compare/0.3.1...HEAD
 [0.3.1]: https://github.com/zaproxy/zap-api-python/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/zaproxy/zap-api-python/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/zaproxy/zap-api-python/compare/0.1.1...0.2.0
