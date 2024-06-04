@@ -20,7 +20,7 @@ Client implementation for using the ZAP pentesting proxy remotely.
 """
 
 __docformat__ = 'restructuredtext'
-__version__ = '0.3.2'
+__version__ = '0.4.0'
 
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
