@@ -34,7 +34,7 @@ class stats(object):
         params = {}
         if keyprefix is not None:
             params['keyPrefix'] = keyprefix
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'stats/view/stats/', params)))
+        return (self.zap._request(self.zap.base + 'stats/view/stats/', params))
 
     def all_sites_stats(self, keyprefix=None):
         """
