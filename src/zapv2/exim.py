@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2022 the ZAP development team
+# Copyright 2025 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -54,6 +54,20 @@ class exim(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'exim/action/importModsec2Logs/', {'filePath': filepath})))
+
+    def export_sites_tree(self, filepath, apikey=''):
+        """
+        Exports the Sites Tree in the Sites Tree YAML format.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'exim/action/exportSitesTree/', {'filePath': filepath})))
+
+    def prune_sites_tree(self, filepath, apikey=''):
+        """
+        Prunes the Sites Tree based on a file in the Sites Tree YAML format.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'exim/action/pruneSitesTree/', {'filePath': filepath})))
 
     def export_har(self, baseurl=None, start=None, count=None, apikey=''):
         """

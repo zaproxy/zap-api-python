@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2022 the ZAP development team
+# Copyright 2025 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,13 +31,15 @@ class pscan(object):
     def scan_only_in_scope(self):
         """
         Tells whether or not the passive scan should be performed only on messages that are in scope.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/scanOnlyInScope/')))
 
     @property
     def records_to_scan(self):
         """
-        The number of records the passive scanner still has to scan
+        The number of records the passive scanner still has to scan.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/recordsToScan/')))
 
@@ -45,20 +47,23 @@ class pscan(object):
     def scanners(self):
         """
         Lists all passive scan rules with their ID, name, enabled state, and alert threshold.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/scanners/')))
 
     @property
     def current_rule(self):
         """
-        Show information about the passive scan rule currently being run (if any).
+        Shows information about the passive scan rule currently being run (if any).
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/currentRule/')))
 
     @property
     def current_tasks(self):
         """
-        Show information about the passive scan tasks currently being run (if any).
+        Shows information about the passive scan tasks currently being run (if any).
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/currentTasks/')))
 
@@ -66,71 +71,83 @@ class pscan(object):
     def max_alerts_per_rule(self):
         """
         Gets the maximum number of alerts a passive scan rule should raise.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/maxAlertsPerRule/')))
 
     def set_enabled(self, enabled, apikey=''):
         """
         Sets whether or not the passive scanning is enabled (Note: the enabled state is not persisted).
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setEnabled/', {'enabled': enabled})))
 
     def set_scan_only_in_scope(self, onlyinscope, apikey=''):
         """
         Sets whether or not the passive scan should be performed only on messages that are in scope.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setScanOnlyInScope/', {'onlyInScope': onlyinscope})))
 
     def enable_all_scanners(self, apikey=''):
         """
-        Enables all passive scan rules
+        Enables all passive scan rules.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableAllScanners/', {})))
 
     def disable_all_scanners(self, apikey=''):
         """
-        Disables all passive scan rules
+        Disables all passive scan rules.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableAllScanners/', {})))
 
     def enable_scanners(self, ids, apikey=''):
         """
-        Enables all passive scan rules with the given IDs (comma separated list of IDs)
+        Enables passive scan rules.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableScanners/', {'ids': ids})))
 
     def disable_scanners(self, ids, apikey=''):
         """
-        Disables all passive scan rules with the given IDs (comma separated list of IDs)
+        Disables passive scan rules.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableScanners/', {'ids': ids})))
 
     def set_scanner_alert_threshold(self, id, alertthreshold, apikey=''):
         """
-        Sets the alert threshold of the passive scan rule with the given ID, accepted values for alert threshold: OFF, DEFAULT, LOW, MEDIUM and HIGH
+        Sets the alert threshold of a passive scan rule.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setScannerAlertThreshold/', {'id': id, 'alertThreshold': alertthreshold})))
 
     def set_max_alerts_per_rule(self, maxalerts, apikey=''):
         """
-        Sets the maximum number of alerts a passive scan rule should raise.
+        Sets the maximum number of alerts a passive scan rule can raise.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setMaxAlertsPerRule/', {'maxAlerts': maxalerts})))
 
     def disable_all_tags(self, apikey=''):
         """
         Disables all passive scan tags.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/disableAllTags/', {})))
 
     def enable_all_tags(self, apikey=''):
         """
         Enables all passive scan tags.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/enableAllTags/', {})))
 
     def clear_queue(self, apikey=''):
         """
         Clears the passive scan queue.
+        This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/clearQueue/', {})))
