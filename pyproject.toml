@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "zaproxy"
 # Ensure __version__ in src/zapv2/__init__.py matches.
-version = "0.4.0"
+version = "0.5.0"
 description = "ZAP API Client"
 readme = "README.md"
 authors = ["ZAP Development Team <zaproxy-develop@googlegroups.com>"]
