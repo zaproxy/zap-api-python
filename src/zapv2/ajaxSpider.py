@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2022 the ZAP development team
+# Copyright 2025 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -151,6 +151,13 @@ class ajaxSpider(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/view/optionClickElemsOnce/')))
 
     @property
+    def option_enable_extensions(self):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/view/optionEnableExtensions/')))
+
+    @property
     def option_random_inputs(self):
         """
         Gets if the AJAX Spider will use random values in form fields when crawling, if set to true.
@@ -282,6 +289,12 @@ class ajaxSpider(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionClickElemsOnce/', {'Boolean': boolean})))
+
+    def set_option_enable_extensions(self, boolean, apikey=''):
+        """
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ajaxSpider/action/setOptionEnableExtensions/', {'Boolean': boolean})))
 
     def set_option_event_wait(self, integer, apikey=''):
         """

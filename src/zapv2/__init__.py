@@ -45,6 +45,7 @@ from .graphql import graphql
 from .httpSessions import httpSessions
 from .localProxies import localProxies
 from .network import network
+from .oast import oast
 from .openapi import openapi
 from .params import params
 from .pnh import pnh
@@ -111,6 +112,7 @@ class ZAPv2(object):
         self.httpsessions = httpSessions(self)
         self.localProxies = localProxies(self)
         self.network = network(self)
+        self.oast = oast(self)
         self.openapi = openapi(self)
         self.params = params(self)
         self.pnh = pnh(self)

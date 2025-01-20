@@ -2,7 +2,7 @@
 #
 # ZAP is an HTTP/HTTPS proxy for assessing web application security.
 #
-# Copyright 2022 the ZAP development team
+# Copyright 2025 the ZAP development team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -52,6 +52,19 @@ class search(object):
         if count is not None:
             params['count'] = count
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByTagRegex/', params)))
+
+    def urls_by_note_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the URLs of the HTTP messages that match the given regular expression in their note optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
+        params = {'regex': regex}
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        if start is not None:
+            params['start'] = start
+        if count is not None:
+            params['count'] = count
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/urlsByNoteRegex/', params)))
 
     def urls_by_request_regex(self, regex, baseurl=None, start=None, count=None):
         """
@@ -118,6 +131,19 @@ class search(object):
             params['count'] = count
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByTagRegex/', params)))
 
+    def messages_by_note_regex(self, regex, baseurl=None, start=None, count=None):
+        """
+        Returns the HTTP messages that match the given regular expression in their note optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
+        params = {'regex': regex}
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        if start is not None:
+            params['start'] = start
+        if count is not None:
+            params['count'] = count
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'search/view/messagesByNoteRegex/', params)))
+
     def messages_by_request_regex(self, regex, baseurl=None, start=None, count=None):
         """
         Returns the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -182,6 +208,19 @@ class search(object):
         if count is not None:
             params['count'] = count
         return (self.zap._request_other(self.zap.base_other + 'search/other/harByTagRegex/', params))
+
+    def har_by_note_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
+        """
+        Returns the HTTP messages, in HAR format, that match the given regular expression in their note optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+        """
+        params = {'regex': regex}
+        if baseurl is not None:
+            params['baseurl'] = baseurl
+        if start is not None:
+            params['start'] = start
+        if count is not None:
+            params['count'] = count
+        return (self.zap._request_other(self.zap.base_other + 'search/other/harByNoteRegex/', params))
 
     def har_by_request_regex(self, regex, baseurl=None, start=None, count=None, apikey=''):
         """
