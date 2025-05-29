@@ -36,6 +36,7 @@ from .authorization import authorization
 from .automation import automation
 from .autoupdate import autoupdate
 from .brk import brk
+from .client_spider import ClientSpider
 from .context import context
 from .core import core
 from .custompayloads import custompayloads
@@ -103,6 +104,7 @@ class ZAPv2(object):
         self.automation = automation(self)
         self.autoupdate = autoupdate(self)
         self.brk = brk(self)
+        self.clientSpider = ClientSpider(self)
         self.context = context(self)
         self.core = core(self)
         self.custompayloads = custompayloads(self)
