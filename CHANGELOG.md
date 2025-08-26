@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.4.1] - 2025-05-30
+- Adds clientSpider API to the `ZAPv2` class.
+
 ## [0.4.0] - 2025-01-20
 ### Changed
 - Update APIs for 2.16.
