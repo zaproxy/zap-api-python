@@ -44,7 +44,7 @@ class alertFilter(object):
 
     def add_alert_filter(self, contextid, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, methods=None, apikey=''):
         """
-        Adds a new alert filter for the context with the given ID. 
+        Adds a new alert filter for the context with the given ID.
         This component is optional and therefore the API will only work if it is installed
         """
         params = {'contextId': contextid, 'ruleId': ruleid, 'newLevel': newlevel}
@@ -100,7 +100,7 @@ class alertFilter(object):
 
     def add_global_alert_filter(self, ruleid, newlevel, url=None, urlisregex=None, parameter=None, enabled=None, parameterisregex=None, attack=None, attackisregex=None, evidence=None, evidenceisregex=None, methods=None, apikey=''):
         """
-        Adds a new global alert filter. 
+        Adds a new global alert filter.
         This component is optional and therefore the API will only work if it is installed
         """
         params = {'ruleId': ruleid, 'newLevel': newlevel}

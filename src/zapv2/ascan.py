@@ -248,11 +248,25 @@ class ascan(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionEncodeCookieValues/')))
 
     @property
+    def option_exclude_anti_csrf_tokens(self):
+        """
+        Tells whether or not the active scanner should exclude anti-csrf tokens from the scan.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionExcludeAntiCsrfTokens/')))
+
+    @property
     def option_inject_plugin_id_in_header(self):
         """
         Tells whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scan rule that's sending the requests.
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionInjectPluginIdInHeader/')))
+
+    @property
+    def option_persist_temporary_messages(self):
+        """
+        Tells whether or not the temporary HTTP messages sent while active scanning should be persisted.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/view/optionPersistTemporaryMessages/')))
 
     @property
     def option_prompt_in_attack_mode(self):
@@ -585,6 +599,12 @@ class ascan(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionEncodeCookieValues/', {'Boolean': boolean})))
 
+    def set_option_exclude_anti_csrf_tokens(self, boolean, apikey=''):
+        """
+        Sets whether or not the active scanner should exclude anti-csrf tokens from the scan.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionExcludeAntiCsrfTokens/', {'Boolean': boolean})))
+
     def set_option_handle_anti_csrf_tokens(self, boolean, apikey=''):
         """
         
@@ -638,6 +658,12 @@ class ascan(object):
         
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionMaxScansInUI/', {'Integer': integer})))
+
+    def set_option_persist_temporary_messages(self, boolean, apikey=''):
+        """
+        Sets whether or not the temporary HTTP messages sent while active scanning should be persisted.
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'ascan/action/setOptionPersistTemporaryMessages/', {'Boolean': boolean})))
 
     def set_option_prompt_in_attack_mode(self, boolean, apikey=''):
         """

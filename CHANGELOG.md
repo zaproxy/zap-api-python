@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Added
+- Add the APIs of the following add-ons:
+  - Client Side Integration version 0.20.0;
+  - Postman Support version 0.7.0.
+
+### Changed
+- Update core APIs for 2.17.
+- Update the APIs of the following add-ons:
+  - Automation Framework version 0.58.0;
+  - OpenAPI Support version 48;
+  - Passive Scanner version 0.6.0;
+  - Selenium version 15.43.0;
+  - Spider version 0.18.0.
+
 ### Fixed
 - Ensure `requests.Session` is closed to prevent lingering TCP connections.
 
