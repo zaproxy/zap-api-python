@@ -36,6 +36,8 @@ from .authorization import authorization
 from .automation import automation
 from .autoupdate import autoupdate
 from .brk import brk
+from .client import client
+from .clientSpider import clientSpider
 from .context import context
 from .core import core
 from .custompayloads import custompayloads
@@ -49,6 +51,7 @@ from .oast import oast
 from .openapi import openapi
 from .params import params
 from .pnh import pnh
+from .postman import postman
 from .pscan import pscan
 from .replacer import replacer
 from .reports import reports
@@ -103,6 +106,8 @@ class ZAPv2(object):
         self.automation = automation(self)
         self.autoupdate = autoupdate(self)
         self.brk = brk(self)
+        self.client = client(self)
+        self.clientSpider = clientSpider(self)
         self.context = context(self)
         self.core = core(self)
         self.custompayloads = custompayloads(self)
@@ -116,6 +121,7 @@ class ZAPv2(object):
         self.openapi = openapi(self)
         self.params = params(self)
         self.pnh = pnh(self)
+        self.postman = postman(self)
         self.pscan = pscan(self)
         self.replacer = replacer(self)
         self.reports = reports(self)

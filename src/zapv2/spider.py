@@ -147,7 +147,7 @@ class spider(object):
     @property
     def option_max_parse_size_bytes(self):
         """
-        Gets the maximum size, in bytes, that a response might have to be parsed.
+        Gets the maximum size, in bytes, that a response might have to be parsed, or 0 for unlimited.
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionMaxParseSizeBytes/')))
@@ -159,14 +159,6 @@ class spider(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionMaxScansInUI/')))
-
-    @property
-    def option_request_wait_time(self):
-        """
-        
-        This component is optional and therefore the API will only work if it is installed
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionRequestWaitTime/')))
 
     @property
     def option_skip_url_string(self):
@@ -207,6 +199,14 @@ class spider(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionHandleODataParametersVisited/')))
+
+    @property
+    def option_logout_avoidance(self):
+        """
+        Gets whether or not the spider should attempt to avoid logout related paths/functionality.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/view/optionLogoutAvoidance/')))
 
     @property
     def option_parse_comments(self):
@@ -476,6 +476,13 @@ class spider(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionHandleODataParametersVisited/', {'Boolean': boolean})))
 
+    def set_option_logout_avoidance(self, boolean, apikey=''):
+        """
+        Sets whether or not the Spider should attempt to avoid logout related paths/functionality.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionLogoutAvoidance/', {'Boolean': boolean})))
+
     def set_option_max_children(self, integer, apikey=''):
         """
         Sets the maximum number of child nodes (per node) that can be crawled, 0 means no limit.
@@ -565,13 +572,6 @@ class spider(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionProcessForm/', {'Boolean': boolean})))
-
-    def set_option_request_wait_time(self, integer, apikey=''):
-        """
-        
-        This component is optional and therefore the API will only work if it is installed
-        """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'spider/action/setOptionRequestWaitTime/', {'Integer': integer})))
 
     def set_option_send_referer_header(self, boolean, apikey=''):
         """

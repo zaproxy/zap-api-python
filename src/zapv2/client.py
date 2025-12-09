@@ -22,35 +22,38 @@ This file was automatically generated.
 import six
 
 
-class automation(object):
+class client(object):
 
     def __init__(self, zap):
         self.zap = zap
 
-    def plan_progress(self, planid):
+    def report_object(self, objectjson, apikey=''):
         """
-        Returns the progress details for the specified planId
         This component is optional and therefore the API will only work if it is installed
         """
-        return (self.zap._request(self.zap.base + 'automation/view/planProgress/', {'planId': planid}))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'client/action/reportObject/', {'objectJson': objectjson})))
 
-    def run_plan(self, filepath, apikey=''):
+    def report_event(self, eventjson, apikey=''):
         """
-        Loads and asynchronously runs the plan in the specified file, returning a planId
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/action/runPlan/', {'filePath': filepath})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'client/action/reportEvent/', {'eventJson': eventjson})))
 
-    def stop_plan(self, planid, apikey=''):
+    def report_zest_statement(self, statementjson, apikey=''):
         """
-        Stops the running plan identified by the planId
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/action/stopPlan/', {'planId': planid})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'client/action/reportZestStatement/', {'statementJson': statementjson})))
 
-    def end_delay_job(self, apikey=''):
+    def report_zest_script(self, scriptjson, apikey=''):
         """
-        Ends the currently running delay job, if any
         This component is optional and therefore the API will only work if it is installed
         """
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'automation/action/endDelayJob/', {})))
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'client/action/reportZestScript/', {'scriptJson': scriptjson})))
+
+    def export_client_map(self, pathyaml, apikey=''):
+        """
+        Exports the Client Map to a file.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'client/action/exportClientMap/', {'pathYaml': pathyaml})))

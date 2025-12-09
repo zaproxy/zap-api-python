@@ -51,6 +51,22 @@ class selenium(object):
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionChromeDriverPath/')))
 
     @property
+    def option_edge_binary_path(self):
+        """
+        Returns the current path to Edge binary
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionEdgeBinaryPath/')))
+
+    @property
+    def option_edge_driver_path(self):
+        """
+        Returns the current path to EdgeDriver
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/view/optionEdgeDriverPath/')))
+
+    @property
     def option_firefox_binary_path(self):
         """
         Returns the current path to Firefox binary
@@ -114,6 +130,20 @@ class selenium(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionChromeDriverPath/', {'String': string})))
+
+    def set_option_edge_binary_path(self, string, apikey=''):
+        """
+        Sets the current path to Edge binary
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionEdgeBinaryPath/', {'String': string})))
+
+    def set_option_edge_driver_path(self, string, apikey=''):
+        """
+        Sets the current path to EdgeDriver
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'selenium/action/setOptionEdgeDriverPath/', {'String': string})))
 
     def set_option_firefox_binary_path(self, string, apikey=''):
         """

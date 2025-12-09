@@ -27,7 +27,7 @@ class openapi(object):
     def __init__(self, zap):
         self.zap = zap
 
-    def import_file(self, file, target=None, contextid=None, apikey=''):
+    def import_file(self, file, target=None, contextid=None, userid=None, apikey=''):
         """
         Imports an OpenAPI definition from a local file.
         This component is optional and therefore the API will only work if it is installed
@@ -37,9 +37,11 @@ class openapi(object):
             params['target'] = target
         if contextid is not None:
             params['contextId'] = contextid
+        if userid is not None:
+            params['userId'] = userid
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'openapi/action/importFile/', params)))
 
-    def import_url(self, url, hostoverride=None, contextid=None, apikey=''):
+    def import_url(self, url, hostoverride=None, contextid=None, userid=None, apikey=''):
         """
         Imports an OpenAPI definition from a URL.
         This component is optional and therefore the API will only work if it is installed
@@ -49,4 +51,6 @@ class openapi(object):
             params['hostOverride'] = hostoverride
         if contextid is not None:
             params['contextId'] = contextid
+        if userid is not None:
+            params['userId'] = userid
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'openapi/action/importUrl/', params)))

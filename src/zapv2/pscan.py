@@ -75,6 +75,14 @@ class pscan(object):
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/maxAlertsPerRule/')))
 
+    @property
+    def max_body_size_in_bytes(self):
+        """
+        Gets the maximum body size in bytes that the passive scanner will scan.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/view/maxBodySizeInBytes/')))
+
     def set_enabled(self, enabled, apikey=''):
         """
         Sets whether or not the passive scanning is enabled (Note: the enabled state is not persisted).
@@ -130,6 +138,13 @@ class pscan(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setMaxAlertsPerRule/', {'maxAlerts': maxalerts})))
+
+    def set_max_body_size_in_bytes(self, maxsize, apikey=''):
+        """
+        Sets the maximum body size in bytes that the passive scanner will scan.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'pscan/action/setMaxBodySizeInBytes/', {'maxSize': maxsize})))
 
     def disable_all_tags(self, apikey=''):
         """
