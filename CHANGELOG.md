@@ -5,7 +5,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-## [0.5.1] - 2026-04-24
 ### Changed
 - Added support for 'method' parameter on Replacer 'add_rule'
 
