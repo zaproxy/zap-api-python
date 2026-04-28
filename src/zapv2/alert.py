@@ -92,7 +92,7 @@ class alert(object):
             params['url'] = url
         if recurse is not None:
             params['recurse'] = recurse
-        return six.next(six.itervalues(self.zap._request(self.zap.base + 'alert/view/alertCountsByRisk/', params)))
+        return (self.zap._request(self.zap.base + 'alert/view/alertCountsByRisk/', params))
 
     def delete_all_alerts(self, apikey=''):
         """
