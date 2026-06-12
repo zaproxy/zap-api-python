@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 - Added support for 'method' parameter on Replacer 'add_rule'
+- Update the APIs of the following add-ons:
+  - Client Side Integration version 0.27.0.
 
 ### Fixed
 - Return the whole response from `alert.alert_counts_by_risk` (Issue 9314).
