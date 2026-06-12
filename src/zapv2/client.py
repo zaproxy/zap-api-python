@@ -27,6 +27,22 @@ class client(object):
     def __init__(self, zap):
         self.zap = zap
 
+    @property
+    def option_pscan_rules_disabled(self):
+        """
+        Gets the IDs of the disabled client passive scan rules.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'client/view/optionPscanRulesDisabled/')))
+
+    @property
+    def option_pscan_enabled(self):
+        """
+        Gets whether or not the client passive scanner is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'client/view/optionPscanEnabled/')))
+
     def report_object(self, objectjson, apikey=''):
         """
         This component is optional and therefore the API will only work if it is installed
@@ -57,3 +73,10 @@ class client(object):
         This component is optional and therefore the API will only work if it is installed
         """
         return six.next(six.itervalues(self.zap._request(self.zap.base + 'client/action/exportClientMap/', {'pathYaml': pathyaml})))
+
+    def set_option_pscan_enabled(self, boolean, apikey=''):
+        """
+        Sets whether or not the client passive scanner is enabled.
+        This component is optional and therefore the API will only work if it is installed
+        """
+        return six.next(six.itervalues(self.zap._request(self.zap.base + 'client/action/setOptionPscanEnabled/', {'Boolean': boolean})))
