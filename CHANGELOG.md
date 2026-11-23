@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 ### Changed
 - Minimum Python 3 version is now 3.11.
+- Update dependencies.
 
 ## [0.6.0] - 2026-06-12
 

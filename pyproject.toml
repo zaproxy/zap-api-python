@@ -34,12 +34,12 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.11"
-requests = "^2.31.0"
+requests = "^2.34.2"
 six = "^1.16.0"
 
 [tool.poetry.group.dev.dependencies]
 pyflakes = "^4.1.0"
-pytest = "^8.2.0"
+pytest = "^9.2.0"
 mock = "^5.1.0"
 PyHamcrest = "^2.1.0"
 requests-mock = "^1.12.1"
